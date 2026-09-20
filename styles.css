@@ -173,26 +173,6 @@ p { margin: 0 0 1.1rem; }
 
 .work h3:first-of-type { margin-top: 0; }
 
-.essay-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  padding-block: 1.25rem;
-  border-block: 1px solid var(--rule);
-}
-
-.essay-link .title {
-  font-family: var(--display);
-  font-stretch: 75%;
-  font-weight: 700;
-  font-size: 1.625rem;
-  line-height: 1.15;
-  color: var(--link);
-}
-
-.essay-link:hover .title { text-decoration: underline; text-underline-offset: 0.15em; }
-.essay-link .summary { display: block; margin-top: 0.35rem; color: var(--muted); font-size: 1rem; }
-
 .contact dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1.5rem; }
 .contact dt { font-family: var(--display); font-weight: 600; font-stretch: 87.5%; }
 .contact dd { margin: 0; }
@@ -225,10 +205,16 @@ article li { margin-bottom: 0.6rem; }
 .byline { color: var(--muted); font-size: 1rem; }
 
 /* Figures — see DIAGRAMS.md */
-article { counter-reset: figure; }
+article, .diagrams { counter-reset: figure; }
+
+/* Diagrams take the wide frame; their prose keeps the reading measure. */
+.diagrams { max-width: none; }
+.diagrams > h2,
+.diagrams > p { max-width: var(--measure); }
 
 figure {
   margin: 2.25rem 0;
+  scroll-margin-top: 1.5rem;
   counter-increment: figure;
   max-width: none;
 }
