@@ -14,7 +14,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --ink: #dde7ea;
     --paper: #0f1417;
     --cover: #125463;
@@ -23,6 +23,16 @@
     --rule: #253338;
     --link: #5cc2d6;
   }
+}
+
+:root[data-theme="dark"] {
+  --ink: #dde7ea;
+  --paper: #0f1417;
+  --cover: #125463;
+  --cover-ink: #f2f6f6;
+  --muted: #93a4aa;
+  --rule: #253338;
+  --link: #5cc2d6;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -70,7 +80,20 @@ a:hover { text-decoration-thickness: 2px; }
   margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-.masthead nav { display: flex; gap: 1.25rem; font-weight: 500; }
+.masthead nav { display: flex; align-items: center; gap: 1.25rem; font-weight: 500; }
+
+.theme-toggle {
+  font: inherit;
+  font-weight: 500;
+  color: inherit;
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.15em 0.75em;
+  cursor: pointer;
+  opacity: 0.75;
+}
+.theme-toggle:hover { opacity: 1; }
 .masthead nav a { text-decoration: none; }
 .masthead nav a:hover { text-decoration: underline; }
 
@@ -82,10 +105,12 @@ a:hover { text-decoration-thickness: 2px; }
   line-height: 0.88;
   letter-spacing: -0.01em;
   margin: 0 0 clamp(1.5rem, 4vw, 2.25rem);
-  max-width: 11ch;
+  max-width: 18ch;
+  text-wrap: balance;
 }
 
 .cover .lede {
+  text-wrap: balance;
   font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
   line-height: 1.45;
   max-width: 34em;
@@ -169,7 +194,7 @@ h3 {
   margin: 2rem 0 0.4rem;
 }
 
-p { margin: 0 0 1.1rem; }
+p { margin: 0 0 1.1rem; text-wrap: pretty; }
 
 .work h3:first-of-type { margin-top: 0; }
 

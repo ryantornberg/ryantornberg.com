@@ -99,6 +99,8 @@ Nothing else is planned. That is deliberate.
 - The cover lifts to `#125463` in dark mode. At the light value it separates from a near-black page by only 1.51:1 and stops reading as a field; the lifted value gives 2.18:1 and still holds 7.8:1 behind the display type.
 - One accent, derived from the cover: `#0f5568` on light, `#5cc2d6` on dark. Every pairing clears 4.5:1; most clear 7:1.
 - Type: Archivo (condensed widths) for display, Source Serif 4 for body.
+- The cover headline breaks on sense, with explicit `<br>`: "large, aging systems" is one phrase and must not split. Letting a width cap wrap it put a break after "large,", which reads as a finished clause and makes the reader back up. Body copy uses `text-wrap: pretty`, headings `text-wrap: balance`.
+- A theme toggle sits in the masthead. It reads as the theme it will switch *to*, carries `aria-pressed`, and defaults to the operating system's setting until someone chooses.
 - Layout: left-aligned, 66-character measure for text, wider frame for diagrams.
 - No motion. No hover effects beyond link underlines.
 - Light and dark themes via `prefers-color-scheme`, both tested.
@@ -106,7 +108,8 @@ Nothing else is planned. That is deliberate.
 
 ## Technical
 
-- Static HTML and CSS. No build step, no framework, no JavaScript.
+- Static HTML and CSS. No build step, no framework.
+- **One exception to the no-JavaScript rule: the theme toggle.** About 25 lines, no dependencies, no build. It sets `data-theme` on the root element and remembers the choice in `localStorage`. An inline script in `<head>` applies the stored value before first paint, so the page never flashes the wrong theme. With scripting off the page still works and simply follows the operating system, which is what it did before. Nothing else on the site may add JavaScript without revisiting this line.
 - Hosted on GitHub Pages from `main` at `github.com/ryantornberg/ryantornberg.com`, custom domain via `CNAME`.
 - DNS at Porkbun: four A records at GitHub Pages' addresses, `www` as a CNAME. Hand-managed; the Porkbun API keys do not exist.
 - HTTPS is provisioned by GitHub. If the certificate is missing rather than pending, remove and re-add the custom domain to force a new request; this rewrites the `CNAME` file as a commit, so pull before editing.
