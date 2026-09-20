@@ -65,7 +65,7 @@ One page. There is no `/writing` directory and no second page. If something does
 
 Page sections, in order:
 
-1. **Cover** — name, one-line positioning, the blue field.
+1. **Cover** — name, one-line positioning, the petrol field.
 2. **What I do** — four short blocks: brownfield modernization, platform migrations, player-coach leadership, AI-assisted delivery. Three lines each, factual, no narrative.
 3. **Selected work** — the four workspace diagrams, each with a one-line caption naming the mechanism. Framed as one exhibit among the work, not as the site's thesis.
 4. **Background** — the span, compressed to four lines: municipal systems, defense research, healthcare, pharmacy. This is what keeps the site from reading as AI-only.
@@ -95,7 +95,9 @@ Nothing else is planned. That is deliberate.
 
 ## Design
 
-- Cover: one saturated blue field (`#1d3c9e`) with large condensed type as the image, in the spirit of Blue Note record sleeves. The rest of the page is quiet.
+- Cover: one petrol field (`#0e3a46`) with large condensed type as the image, in the spirit of Blue Note record sleeves. Reid Miles' covers ran to deep teal as readily as to blue; the earlier ultramarine read as a brand color rather than as ink. The rest of the page is quiet.
+- The cover lifts to `#125463` in dark mode. At the light value it separates from a near-black page by only 1.51:1 and stops reading as a field; the lifted value gives 2.18:1 and still holds 7.8:1 behind the display type.
+- One accent, derived from the cover: `#0f5568` on light, `#5cc2d6` on dark. Every pairing clears 4.5:1; most clear 7:1.
 - Type: Archivo (condensed widths) for display, Source Serif 4 for body.
 - Layout: left-aligned, 66-character measure for text, wider frame for diagrams.
 - No motion. No hover effects beyond link underlines.
