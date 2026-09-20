@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
   <header class="cover">
@@ -24,9 +25,10 @@
           <a href="#work">Work</a>
           <a href="#diagrams">Diagrams</a>
           <a href="#contact">Contact</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark</button>
         </nav>
       </div>
-      <h1>I make large, aging systems move safely.</h1>
+      <h1>I make<br>large, aging systems<br>move safely.</h1>
       <p class="lede">Software architect and engineering leader. I design the target architecture, set the delivery plan, lead the team, and write the code.</p>
     </div>
   </header>
@@ -221,5 +223,31 @@
       <footer>Ryan Tornberg, Tucson, Arizona</footer>
     </div>
   </main>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector("[data-theme-toggle]");
+      var systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function current() {
+        return root.dataset.theme || (systemDark.matches ? "dark" : "light");
+      }
+      function paint() {
+        var dark = current() === "dark";
+        btn.textContent = dark ? "Light" : "Dark";
+        btn.setAttribute("aria-pressed", String(dark));
+        btn.setAttribute("aria-label", dark ? "Switch to the light theme" : "Switch to the dark theme");
+      }
+      btn.addEventListener("click", function () {
+        var next = current() === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        paint();
+      });
+      systemDark.addEventListener("change", paint);
+      paint();
+    })();
+  </script>
 </body>
 </html>
