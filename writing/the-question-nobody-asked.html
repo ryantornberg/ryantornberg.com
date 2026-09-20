@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The question nobody asked | Ryan Tornberg</title>
+  <meta name="description" content="The expensive failures in software are usually decided before anyone writes code, in a question nobody thought to ask. Three questions that keep catching them.">
+  <meta property="og:title" content="The question nobody asked">
+  <meta property="og:description" content="The expensive failures in software are usually decided before anyone writes code, in a question nobody thought to ask.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="cover short">
+    <div class="wrap">
+      <div class="masthead">
+        <a href="../" style="text-decoration:none">Ryan Tornberg</a>
+        <nav aria-label="Site">
+          <a href="../#work">Work</a>
+          <a href="../#writing">Writing</a>
+          <a href="../#contact">Contact</a>
+        </nav>
+      </div>
+      <h1>The question nobody asked</h1>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap">
+      <p class="byline">Ryan Tornberg, September 2026</p>
+
+      <p>I have built software for city governments, retirement plans, clinical research, defense research, e-commerce and pharmacies. The technology had nothing in common. The failures did.</p>
+
+      <p>Almost none of the expensive ones came from bad code. They came from a decision made early, by people acting reasonably, where a question went unasked. By the time the failure showed up in a bug tracker, it had been settled months earlier and cost twenty times more to undo.</p>
+
+      <p>I can't claim to spot every one. But the same three questions keep earning their keep, and they are cheap enough to ask every time.</p>
+
+      <h2>1. What is actually true right now?</h2>
+
+      <p>Every team has a story about how its system behaves. The story is usually out of date, and nobody checks it because everybody assumes somebody did.</p>
+
+      <p>Last year I was asked to improve monitoring on a platform of six services. The premise was that we had logs and needed better dashboards. Before designing anything I went to look at what was actually running. Five of the six services were sending their logs nowhere at all. The health checks reported healthy whether or not the service could reach its database. Two of the three web applications recorded no failed requests.</p>
+
+      <p>Better dashboards on top of that would have been a picture of nothing. The real work was two layers down, and it only appeared because somebody spent an afternoon checking a premise everyone had already accepted.</p>
+
+      <p>The cost of asking is an afternoon. The cost of not asking is a quarter spent building on a false floor.</p>
+
+      <h2>2. Which decision can't we undo cheaply?</h2>
+
+      <p>Plans treat decisions as equal. They aren't. A handful set the shape of everything that follows, and the rest can be changed on a Tuesday.</p>
+
+      <p>When we designed a new platform whose software would run inside thousands of customer sites and report back to a cloud service, the irreversible decision was how those two halves talk to each other. Get it wrong and you learn a year later, after every feature has been built on top of it.</p>
+
+      <p>So that decision got a spike program of its own. Four messaging architectures, built far enough to see how each behaved, before anyone committed to building the product. Everything else we let ourselves get wrong and fix later.</p>
+
+      <p>The discipline isn't "think hard about everything". It's the opposite. Find the two or three decisions that will outlive your ability to change them, spend real time there, and move fast everywhere else.</p>
+
+      <h2>3. What does this plan assume that nobody has checked?</h2>
+
+      <p>The third question is the one people find rude, so it needs a form that doesn't sound like an accusation.</p>
+
+      <p>A team I worked with kept getting surprised mid-project by work that turned out to depend on other work. The plan looked fine. I read it against the ticket system and found that of its thirty top-level items, exactly zero recorded a dependency on anything else. The dependencies existed; they just lived in people's heads, and each person held a different subset.</p>
+
+      <p>The fix wasn't a process. I wrote out one ordered sequence, said plainly that it was one person's reading and probably wrong in places, and circulated it. A draft that is specific enough to be wrong gets corrected. A vague plan gets nodded at.</p>
+
+      <p>This is also why I write architecture decision records. Not for the archive, though that helps. It's because writing "we chose this, we rejected that, here's what we gave up" forces the assumptions into the open, where someone who knows better can contradict them before they harden into code.</p>
+
+      <h2>Why this matters more with AI in the loop</h2>
+
+      <p>An AI agent will happily build on an unchecked premise, at high speed and with great fluency. It doesn't pause to wonder whether the thing everyone believes about the system is still true, and it produces confident writing about work it hasn't verified.</p>
+
+      <p>So the upstream questions don't get less valuable when a team adopts agents. They get more valuable, because the cost of being wrong arrives faster. The team that asks what's actually true, guards the irreversible decisions, and marks the difference between checked and assumed gets to move quickly and keep what it builds. The team that doesn't just reaches the wrong place sooner.</p>
+
+      <p>None of this is specialized knowledge. It's three questions, asked out loud, before the expensive part starts.</p>
+
+      <p><a href="../">Back to the home page</a></p>
+    </article>
+
+    <div class="wrap">
+      <footer>Ryan Tornberg, Tucson, Arizona</footer>
+    </div>
+  </main>
+</body>
+</html>
