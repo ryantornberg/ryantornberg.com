@@ -223,3 +223,44 @@ article blockquote {
 article ul { padding-inline-start: 1.25rem; }
 article li { margin-bottom: 0.6rem; }
 .byline { color: var(--muted); font-size: 1rem; }
+
+/* Figures — see DIAGRAMS.md */
+article { counter-reset: figure; }
+
+figure {
+  margin: 2.25rem 0;
+  counter-increment: figure;
+  max-width: none;
+}
+
+figure .plate {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  border-block: 1px solid var(--rule);
+  padding-block: 1.25rem;
+}
+
+figure svg {
+  display: block;
+  width: 100%;
+  min-width: 680px;          /* keeps 12px labels ≥ 11px rendered; the plate scrolls on a phone */
+  max-width: 780px;
+  height: auto;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+figcaption::before {
+  content: "Figure " counter(figure) ". ";
+  font-family: var(--display);
+  font-stretch: 87.5%;
+  font-weight: 700;
+  color: var(--ink);
+}
