@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How an agent workspace works | Ryan Tornberg</title>
+  <meta name="description" content="The pattern that makes AI agents reliable on a large legacy codebase: one instruction contract, generated code maps, drift gates in CI, and evaluation cases. With diagrams.">
+  <meta property="og:title" content="How an agent workspace works">
+  <meta property="og:description" content="The pattern that makes AI agents reliable on a large legacy codebase, in four diagrams.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="cover short">
+    <div class="wrap">
+      <div class="masthead">
+        <a href="../" style="text-decoration:none">Ryan Tornberg</a>
+        <nav aria-label="Site">
+          <a href="../#work">Work</a>
+          <a href="../#writing">Writing</a>
+          <a href="../#contact">Contact</a>
+        </nav>
+      </div>
+      <h1>How an agent workspace works</h1>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap">
+      <p class="byline">Ryan Tornberg, September 2026</p>
+
+      <p>A capable model plus a large old codebase does not produce reliable work. It produces confident work, which is different. The gap between the two is filled by a small amount of infrastructure that most teams have not built yet.</p>
+
+      <p>This is the pattern I build and run. It is deliberately boring: text files, generated indexes, and checks that fail loudly. Nothing here is specific to one employer, and any team can copy it in a week.</p>
+
+      <h2>1. The third thing</h2>
+
+      <p>An agent starting work on your codebase draws on two sources. The model brings general competence. The repository says what the software currently is. Neither holds the third thing: what only your organization knows.</p>
+
+      <figure>
+        <svg viewBox="0 0 780 300" role="img" aria-label="Three sources feed an agent session: the model brings general competence, the repository says what the code is, and the workspace holds what only the organization knows. Without the third, the agent guesses." style="max-width:100%;height:auto">
+          <defs>
+            <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="10" y="20" width="300" height="58" rx="3"/>
+            <rect x="10" y="116" width="300" height="58" rx="3"/>
+            <rect x="10" y="212" width="300" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+            <rect x="500" y="110" width="270" height="86" rx="3"/>
+            <line x1="310" y1="49" x2="494" y2="138" marker-end="url(#a1)"/>
+            <line x1="310" y1="145" x2="494" y2="150" marker-end="url(#a1)"/>
+            <line x1="310" y1="248" x2="494" y2="166" marker-end="url(#a1)" stroke="var(--link)" stroke-width="2.5"/>
+          </g>
+          <g font-size="13" fill="currentColor" font-family="system-ui, sans-serif">
+            <text x="26" y="44" font-weight="600">The model</text>
+            <text x="26" y="64">General competence. No context.</text>
+            <text x="26" y="140" font-weight="600">The repository</text>
+            <text x="26" y="160">What the software is today.</text>
+            <text x="26" y="236" font-weight="600" fill="var(--link)">The workspace</text>
+            <text x="26" y="256" fill="var(--link)">Which repo a change belongs in.</text>
+            <text x="26" y="274" fill="var(--link)">Why that branch is dead. Domain words.</text>
+            <text x="516" y="140" font-weight="600">Agent session</text>
+            <text x="516" y="162">Starts oriented, not guessing,</text>
+            <text x="516" y="180">because all three arrive.</text>
+          </g>
+        </svg>
+        <figcaption>Two of the three sources maintain themselves. The third has no home unless someone gives it one.</figcaption>
+      </figure>
+
+      <p>That third layer is small. It is the facts a model cannot derive and a reader cannot infer: which of two similar directories is the live one, which branch was abandoned and why, what the team calls a thing versus what the code calls it. Written down once, it stops being tribal knowledge and starts being context any session can load.</p>
+
+      <h2>2. The loop, and what each part prevents</h2>
+
+      <p>Context alone decays. The moment it goes stale it becomes worse than nothing, because it lies confidently. So each piece of the workspace is paired with something that fails when it stops being true.</p>
+
+      <figure>
+        <svg viewBox="0 0 780 330" role="img" aria-label="A loop: one instruction contract and generated code maps feed the agent's work; drift gates in continuous integration block a merge when documentation no longer matches the code; evaluation cases gate changes to the instructions themselves." style="max-width:100%;height:auto">
+          <defs>
+            <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="10" y="26" width="210" height="58" rx="3"/>
+            <rect x="10" y="122" width="210" height="58" rx="3"/>
+            <rect x="300" y="74" width="160" height="58" rx="3"/>
+            <rect x="540" y="66" width="230" height="74" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+            <rect x="300" y="240" width="160" height="58" rx="3"/>
+            <line x1="220" y1="55" x2="294" y2="92" marker-end="url(#a2)"/>
+            <line x1="220" y1="151" x2="294" y2="116" marker-end="url(#a2)"/>
+            <line x1="460" y1="103" x2="534" y2="103" marker-end="url(#a2)"/>
+            <path d="M655 140 L655 210 L380 210 L380 234" marker-end="url(#a2)" stroke="var(--link)" stroke-width="2.5"/>
+            <path d="M300 269 L115 269 L115 186" marker-end="url(#a2)" stroke-dasharray="5 4"/>
+          </g>
+          <g font-size="13" fill="currentColor" font-family="system-ui, sans-serif">
+            <text x="26" y="50" font-weight="600">Instruction contract</text>
+            <text x="26" y="70">One file, four tools.</text>
+            <text x="26" y="146" font-weight="600">Generated code maps</text>
+            <text x="26" y="166">Symbol → file:line.</text>
+            <text x="316" y="98" font-weight="600">The work</text>
+            <text x="316" y="118">Agent + engineer.</text>
+            <text x="556" y="92" font-weight="600" fill="var(--link)">Drift gates in CI</text>
+            <text x="556" y="112" fill="var(--link)">Dead link, stale map, missing</text>
+            <text x="556" y="130" fill="var(--link)">symbol → the merge stops.</text>
+            <text x="316" y="264" font-weight="600">Eval cases</text>
+            <text x="316" y="284">Guard the instructions.</text>
+            <text x="470" y="204" font-size="12">a failure teaches the suite</text>
+            <text x="125" y="255" font-size="12">no change without a case</text>
+          </g>
+        </svg>
+        <figcaption>Every artifact is paired with a check that fails when it stops being true. Documentation that can go quietly stale is a liability, not an asset.</figcaption>
+      </figure>
+
+      <p>The eval loop is the part teams skip. When an agent goes wrong because the guidance told it to, the fix is not just correcting the guidance. It is adding a case that reproduces the mistake, so the next edit cannot reintroduce it. Guidance is code; treat it that way.</p>
+
+      <h2>3. Speed you can defend</h2>
+
+      <p>"We ship faster with AI" is unfalsifiable and everybody says it. Two ratios make it checkable, and both come from the session logs rather than from anyone's impression.</p>
+
+      <figure>
+        <svg viewBox="0 0 700 250" role="img" aria-label="Two measured ratios: roughly one in every eight agent actions is a verification step rather than a change, and about 62 percent of delegated work is routed to smaller, cheaper models." style="max-width:100%;height:auto">
+          <g font-family="system-ui, sans-serif">
+            <text x="10" y="24" font-size="13" font-weight="600" fill="currentColor">Verification share of agent actions</text>
+            <g fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="10" y="40" width="58" height="34" rx="2"/><rect x="78" y="40" width="58" height="34" rx="2"/>
+              <rect x="146" y="40" width="58" height="34" rx="2"/><rect x="214" y="40" width="58" height="34" rx="2"/>
+              <rect x="282" y="40" width="58" height="34" rx="2"/><rect x="350" y="40" width="58" height="34" rx="2"/>
+              <rect x="418" y="40" width="58" height="34" rx="2"/>
+              <rect x="486" y="40" width="58" height="34" rx="2" stroke="var(--link)" stroke-width="2.5"/>
+            </g>
+            <text x="514" y="94" font-size="12" text-anchor="middle" fill="var(--link)">a check</text>
+            <text x="10" y="94" font-size="12" fill="currentColor">seven changes…</text>
+            <text x="560" y="62" font-size="13" fill="currentColor">≈ 1 in 8 actions</text>
+
+            <text x="10" y="150" font-size="13" font-weight="600" fill="currentColor">Where delegated work runs</text>
+            <g stroke="currentColor" stroke-width="1.5" fill="none">
+              <rect x="10" y="166" width="334" height="34" rx="2" fill="var(--link)" fill-opacity="0.15" stroke="var(--link)" stroke-width="2.5"/>
+              <rect x="344" y="166" width="200" height="34" rx="2"/>
+            </g>
+            <text x="24" y="188" font-size="12" fill="currentColor">62% smaller, cheaper models</text>
+            <text x="358" y="188" font-size="12" fill="currentColor">38% frontier model</text>
+            <text x="560" y="188" font-size="13" fill="currentColor">routed by difficulty</text>
+          </g>
+        </svg>
+        <figcaption>Both numbers are read out of the session logs, not estimated. The first says the speed is checked; the second says it is affordable.</figcaption>
+      </figure>
+
+      <p>A check is a test run, a build, a browser session, or a documentation gate: an action whose only purpose is to find out whether the work is real. If that share collapses, the team is producing plausible output again, and the number says so before the defects do.</p>
+
+      <h2>4. Adoption, measured honestly</h2>
+
+      <p>The failure mode of internal tooling is a mandate: everyone is told to use it, usage is reported as success, and nobody asks whether it helped. The alternative is to measure the thing the workspace exists to remove.</p>
+
+      <figure>
+        <svg viewBox="0 0 760 240" role="img" aria-label="A developer question that has to be escalated to a person is logged as a gap, the gap is fixed in the workspace, and the same question stops being asked. Adoption spreads from one team to neighbouring teams by choice." style="max-width:100%;height:auto">
+          <defs>
+            <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="10" y="24" width="215" height="58" rx="3"/>
+            <rect x="285" y="24" width="195" height="58" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+            <rect x="540" y="24" width="215" height="58" rx="3"/>
+            <line x1="225" y1="53" x2="279" y2="53" marker-end="url(#a3)"/>
+            <line x1="480" y1="53" x2="534" y2="53" marker-end="url(#a3)"/>
+            <path d="M647 82 L647 132 L117 132 L117 88" marker-end="url(#a3)" stroke-dasharray="5 4"/>
+            <line x1="112" y1="196" x2="158" y2="196" marker-end="url(#a3)"/>
+            <line x1="205" y1="196" x2="251" y2="196" marker-end="url(#a3)"/>
+          </g>
+          <g font-size="13" fill="currentColor" font-family="system-ui, sans-serif">
+            <text x="26" y="48" font-weight="600">"I had to ask a person"</text>
+            <text x="26" y="68">The escalation itself.</text>
+            <text x="301" y="48" font-weight="600" fill="var(--link)">Logged as a gap</text>
+            <text x="301" y="68" fill="var(--link)">Not as user error.</text>
+            <text x="556" y="48" font-weight="600">Fixed in the workspace</text>
+            <text x="556" y="68">By whoever hit it.</text>
+            <text x="300" y="126" font-size="12">the same question is not asked twice</text>
+            <text x="10" y="201" font-weight="600">One team</text>
+            <text x="166" y="201" font-weight="600">QA</text>
+            <text x="259" y="201" font-weight="600">a director</text>
+            <text x="350" y="201" font-size="12">adopted by choice, never mandated</text>
+          </g>
+        </svg>
+        <figcaption>The metric is the number of questions a developer still has to escalate to a human. It should fall, and each one that does not is a specific thing to fix.</figcaption>
+      </figure>
+
+      <h2>What it costs to copy</h2>
+
+      <p>About a week of one engineer's time for the first version: an instruction file, a symbol index, three or four checks wired into continuous integration, and the habit of turning each escalated question into a fix. The expensive part is not the tooling. It is deciding that unverified output is unfinished work, and then holding to it when a deadline argues otherwise.</p>
+
+      <p>The related essays: <a href="plausible-is-not-checked.html">Plausible is not checked</a>, on why verification has to be structural, and <a href="the-question-nobody-asked.html">The question nobody asked</a>, on the failures that get decided before anyone writes code.</p>
+
+      <p><a href="../">Back to the home page</a></p>
+    </article>
+
+    <div class="wrap">
+      <footer>Ryan Tornberg, Tucson, Arizona</footer>
+    </div>
+  </main>
+</body>
+</html>
