@@ -31,7 +31,7 @@ So the unit of proof is the **artifact**: something whose existence is the evide
 Qualifying artifacts, in order of strength:
 
 1. **A public repository** that a reviewer can open and read. See "Planned" below.
-2. **Diagrams** of mechanisms Ryan designed, with factual one-line captions.
+2. **Diagrams** of mechanisms Ryan designed, and **charts** of measurements he made, with factual one-line captions.
 3. **Facts with dates and numbers** — what was built, at what scale, verified how.
 
 Not artifacts: essays, opinion posts, lessons-learned write-ups, industry commentary, a reading list, or a talks page with no talks. Each of these feels productive to produce and each one dilutes the parts that work.
@@ -67,7 +67,7 @@ Page sections, in order:
 
 1. **Cover** — name, one-line positioning, the petrol field.
 2. **What I do** — four short blocks: brownfield modernization, platform migrations, player-coach leadership, AI-assisted delivery. Three lines each, factual, no narrative.
-3. **Selected work** — the four workspace diagrams, each with a one-line caption naming the mechanism. Framed as one exhibit among the work, not as the site's thesis.
+3. **Selected work** — six figures. First the architecture model and the delivery forecast, then the four workspace diagrams. Each has a one-line caption naming its claim. Framed as one exhibit among the work, not as the site's thesis.
 4. **Background** — the span, compressed to four lines: municipal systems, defense research, healthcare, pharmacy. This is what keeps the site from reading as AI-only.
 5. **Contact** — email, LinkedIn, GitHub. Résumé on request.
 
@@ -75,13 +75,13 @@ Page sections, in order:
 
 - **Every claim is checkable by Ryan.** Numbers come from his own logs, plans and commits. He must be able to answer a follow-up question about any line on the page in his own words, without preparation. That is the test each caption has to pass.
 - **Captions are labels, not prose.** One line, stating what the mechanism is. If a caption needs a second sentence, the diagram is not carrying its weight.
-- **Diagrams earn their place** by showing a mechanism prose would take a paragraph to describe. Hand-authored inline SVG, `currentColor` plus one accent, no libraries. Conventions in `DIAGRAMS.md`.
+- **Diagrams earn their place** by showing a mechanism prose would take a paragraph to describe; a chart earns it by showing a measurement a sentence could only assert. Hand-authored inline SVG, `currentColor` plus one accent, no libraries. Conventions in `DIAGRAMS.md`.
 - **Plain language.** Short sentences, active voice, no jargon a competent engineering manager outside his stack would have to look up.
 - **First person.** The site is him talking, not a company describing a person.
 
 ## Composition check
 
-The site currently leans on AI-practice material, because that is where the diagrams come from. The career plan puts AI enablement *third* behind Principal/Staff Architect and hands-on Head of Engineering. Any addition should be judged on whether it moves the site toward or away from that balance. Adding a fifth workspace diagram makes the imbalance worse; the public repository and the Background section are what correct it.
+The site currently leans on AI-practice material, because that is where the diagrams come from. The career plan puts AI enablement *third* behind Principal/Staff Architect and hands-on Head of Engineering. Any addition should be judged on whether it moves the site toward or away from that balance. Adding a fifth workspace diagram makes the imbalance worse; the public repository and the Background section are what correct it. The architecture and forecast figures (added 2026-10-31) are a first correction, which is why they lead the section.
 
 ## Planned
 

@@ -6,7 +6,7 @@ The rules every figure on this site follows. The goal is that a set of drawings 
 
 A diagram is justified when it shows a **mechanism** a reader would otherwise assemble from prose: where data flows, which parts talk, what changes between two options, what state something moves through. If a sentence says it faster, write the sentence.
 
-Never draw: a list with boxes around it, a timeline of a project, an org chart of concepts, or a picture that restates the heading above it.
+Never draw: a list with boxes around it, a timeline of a project, an org chart of concepts, or a picture that restates the heading above it. A forecast chart is not a project timeline: it plots a measurement, and section 10 covers it.
 
 One figure carries **one claim**, and the caption states that claim.
 
@@ -71,3 +71,13 @@ Figures are numbered automatically by CSS (`counter(figure)`), so inserting one 
 3. View at 390px wide. Is every label legible?
 4. Switch to dark mode. Does the accent still read?
 5. Delete one more mark. If nothing was lost, leave it deleted.
+
+## 10. Charts
+
+A chart follows every rule above, plus these:
+
+- **Every number traces to Ryan's own records**, and the chart uses relative units (weeks, percentages) rather than internal ones (story points, dates, names).
+- **Measured is solid; projected is dashed.** A reader must be able to tell which part of a line happened.
+- **The accent marks the gap the caption argues about**, not a series.
+- **Lines are 2 wide, gridlines are recessive** (`stroke-opacity` 0.25), and reference lines are thin and dotted with a label at the top.
+- **No hover layer.** The site carries no JavaScript, so the `aria-label` carries the key numbers instead.
