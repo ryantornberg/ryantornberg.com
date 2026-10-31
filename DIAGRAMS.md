@@ -1,6 +1,6 @@
 # Diagram system
 
-The rules every figure on this site follows. The goal is that a set of drawings made months apart reads as one hand. Companion to [SPEC.md](SPEC.md).
+The rules every figure on this site follows. The goal is that a set of drawings made months apart reads as one hand.
 
 ## 1. Does it earn its place?
 
