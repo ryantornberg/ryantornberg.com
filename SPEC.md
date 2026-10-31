@@ -99,7 +99,7 @@ Nothing else is planned. That is deliberate.
 - The cover lifts to `#125463` in dark mode. At the light value it separates from a near-black page by only 1.51:1 and stops reading as a field; the lifted value gives 2.18:1 and still holds 7.8:1 behind the display type.
 - One accent, derived from the cover: `#0f5568` on light, `#5cc2d6` on dark. Every pairing clears 4.5:1; most clear 7:1.
 - Type: Archivo (condensed widths) for display, Source Serif 4 for body.
-- The cover headline breaks on sense, with explicit `<br>`: "large, aging systems" is one phrase and must not split. Letting a width cap wrap it put a break after "large,", which reads as a finished clause and makes the reader back up. Body copy uses `text-wrap: pretty`, headings `text-wrap: balance`.
+- The cover headline is Ryan's own sentence from his notes, not a slogan written for him: "Greenfield is a blast. Brownfield is the tougher game." It breaks on sense, with explicit `<br>`: each sentence starts its own line, so neither reads as finished early. Body copy uses `text-wrap: pretty`, headings `text-wrap: balance`.
 - A theme toggle sits in the masthead. It reads as the theme it will switch *to*, carries `aria-pressed`, and defaults to the operating system's setting until someone chooses.
 - Layout: left-aligned, 66-character measure for text, wider frame for diagrams.
 - No motion. No hover effects beyond link underlines.
