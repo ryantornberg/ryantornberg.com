@@ -734,7 +734,7 @@
 
         <section class="sec" id="s16" aria-labelledby="s16-t">
           <h3 id="s16-t"><span class="n">16</span> Testing the guidance</h3>
-          <p class="deck">Playbooks are code for agents. Test them like code.</p>
+          <p class="deck">A small change to a playbook can change what an agent does. Eval cases catch that before it ships.</p>
 
           <figure id="fig-9">
           <div class="plate"><svg viewBox="0 0 720 256" role="img" aria-label="Each eval case runs with the playbook and without it. Graders keep the playbook only if it beats the bare model, and a push that changes a playbook needs a recorded pass.">
@@ -781,7 +781,7 @@
               <dt>Fails if</dt><dd>It edits code before it has a reproduction.</dd>
             </dl>
           </div>
-          <p>A small wording change in a playbook can change which procedure an agent picks. Nobody notices until the agent starts doing the wrong thing. Eval cases notice first.</p>
+          <p>A wording change can change which procedure an agent picks. Without cases, nobody notices until the agent starts doing the wrong thing.</p>
           <p>Each case runs twice: with the playbook and without it. A playbook stays only while it beats the bare model. If it doesn&rsquo;t, the model has caught up, and the playbook is noise.</p>
           <p>A gate refuses a push that changes a playbook unless its cases have a passing run on record. A routing suite checks that everyday requests reach the right playbook. A before-and-after run shows what each change made better or worse.</p>
           <p>Run the cases on the smaller models you hand work to. A playbook that routes correctly only on the biggest model fails as soon as a cheaper one picks it up.</p>
