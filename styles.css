@@ -276,19 +276,19 @@ figcaption::before {
 
 /* ------------------------------------------------------------------
    Workspace page: a second sleeve in the series.
-   Same type and figure system; its own field color, ochre with ink type.
+   Same type and figure system; its own field color, moss with paper type.
    ------------------------------------------------------------------ */
 .ws {
   --col: 38rem;
-  --field: #d4a017;
-  --field-ink: #16232a;
+  --field: #3c4a2b;
+  --field-ink: #f2f6f6;
   --sheet: #fbfdfd;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .ws { --field: #c4941a; --sheet: #151d21; }
+  :root:not([data-theme="light"]) .ws { --field: #4d5e38; --sheet: #151d21; }
 }
-:root[data-theme="dark"] .ws { --field: #c4941a; --sheet: #151d21; }
+:root[data-theme="dark"] .ws { --field: #4d5e38; --sheet: #151d21; }
 
 .ws main { counter-reset: figure; }
 
