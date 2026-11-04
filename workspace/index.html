@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The agent workspace, version 2.0 | Ryan Tornberg</title>
+  <meta name="description" content="A field guide to the agent workspace: a repository beside your code that holds what neither the code nor the model knows. Version 2.0, with diagrams.">
+  <meta property="og:title" content="The agent workspace, version 2.0">
+  <meta property="og:description" content="A repository beside your code that holds what neither the code nor the model knows: what it holds, how work flows through it, and how to build one.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ryantornberg.com/workspace/">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script src="../theme.js" defer></script>
+</head>
+<body class="ws">
+  <header class="cover">
+    <div class="wrap">
+      <div class="masthead">
+        <a href="../">Ryan Tornberg</a>
+        <nav aria-label="Site">
+          <a href="#contents">Contents</a>
+          <a href="../#contact">Contact</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark</button>
+        </nav>
+      </div>
+
+      <div class="trio">
+        <p class="arrives"><span class="who">The model</span> <span class="brings">General skill. No context.</span></p>
+        <p class="arrives"><span class="who">The repository</span> <span class="brings">What the code is today.</span></p>
+        <h1><span class="the">The</span> <span class="big">workspace</span></h1>
+        <p class="brings last">What only your team knows, and how it has agreed to work.</p>
+      </div>
+
+      <p class="lede">An agent needs all three to start work oriented. The first two arrive on their own. The third has to be built, and this page is a field guide to building it, at version 2.0.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="intro">
+        <p>I built a workspace like this for the team I develop with. This page describes the pattern, not that project. Nothing in it depends on a language, a cloud or a vendor. If your team works with coding agents on software that already exists, you can build one.</p>
+        <p>Version 1.0 worked for me. Version 2.0 is designed so a teammate can use it without asking me anything. If you knew 1.0, start with <a href="#s19">what changed</a>.</p>
+      </div>
+
+      <nav id="contents" class="tracks" aria-labelledby="contents-title">
+        <h2 id="contents-title">Contents</h2>
+        <div class="sides">
+          <div class="side">
+            <h3>The idea</h3>
+            <ul>
+              <li><span class="n">1</span><a href="#s1">Why it exists</a></li>
+              <li><span class="n">2</span><a href="#s2">What it holds, and what it refuses</a></li>
+            </ul>
+          </div>
+          <div class="side">
+            <h3>The structure</h3>
+            <ul>
+              <li><span class="n">3</span><a href="#s3">It sits beside your code</a></li>
+              <li><span class="n">4</span><a href="#s4">Write it once</a></li>
+              <li><span class="n">5</span><a href="#s5">Two front doors</a></li>
+              <li><span class="n">6</span><a href="#s6">Three kinds of guidance</a></li>
+              <li><span class="n">7</span><a href="#s7">Finding things</a></li>
+            </ul>
+          </div>
+          <div class="side">
+            <h3>How work flows</h3>
+            <ul>
+              <li><span class="n">8</span><a href="#s8">Size the work first</a></li>
+              <li><span class="n">9</span><a href="#s9">Done means verified</a></li>
+              <li><span class="n">10</span><a href="#s10">A local environment per working copy</a></li>
+              <li><span class="n">11</span><a href="#s11">Review before people see it</a></li>
+              <li><span class="n">12</span><a href="#s12">Unattended runs and model tiers</a></li>
+              <li><span class="n">13</span><a href="#s13">Work survives a handoff</a></li>
+            </ul>
+          </div>
+          <div class="side">
+            <h3>The safety net</h3>
+            <ul>
+              <li><span class="n">14</span><a href="#s14">Drift gates</a></li>
+              <li><span class="n">15</span><a href="#s15">Hooks in the agent&rsquo;s runtime</a></li>
+              <li><span class="n">16</span><a href="#s16">Testing the guidance</a></li>
+              <li><span class="n">17</span><a href="#s17">Changing the machinery</a></li>
+            </ul>
+          </div>
+          <div class="side">
+            <h3>Adopting it</h3>
+            <ul>
+              <li><span class="n">18</span><a href="#s18">How you know it works</a></li>
+              <li><span class="n">19</span><a href="#s19">What changed in 2.0</a></li>
+              <li><span class="n">20</span><a href="#s20">Start your own</a></li>
+              <li><span class="n">21</span><a href="#s21">Glossary</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ============================== The idea ============================== -->
+    <div class="part">
+      <div class="band"><div class="wrap"><h2>The idea</h2></div></div>
+      <div class="wrap flow">
+
+        <section class="sec" id="s1" aria-labelledby="s1-t">
+          <h3 id="s1-t"><span class="n">1</span> Why it exists</h3>
+          <p class="deck">Without your team&rsquo;s context, an agent guesses. Its guesses read as confidently as its facts.</p>
+          <p>The model brings general skill. The repository says what the software is today. Neither one knows which repository a change belongs in, which branch your team abandoned, or what you mean by an everyday word.</p>
+          <p>That knowledge usually lives in a few people&rsquo;s heads. Those people get good results from an agent, and everyone else gets guesses. The workspace writes the knowledge down, so working well with an agent becomes a team practice instead of a private skill.</p>
+          <table class="t stack">
+            <caption>The first minutes of a session</caption>
+            <thead><tr><th scope="col">Moment</th><th scope="col">Without a workspace</th><th scope="col">With one</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Where the change goes</th><td data-label="Without a workspace">The agent picks the repository that looks right.</td><td data-label="With one">The contract names the right one and warns about the look-alike.</td></tr>
+              <tr><th scope="row">Your words</th><td data-label="Without a workspace">It searches for &ldquo;the nightly job&rdquo; and finds nothing.</td><td data-label="With one">An alias table maps the phrase to the name the code uses.</td></tr>
+              <tr><th scope="row">Old decisions</th><td data-label="Without a workspace">It revives an approach your team already rejected.</td><td data-label="With one">A decision record says what was rejected, and why.</td></tr>
+              <tr><th scope="row">The procedure</th><td data-label="Without a workspace">Each person prompts it their own way.</td><td data-label="With one">A playbook gives every person and every tool the same steps.</td></tr>
+              <tr><th scope="row">Getting stuck</th><td data-label="Without a workspace">It asks you, every time.</td><td data-label="With one">You answer once, in the workspace, and nobody asks again.</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="sec" id="s2" aria-labelledby="s2-t">
+          <h3 id="s2-t"><span class="n">2</span> What it holds, and what it refuses</h3>
+          <p class="deck">A workspace grows until nobody reads it. A written boundary stops the growth.</p>
+          <table class="t">
+            <thead><tr><th scope="col">It holds</th><th scope="col">It refuses</th></tr></thead>
+            <tbody>
+              <tr><td>Facts nobody can derive from the code: which system is the real one, what replaced what, and the quirks of your tracker and your deploys.</td><td>Summaries of what the code already says plainly.</td></tr>
+              <tr><td>How the software works, written for a person: the architecture, the data flow, how sign-in works across your apps.</td><td>Coaching the agent on things it already does well.</td></tr>
+              <tr><td>Team agreements: how you size, review and finish work.</td><td>Ticket status. That belongs in your tracker.</td></tr>
+            </tbody>
+          </table>
+          <div class="rule-box">
+            <p><strong>The test.</strong> Before you write something down, ask whether a capable model would get it right from the code alone. If it would, leave it out. If it would get it wrong, and wrong is costly, write it down.</p>
+          </div>
+          <p>Cheap insurance stays, even when a model usually gets the answer right. A one-line warning that prevents a costly mistake earns its place.</p>
+          <p>When adding and deleting are otherwise equal, delete. Correct an existing page before you write a new one.</p>
+          <p>Finished work moves to an archive. It stays in the repository, but a search-ignore file hides it from agent search, so old plans stop showing up as current advice.</p>
+          <p>Two places hide team knowledge without anyone noticing. One is the agent&rsquo;s private memory on one person&rsquo;s machine. The other is the always-loaded rules file, which grows until every session pays for rules it never uses. Move team facts out of private memory, and keep the always-loaded layer to routing and the traps.</p>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ============================== The structure ============================== -->
+    <div class="part">
+      <div class="band"><div class="wrap"><h2>The structure</h2></div></div>
+      <div class="wrap flow">
+
+        <section class="sec" id="s3" aria-labelledby="s3-t">
+          <h3 id="s3-t"><span class="n">3</span> It sits beside your code</h3>
+          <p class="deck">The workspace is its own repository. It points at your code repositories; it does not contain them.</p>
+
+          <figure id="fig-1">
+          <div class="plate"><svg viewBox="0 0 720 248" role="img" aria-label="The workspace pins each code repository at an exact commit, so the code stays authoritative in its own repository and every doc describes a known version. A merge upstream moves the pin forward.">
+          <defs>
+          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="200" y="16" width="320" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="8" y="176" width="208" height="56" rx="3"/>
+          <rect x="256" y="176" width="208" height="56" rx="3"/>
+          <rect x="504" y="176" width="208" height="56" rx="3"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <line x1="360" y1="88" x2="360" y2="136"/>
+          <line x1="112" y1="136" x2="608" y2="136"/>
+          <line x1="112" y1="136" x2="112" y2="170" marker-end="url(#arw)"/>
+          <line x1="360" y1="136" x2="360" y2="170" marker-end="url(#arw)"/>
+          <line x1="608" y1="136" x2="608" y2="170" marker-end="url(#arw)"/>
+          </g>
+          <path d="M680 176 L680 52 L526 52" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="216" y="40" font-weight="600" fill="var(--link)">The workspace</text>
+          <text x="216" y="60" fill="var(--link)">Contract, guide, playbooks, docs,</text>
+          <text x="216" y="80" fill="var(--link)">gates. No product code.</text>
+          <text x="24" y="200" font-weight="600">Service repository</text>
+          <text x="24" y="220">Own history, own reviews.</text>
+          <text x="272" y="200" font-weight="600">Web app repository</text>
+          <text x="272" y="220">Own history, own reviews.</text>
+          <text x="520" y="200" font-weight="600">Another team&#8217;s repository</text>
+          <text x="520" y="220">Read-only reference.</text>
+          <text x="368" y="124" font-size="12">each pinned at a commit</text>
+          <text x="544" y="44" font-size="12">a merge moves the pin</text>
+          </g>
+          </svg></div>
+          <figcaption>The workspace pins each code repository at an exact commit. The code stays authoritative in its own repository, and every doc describes a known version.</figcaption>
+          </figure>
+
+          <p class="gloss"><b>Submodule.</b> A git feature that includes one repository inside another, fixed at an exact commit.</p>
+          <p>Your code keeps its own repositories, history and reviews. The workspace includes each one as a pinned reference, such as a git submodule. When a change merges upstream, the workspace moves its pin forward.</p>
+          <p>The split pays off three ways. Code reviewers never see workspace churn. One workspace can describe several repositories, including ones your team does not own. And every claim in it describes a known version of the code.</p>
+          <p>Design it so nobody needs access to everything. A newcomer who can reach only two of the repositories should still get working docs and passing checks.</p>
+
+          <div class="specimen tree">
+            <p class="sp-title">One way to lay it out. The roles matter more than the names.</p>
+            <dl>
+              <dt>AGENTS.md</dt><dd>The contract: rules every agent reads.</dd>
+              <dt>GUIDE.md</dt><dd>The front door for people.</dd>
+              <dt>README.md</dt><dd>The task router: &ldquo;I want to&hellip;&rdquo; and where to go.</dd>
+              <dt>INDEX.md</dt><dd>Topics, plus search aliases.</dd>
+              <dt>docs/decisions/</dt><dd>Decision records: why the hard calls went the way they did.</dd>
+              <dt>docs/playbooks/</dt><dd>Procedures an agent can run.</dd>
+              <dt>docs/howto/</dt><dd>Steps a person follows.</dd>
+              <dt>docs/tutorials/</dt><dd>Do-once lessons for newcomers.</dd>
+              <dt>docs/&lt;area&gt;/</dt><dd>How each part of your system works.</dd>
+              <dt>wrappers/</dt><dd>Thin pointers in each tool&rsquo;s own format. Most tools expect a fixed folder.</dd>
+              <dt>checks/</dt><dd>Drift gates, run before each commit and after each push.</dd>
+              <dt>evals/</dt><dd>Test cases for the playbooks.</dd>
+              <dt>archive/</dt><dd>Finished work, hidden from agent search.</dd>
+              <dt>src/</dt><dd>Your code repositories, pinned.</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section class="sec" id="s4" aria-labelledby="s4-t">
+          <h3 id="s4-t"><span class="n">4</span> Write it once, every tool reads it</h3>
+          <p class="deck">Each rule and procedure lives in one file. Every tool, and every published copy, points back at it.</p>
+
+          <figure id="fig-2">
+          <div class="plate"><svg viewBox="0 0 720 360" role="img" aria-label="A procedure lives in one playbook file. Claude Code, GitHub Copilot, Codex and opencode each reach it through a thin pointer, and the wiki copy is published from it one way, so no reader gets a different answer.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="144" width="232" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="448" y="8" width="264" height="56" rx="3"/>
+          <rect x="448" y="104" width="264" height="56" rx="3"/>
+          <rect x="448" y="200" width="264" height="56" rx="3"/>
+          <rect x="448" y="296" width="264" height="56" rx="3"/>
+          <rect x="8" y="296" width="232" height="56" rx="3"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <line x1="240" y1="180" x2="344" y2="180"/>
+          <line x1="344" y1="36" x2="344" y2="324"/>
+          <line x1="344" y1="36" x2="442" y2="36" marker-end="url(#arw)"/>
+          <line x1="344" y1="132" x2="442" y2="132" marker-end="url(#arw)"/>
+          <line x1="344" y1="228" x2="442" y2="228" marker-end="url(#arw)"/>
+          <line x1="344" y1="324" x2="442" y2="324" marker-end="url(#arw)"/>
+          </g>
+          <line x1="124" y1="216" x2="124" y2="290" marker-end="url(#arw)"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="168" font-weight="600" fill="var(--link)">The playbook</text>
+          <text x="24" y="188" fill="var(--link)">One procedure, plain markdown.</text>
+          <text x="24" y="208" fill="var(--link)">The only copy.</text>
+          <text x="464" y="32" font-weight="600">Claude Code</text>
+          <text x="464" y="52">A skill file that points here.</text>
+          <text x="464" y="128" font-weight="600">GitHub Copilot</text>
+          <text x="464" y="148">A prompt file that points here.</text>
+          <text x="464" y="224" font-weight="600">Codex</text>
+          <text x="464" y="244">Opens the playbook by its path.</text>
+          <text x="464" y="320" font-weight="600">opencode</text>
+          <text x="464" y="340">Reads the same skill files.</text>
+          <text x="24" y="320" font-weight="600">The wiki copy</text>
+          <text x="24" y="340">For people who never clone.</text>
+          <text x="252" y="172" font-size="12">a thin pointer</text>
+          <text x="132" y="258" font-size="12">published one way</text>
+          </g>
+          </svg></div>
+          <figcaption>A procedure lives in one file. Each tool gets a thin pointer to it, and the wiki copy is published from it, so no reader gets a different answer.</figcaption>
+          </figure>
+
+          <p>Most agent tools have their own format for commands and rules. Write a procedure into each format and the copies drift apart. Instead, write it once as plain markdown, and give each tool a wrapper of a few lines that points at it.</p>
+          <p>Rules work the same way. One contract file holds the rules every tool reads, and each tool&rsquo;s own settings file imports it instead of repeating it.</p>
+          <p class="gloss"><b>Path-scoped rule.</b> A rules file that applies only to matching paths, such as front-end components or deploy configuration.</p>
+          <p>Some rules apply only to certain files. Keep those in path-scoped rule files. Some tools load them on their own. For the rest, a hook shows the matching file when the agent edits a covered path.</p>
+          <p>People who never clone the repository still need some of it, such as the decision records and the team&rsquo;s agreements. Publish those to your wiki one way, with a banner that names the source. Edits go to the source, and the next publish carries them.</p>
+        </section>
+
+        <section class="sec" id="s5" aria-labelledby="s5-t">
+          <h3 id="s5-t"><span class="n">5</span> Two front doors, one set of docs</h3>
+          <p class="deck">People and agents need different entrances. They do not need different documents.</p>
+
+          <figure id="fig-3">
+          <div class="plate"><svg viewBox="0 0 720 224" role="img" aria-label="People enter through a guide and a task router, agents through the contract and a topic index, and both arrive at the same documents, where each fact has one home.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="16" width="184" height="56" rx="3"/>
+          <rect x="8" y="152" width="184" height="56" rx="3"/>
+          <rect x="248" y="16" width="208" height="56" rx="3"/>
+          <rect x="248" y="152" width="208" height="56" rx="3"/>
+          <rect x="512" y="76" width="200" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <line x1="192" y1="44" x2="242" y2="44" marker-end="url(#arw)"/>
+          <line x1="192" y1="180" x2="242" y2="180" marker-end="url(#arw)"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <path d="M456 44 L484 44 L484 100 L506 100" marker-end="url(#arw)"/>
+          <path d="M456 180 L484 180 L484 124 L506 124" marker-end="url(#arw)"/>
+          </g>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="40" font-weight="600">A person</text>
+          <text x="24" y="60">New to the team.</text>
+          <text x="24" y="176" font-weight="600">An agent</text>
+          <text x="24" y="196">A fresh session.</text>
+          <text x="264" y="40" font-weight="600">Guide and task router</text>
+          <text x="264" y="60">The why, and where to go.</text>
+          <text x="264" y="176" font-weight="600">Contract and index</text>
+          <text x="264" y="196">The rules, then the fact.</text>
+          <text x="528" y="100" font-weight="600" fill="var(--link)">The same docs</text>
+          <text x="528" y="120" fill="var(--link)">One home per fact.</text>
+          <text x="528" y="140" fill="var(--link)">Nothing written twice.</text>
+          </g>
+          </svg></div>
+          <figcaption>People enter through a guide and a task router, and agents through the contract and a topic index. Both arrive at the same documents.</figcaption>
+          </figure>
+
+          <p>A person wants the reasons and a route to the task. An agent wants the rules and the fastest path to a fact. So each gets its own entrance: a guide and a task router for people, the contract and a topic index for agents.</p>
+          <p>Behind both entrances is one set of documents. Nothing is written twice for two audiences, so a fact that changes, changes once.</p>
+
+          <table class="t router">
+            <caption>A task router: the first screen of the workspace</caption>
+            <thead><tr><th scope="col">I want to&hellip;</th><th scope="col">Go to</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Build a feature or a large change</th><td>The ladder: grill, spec, plan, execute (<a href="#s8">section 8</a>).</td></tr>
+              <tr><th scope="row">Make a small, reversible fix</th><td>Test-first, with no ceremony.</td></tr>
+              <tr><th scope="row">Debug something hard or slow</th><td>A repeatable feedback loop. Never guess at a fix.</td></tr>
+              <tr><th scope="row">Answer a question</th><td>Research. Save the findings only if they hold up.</td></tr>
+              <tr><th scope="row">I don&rsquo;t know where to go</th><td>The guide&rsquo;s list of where answers live.</td></tr>
+            </tbody>
+          </table>
+          <p>Start with those five rows; they cover most work. Add a row when someone asks where to go and the answer is not there.</p>
+          <p>Short requests should expand to full procedures. The workspace defines what each one means, so the same words do the same thing for everyone.</p>
+          <table class="t stack">
+            <caption>Asking in one line</caption>
+            <thead><tr><th scope="col">You say</th><th scope="col">The agent does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">&ldquo;Pick up ticket 1234 and fix it.&rdquo;</th><td data-label="The agent does">Reads the ticket, checks its claims, takes the bug path and opens a draft for review.</td></tr>
+              <tr><th scope="row">&ldquo;Verify it locally.&rdquo;</th><td data-label="The agent does">Starts a local environment, clicks through the change and captures what it shows.</td></tr>
+              <tr><th scope="row">&ldquo;Do the bookkeeping.&rdquo;</th><td data-label="The agent does">After a merge: closes subtasks, moves the pin, refreshes the maps and cleans up.</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="sec" id="s6" aria-labelledby="s6-t">
+          <h3 id="s6-t"><span class="n">6</span> Three kinds of guidance</h3>
+          <p class="deck">A reader should know from the folder name what kind of help they are about to get.</p>
+          <table class="t stack">
+            <thead><tr><th scope="col">Kind</th><th scope="col">Reader</th><th scope="col">When</th><th scope="col">Example</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Playbook</th><td data-label="Reader">An agent, or a person through one</td><td data-label="When">Every time the task comes up</td><td data-label="Example">Fix a bug test-first</td></tr>
+              <tr><th scope="row">How-to</th><td data-label="Reader">A person</td><td data-label="When">While doing one task</td><td data-label="Example">Review a teammate&rsquo;s pull request</td></tr>
+              <tr><th scope="row">Tutorial</th><td data-label="Reader">A newcomer</td><td data-label="When">Once</td><td data-label="Example">A first agent task, end to end</td></tr>
+              <tr><th scope="row">Reference</th><td data-label="Reader">Anyone</td><td data-label="When">When looking something up</td><td data-label="Example">How sign-in works across the apps</td></tr>
+              <tr><th scope="row">Decision record</th><td data-label="Reader">Anyone about to reopen a choice</td><td data-label="When">Before changing direction</td><td data-label="Example">Why the repositories are pinned, not copied</td></tr>
+            </tbody>
+          </table>
+          <p class="gloss"><b>Di&aacute;taxis.</b> A public framework that sorts documentation by what the reader needs: to learn, to do a task, to look something up, or to understand why.</p>
+          <p>The split follows Di&aacute;taxis. Playbooks are the how-tos an agent can run, which is why they get their own folder. Keep one term per concept: when two words name the same kind of document, retire one.</p>
+          <p>Every page opens with one sentence saying what it is for and who reads it. A page that reports a finding or a decision also opens with an &ldquo;In short&rdquo; line a reader can stop after. A gate checks that the line is there.</p>
+        </section>
+
+        <section class="sec" id="s7" aria-labelledby="s7-t">
+          <h3 id="s7-t"><span class="n">7</span> Finding things</h3>
+          <p class="deck">Choose the lookup that fits what you already know. Don&rsquo;t stack them.</p>
+          <table class="t stack">
+            <thead><tr><th scope="col">You have</th><th scope="col">Use</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">An exact name: a class, a route, an endpoint</th><td data-label="Use">A symbol lookup that returns the file and the line.</td></tr>
+              <tr><th scope="row">A topic, but no name</th><td data-label="Use">The topic index and its search aliases.</td></tr>
+              <tr><th scope="row">A repository you want to get to know</th><td data-label="Use">Its code map: a generated list of components and routes, each with a file and line.</td></tr>
+              <tr><th scope="row">A distinctive name in a known repository</th><td data-label="Use">Plain text search.</td></tr>
+              <tr><th scope="row">An outside system</th><td data-label="Use">The architecture model: who calls it, and what data crosses.</td></tr>
+            </tbody>
+          </table>
+          <table class="t aliases">
+            <caption>Search aliases, with invented examples</caption>
+            <thead><tr><th scope="col">You say</th><th scope="col">The code says</th></tr></thead>
+            <tbody>
+              <tr><td>the nightly job</td><td><code>ReconciliationWorker</code></td></tr>
+              <tr><td>a hold</td><td><code>AccountFreeze</code></td></tr>
+              <tr><td>the big report</td><td><code>QuarterlyExport</code></td></tr>
+            </tbody>
+          </table>
+          <p>The alias table is often the most useful thing a workspace gives an agent. People and code use different words for the same thing, and a search for the everyday word finds nothing.</p>
+          <p>Code maps help people as much as agents. A newcomer can scan a repository&rsquo;s shape without opening a source file.</p>
+          <p>Outside systems get the same treatment. A register lists every system you call, and a text model records each call and the class of data it carries. The maps and diagrams are generated from the model. <a href="../#fig-1">Figure 1 on my home page</a> shows that loop.</p>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ============================== How work flows ============================== -->
+    <div class="part">
+      <div class="band"><div class="wrap"><h2>How work flows</h2></div></div>
+      <div class="wrap flow">
+
+        <section class="sec" id="s8" aria-labelledby="s8-t">
+          <h3 id="s8-t"><span class="n">8</span> Size the work first</h3>
+          <p class="deck">Process should scale with the work. A size gate decides how much each change gets.</p>
+          <p>A change skips the ceremony when it is all four of these:</p>
+          <ul class="bars four">
+            <li><strong>Small</strong></li>
+            <li><strong>Easy to reverse</strong></li>
+            <li><strong>In one repository</strong></li>
+            <li><strong>Under a day of work</strong></li>
+          </ul>
+          <p>Then write a failing test, make it pass, and ship it. Everything else climbs a ladder, and stops climbing as soon as the work allows.</p>
+
+          <figure id="fig-4">
+          <div class="plate"><svg viewBox="0 0 720 280" role="img" aria-label="A size gate decides how much process a change gets. Small work goes straight to a test-first fix. Larger work climbs grill, spec, plan and execute; a fresh session red-teams the plan, and hard calls become decision records.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="16" width="184" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="264" y="24" width="184" height="56" rx="3"/>
+          <rect x="520" y="24" width="192" height="56" rx="3"/>
+          <rect x="8" y="160" width="144" height="56" rx="3"/>
+          <rect x="192" y="160" width="144" height="56" rx="3"/>
+          <rect x="376" y="160" width="144" height="56" rx="3"/>
+          <rect x="560" y="160" width="144" height="56" rx="3"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <line x1="192" y1="52" x2="258" y2="52" marker-end="url(#arw)"/>
+          <line x1="80" y1="88" x2="80" y2="154" marker-end="url(#arw)"/>
+          </g>
+          <line x1="152" y1="188" x2="186" y2="188" marker-end="url(#arw)"/>
+          <line x1="336" y1="188" x2="370" y2="188" marker-end="url(#arw)"/>
+          <line x1="520" y1="188" x2="554" y2="188" marker-end="url(#arw)"/>
+          <path d="M448 216 L448 244 L264 244 L264 222" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          <path d="M264 160 L264 128 L616 128 L616 86" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="40" font-weight="600" fill="var(--link)">Size gate</text>
+          <text x="24" y="60" fill="var(--link)">Small, reversible, one</text>
+          <text x="24" y="80" fill="var(--link)">repo, under a day?</text>
+          <text x="280" y="48" font-weight="600">Test-first fix</text>
+          <text x="280" y="68">Test, fix, ship.</text>
+          <text x="536" y="48" font-weight="600">Decision record</text>
+          <text x="536" y="68">Why, and what it cost.</text>
+          <text x="24" y="184" font-weight="600">Grill</text>
+          <text x="24" y="204">Settle questions.</text>
+          <text x="208" y="184" font-weight="600">Spec</text>
+          <text x="208" y="204">What will be true.</text>
+          <text x="392" y="184" font-weight="600">Plan</text>
+          <text x="392" y="204">Checked slices.</text>
+          <text x="576" y="184" font-weight="600">Execute</text>
+          <text x="576" y="204">Run and verify.</text>
+          <text x="204" y="44" font-size="12">yes</text>
+          <text x="88" y="128" font-size="12">no</text>
+          <text x="272" y="120" font-size="12">a hard call</text>
+          <text x="272" y="268" font-size="12">red-team: a fresh session attacks the plan</text>
+          </g>
+          </svg></div>
+          <figcaption>A size gate decides how much process a change gets. Small work goes straight to a test; larger work climbs the ladder, and a fresh critic attacks the plan before anything is built on it.</figcaption>
+          </figure>
+
+          <ol class="steps">
+            <li><strong>Bound it.</strong> Write the goal and the non-goals before touching anything. Agents tend to do more than you asked, and non-goals stop that.</li>
+            <li><strong>Grill.</strong> The agent interviews you about the design until the open questions are settled.</li>
+            <li><strong>Spec.</strong> Write down what will be true when the work is done.</li>
+            <li><strong>Plan.</strong> Break the work into slices an agent can run, each with its own checks.</li>
+            <li><strong>Red-team.</strong> A fresh session with no stake in the plan attacks it. Done means every finding is triaged, not that none were found.</li>
+            <li><strong>Execute.</strong> Run the slices, verify each one, and record what happened.</li>
+          </ol>
+          <p class="gloss"><b>Decision record.</b> Often called an ADR, for architecture decision record: a short page naming a choice, its options and what it gave up.</p>
+          <p>A call that is hard to reverse becomes a decision record. The next person, or the next agent, reads why before reopening it.</p>
+          <p>Work that runs for weeks gets one folder for its hub, its open questions, its specs and its plans. Very large work, with its own conditions for stopping, gets a short requirements document above the ladder.</p>
+        </section>
+
+        <section class="sec" id="s9" aria-labelledby="s9-t">
+          <h3 id="s9-t"><span class="n">9</span> Done means verified</h3>
+          <p class="deck">An agent&rsquo;s &ldquo;done&rdquo; is a claim. The workspace says what evidence the claim needs.</p>
+          <p>A change is done when all of these hold:</p>
+          <ul class="checks">
+            <li>Tests come first, and they fail before the fix.</li>
+            <li>The build is clean against where it started. Only new warnings count, so old ones can&rsquo;t hide new ones.</li>
+            <li>The change is checked in the running app, on a disposable local environment.</li>
+            <li>An impact check lists what else the changed paths touch.</li>
+            <li>Every claim in the report is marked verified or inferred.</li>
+          </ul>
+          <div class="specimen report" role="group" aria-label="A sample report">
+            <p class="sp-title">A report, marked</p>
+            <p class="sp-line">Fixed: the Export button on the orders page did nothing.</p>
+            <dl>
+              <dt class="v">verified</dt><dd>The new test fails before the fix and passes after it.</dd>
+              <dt class="v">verified</dt><dd>On the local environment, Export now downloads the file.</dd>
+              <dt class="i">inferred</dt><dd>The invoices page uses the same handler. Not checked.</dd>
+            </dl>
+          </div>
+          <p>Verified means the agent ran something and saw the result. Inferred means it reasoned its way there. Both are useful. Mixing them up is how a confident wrong answer gets merged.</p>
+          <p>A bug that shows on screen gets a screenshot or a short video, captured on the local environment. A person approves each bug report before it is filed.</p>
+        </section>
+
+        <section class="sec" id="s10" aria-labelledby="s10-t">
+          <h3 id="s10-t"><span class="n">10</span> A local environment per working copy</h3>
+          <p class="deck">Each working copy of the code gets its own disposable environment, so parallel sessions never share test data.</p>
+
+          <figure id="fig-5">
+          <div class="plate"><svg viewBox="0 0 720 192" role="img" aria-label="Each working copy gets its own local slot with its own database and test user, so parallel agent sessions never share data, and no slot is ever pointed at the shared database.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="16" width="208" height="56" rx="3"/>
+          <rect x="8" y="120" width="208" height="56" rx="3"/>
+          <rect x="264" y="16" width="208" height="56" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="264" y="120" width="208" height="56" rx="3"/>
+          <rect x="560" y="68" width="152" height="56" rx="3"/>
+          <line x1="216" y1="44" x2="258" y2="44" marker-end="url(#arw)" stroke="var(--link)" stroke-width="2.5"/>
+          <line x1="216" y1="148" x2="258" y2="148" marker-end="url(#arw)"/>
+          <g stroke-dasharray="5 4">
+          <path d="M472 44 L504 44 L504 148 L472 148"/>
+          <line x1="504" y1="96" x2="554" y2="96" marker-end="url(#arw)"/>
+          </g>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="40" font-weight="600">Working copy A</text>
+          <text x="24" y="60">One task, one branch.</text>
+          <text x="24" y="144" font-weight="600">Working copy B</text>
+          <text x="24" y="164">Another task, alongside.</text>
+          <text x="280" y="40" font-weight="600" fill="var(--link)">Slot 1</text>
+          <text x="280" y="60" fill="var(--link)">Own database, test user.</text>
+          <text x="280" y="144" font-weight="600">Slot 2</text>
+          <text x="280" y="164">Same schema, its own data.</text>
+          <text x="576" y="92" font-weight="600">Shared database</text>
+          <text x="576" y="112">Never a target.</text>
+          <text x="512" y="88" font-size="12">never</text>
+          </g>
+          </svg></div>
+          <figcaption>Each working copy gets its own slot, so parallel sessions never share test data, and no slot ever points at a shared database.</figcaption>
+          </figure>
+
+          <p class="gloss"><b>Working copy.</b> A separate checkout of a repository on its own branch. Git calls an extra one a worktree.</p>
+          <p>Agents work in parallel, each on its own branch in its own working copy. If they share one local database, one session&rsquo;s test data breaks another session&rsquo;s test.</p>
+          <p>So each working copy gets a slot: a local environment with the real schema, its own database and a seeded test user. One command starts the slot or reuses it, and another takes it down.</p>
+          <p>The slots look after themselves. Idle slots are reclaimed, and a session&rsquo;s slot comes down when the session ends. A slot also refuses to run code from a branch that has fallen behind.</p>
+          <p>A slot never points at shared data. Where a service would call out, a local stand-in answers, and the browser asks before it leaves the local environment.</p>
+          <p>Fixtures reset the test data before each run, so a regression suite gives the same answer twice. An agent can run that suite on a slot and draft bug reports, with captioned video, for a person to approve.</p>
+        </section>
+
+        <section class="sec" id="s11" aria-labelledby="s11-t">
+          <h3 id="s11-t"><span class="n">11</span> Review before people see it</h3>
+          <p class="deck">An agent reviews the branch before any person does, and the pull request opens as a draft.</p>
+
+          <figure id="fig-6">
+          <div class="plate"><svg viewBox="0 0 720 264" role="img" aria-label="An agent review runs one reviewer per concern, each in a fresh session, and leaves a record. A pull request needs that record, opens only as a draft, and a person publishes it. Findings not fixed now are deferred, each tied to a ticket.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="80" width="168" height="56" rx="3"/>
+          <rect x="224" y="72" width="232" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="520" y="16" width="192" height="56" rx="3"/>
+          <rect x="520" y="128" width="192" height="56" rx="3"/>
+          <rect x="224" y="200" width="232" height="56" rx="3"/>
+          <line x1="176" y1="108" x2="218" y2="108" marker-end="url(#arw)"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <path d="M456 96 L488 96 L488 44 L514 44" marker-end="url(#arw)"/>
+          <path d="M456 120 L488 120 L488 156 L514 156" marker-end="url(#arw)"/>
+          </g>
+          <line x1="616" y1="72" x2="616" y2="122" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          <line x1="340" y1="144" x2="340" y2="194" marker-end="url(#arw)"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="104" font-weight="600">Finished branch</text>
+          <text x="24" y="124">Tests pass.</text>
+          <text x="240" y="96" font-weight="600" fill="var(--link)">Agent review</text>
+          <text x="240" y="116" fill="var(--link)">One reviewer per concern,</text>
+          <text x="240" y="136" fill="var(--link)">each in a fresh session.</text>
+          <text x="536" y="40" font-weight="600">Review record</text>
+          <text x="536" y="60">Findings and verdict.</text>
+          <text x="536" y="152" font-weight="600">Draft pull request</text>
+          <text x="536" y="172">A person publishes it.</text>
+          <text x="240" y="224" font-weight="600">Deferred findings</text>
+          <text x="240" y="244">Each one tied to a ticket.</text>
+          <text x="624" y="100" font-size="12">required first</text>
+          <text x="348" y="174" font-size="12">not fixed now</text>
+          </g>
+          </svg></div>
+          <figcaption>An agent review runs one reviewer per concern and leaves a record. The pull request needs that record and opens only as a draft, and a person decides when others see it.</figcaption>
+          </figure>
+
+          <p>Several reviewers run over the finished branch, one per concern: correctness, architecture, security, reuse and drift in the docs. Each reviewer is a separate session that sees only the ticket and the change. None sees the conversation that wrote the code, so none inherits the author&rsquo;s reasoning.</p>
+          <p>Before the reviewers run, a build-and-lint pass compares the branch with its base, so only new problems count.</p>
+          <p>The review leaves a record of which reviewers finished and what each one found. A hook refuses to open a pull request for a commit with no record. The agent opens it only as a draft, and a person reads it and publishes it.</p>
+          <p>On a teammate&rsquo;s pull request, each finding is checked against the code before anything is posted, and a person approves every comment.</p>
+          <p>A finding that won&rsquo;t be fixed now is deferred to a ticket. A gate flags a deferred finding whose ticket closed without a fix.</p>
+          <p>When a defect gets past a review anyway, an escape review asks what kind of miss it was. The fix goes into the review itself, so the next defect of that kind gets caught.</p>
+        </section>
+
+        <section class="sec" id="s12" aria-labelledby="s12-t">
+          <h3 id="s12-t"><span class="n">12</span> Unattended runs and model tiers</h3>
+          <p class="deck">An agent can run a plan alone when the plan says how it will know it&rsquo;s done, and what to do when it isn&rsquo;t.</p>
+          <div class="specimen anatomy" role="group" aria-label="What a hand-off plan contains">
+            <p class="sp-title">What a hand-off plan contains</p>
+            <dl>
+              <dt>Success criteria</dt><dd>What is true when it&rsquo;s done, stated so a script could check it.</dd>
+              <dt>Verification</dt><dd>The exact commands the agent runs itself.</dd>
+              <dt>Non-goals</dt><dd>What it must not touch, and how far a change may reach.</dd>
+              <dt>Recovery</dt><dd>By default, halt and report. Do not improvise.</dd>
+              <dt>Model tier</dt><dd>Which tier runs each step.</dd>
+            </dl>
+          </div>
+
+          <figure id="fig-7">
+          <div class="plate"><svg viewBox="0 0 720 256" role="img" aria-label="The strongest model, the Driver, makes the judgment calls. It hands bounded slices to a Worker tier and sweeps to a Mechanical tier, and only conclusions come back: file, line and finding.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="80" width="136" height="56" rx="3"/>
+          <rect x="192" y="72" width="216" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="520" y="16" width="192" height="56" rx="3"/>
+          <rect x="520" y="136" width="192" height="56" rx="3"/>
+          <line x1="144" y1="108" x2="186" y2="108" marker-end="url(#arw)"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <path d="M408 96 L448 96 L448 44 L514 44" marker-end="url(#arw)"/>
+          <path d="M408 120 L448 120 L448 164 L514 164" marker-end="url(#arw)"/>
+          </g>
+          <path d="M616 192 L616 224 L300 224 L300 150" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="104" font-weight="600">You</text>
+          <text x="24" y="124">The goal.</text>
+          <text x="208" y="96" font-weight="600" fill="var(--link)">Driver</text>
+          <text x="208" y="116" fill="var(--link)">The strongest model.</text>
+          <text x="208" y="136" fill="var(--link)">Plans, decides, reviews.</text>
+          <text x="536" y="40" font-weight="600">Worker</text>
+          <text x="536" y="60">Builds a slice to plan.</text>
+          <text x="536" y="160" font-weight="600">Mechanical</text>
+          <text x="536" y="180">Reads, lists, sweeps.</text>
+          <text x="460" y="36" font-size="12">a slice</text>
+          <text x="460" y="156" font-size="12">a sweep</text>
+          <text x="316" y="244" font-size="12">only conclusions come back: file, line, finding</text>
+          </g>
+          </svg></div>
+          <figcaption>The strongest model makes the judgment calls. Cheaper tiers do bounded work and sweeps, and only conclusions come back, never whole files.</figcaption>
+          </figure>
+
+          <table class="t stack">
+            <thead><tr><th scope="col">Tier</th><th scope="col">Does</th><th scope="col">For example</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Driver</th><td data-label="Does">Judgment: design, review, what to do next</td><td data-label="For example">Writing the plan</td></tr>
+              <tr><th scope="row">Worker</th><td data-label="Does">Bounded work against a plan</td><td data-label="For example">Building one slice</td></tr>
+              <tr><th scope="row">Mechanical</th><td data-label="Does">Reading and sweeping</td><td data-label="For example">Finding every caller of a function</td></tr>
+            </tbody>
+          </table>
+          <p>Name the tier for every task you hand off. A helper that quietly inherits the strongest model costs the most and gains nothing. A hook refuses a handoff that names no tier.</p>
+          <p>Delegating saves context, not tokens. A helper reads widely so the main session doesn&rsquo;t have to. The bill drops only when the helper runs on a cheaper tier or at lower effort.</p>
+          <p>Where judgment is needed, nudge instead of forcing. A hook can suggest a cheaper tier when a request looks mechanical, and the session decides.</p>
+        </section>
+
+        <section class="sec" id="s13" aria-labelledby="s13-t">
+          <h3 id="s13-t"><span class="n">13</span> Work survives a handoff</h3>
+          <p class="deck">A second person can pick up a task midstream, because each kind of state has exactly one home.</p>
+          <table class="t stack">
+            <thead><tr><th scope="col">Home</th><th scope="col">Holds</th><th scope="col">For example</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">The workspace</th><td data-label="Holds">What lasts: facts, process, decisions</td><td data-label="For example">How a release is cut</td></tr>
+              <tr><th scope="row">The ticket</th><td data-label="Holds">Why this one piece of work exists</td><td data-label="For example">The report and the agreed fix</td></tr>
+              <tr><th scope="row">A handoff note</th><td data-label="Holds">Where the work stopped</td><td data-label="For example">What&rsquo;s done, what&rsquo;s next, what to watch</td></tr>
+            </tbody>
+          </table>
+          <p>The workspace is not a status tracker. Ticket status changes daily, and a workspace that copied it would be wrong by morning.</p>
+          <p>A fresh session, or a teammate, reads all three and carries on. After the merge, one request closes the loop: &ldquo;do the bookkeeping&rdquo; handles the subtasks, the pin, the generated maps and the leftover branches.</p>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ============================== The safety net ============================== -->
+    <div class="part">
+      <div class="band"><div class="wrap"><h2>The safety net</h2></div></div>
+      <div class="wrap flow">
+
+        <section class="sec" id="s14" aria-labelledby="s14-t">
+          <h3 id="s14-t"><span class="n">14</span> Drift gates</h3>
+          <p class="deck">Generated maps and docs go stale quietly. Gates make the staleness fail loudly.</p>
+
+          <figure id="fig-8">
+          <div class="plate"><svg viewBox="0 0 720 320" role="img" aria-label="The instruction contract and generated code maps feed the work. Drift gates stop the merge when a link is dead, a map is stale or a name is missing. Eval cases guard changes to the instructions themselves, and every failure adds a case.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="24" width="216" height="56" rx="3"/>
+          <rect x="8" y="120" width="216" height="56" rx="3"/>
+          <rect x="296" y="72" width="152" height="56" rx="3"/>
+          <rect x="464" y="64" width="248" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="296" y="232" width="152" height="56" rx="3"/>
+          <line x1="224" y1="52" x2="290" y2="88" marker-end="url(#arw)"/>
+          <line x1="224" y1="148" x2="290" y2="112" marker-end="url(#arw)"/>
+          <line x1="448" y1="100" x2="458" y2="100" marker-end="url(#arw)"/>
+          <path d="M588 136 L588 200 L372 200 L372 226" marker-end="url(#arw)" stroke="var(--link)" stroke-width="2.5"/>
+          <path d="M296 260 L112 260 L112 184" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="48" font-weight="600">Instruction contract</text>
+          <text x="24" y="68">One file, every tool.</text>
+          <text x="24" y="144" font-weight="600">Generated code maps</text>
+          <text x="24" y="164">Each name, file and line.</text>
+          <text x="312" y="96" font-weight="600">The work</text>
+          <text x="312" y="116">Agent and person.</text>
+          <text x="480" y="88" font-weight="600" fill="var(--link)">Drift gates</text>
+          <text x="480" y="108" fill="var(--link)">Dead link, stale map, missing</text>
+          <text x="480" y="126" fill="var(--link)">name: the merge stops.</text>
+          <text x="312" y="256" font-weight="600">Eval cases</text>
+          <text x="312" y="276">Guard playbooks.</text>
+          <text x="400" y="194" font-size="12">a failure teaches the suite</text>
+          <text x="120" y="252" font-size="12">no change without a case</text>
+          </g>
+          </svg></div>
+          <figcaption>Every generated artifact is paired with a gate that fails the merge when the artifact stops matching the code.</figcaption>
+          </figure>
+
+          <table class="t stack">
+            <thead><tr><th scope="col">Gate</th><th scope="col">Fails when</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Links</th><td data-label="Fails when">A link points at a file or heading that no longer exists.</td></tr>
+              <tr><th scope="row">Freshness</th><td data-label="Fails when">A page is past its review date and the commit edits it.</td></tr>
+              <tr><th scope="row">Symbols</th><td data-label="Fails when">A doc names a class or function the code no longer has.</td></tr>
+              <tr><th scope="row">Coverage</th><td data-label="Fails when">A part of the system has no doc at all.</td></tr>
+              <tr><th scope="row">Call chains</th><td data-label="Fails when">A front-end call has no matching back-end endpoint.</td></tr>
+              <tr><th scope="row">Architecture</th><td data-label="Fails when">A call reaches an unregistered system or carries unclassified data.</td></tr>
+              <tr><th scope="row">Tracker schema</th><td data-label="Fails when">Someone moved a field that the agent&rsquo;s ticket updates depend on.</td></tr>
+              <tr><th scope="row">Secrets</th><td data-label="Fails when">A staged file contains a credential.</td></tr>
+            </tbody>
+          </table>
+          <p class="gloss"><b>CI.</b> Continuous integration: the checks a server runs after every push.</p>
+          <p>Run the gates before each commit and again in CI. A teammate who never installed the hooks is still caught after the push.</p>
+          <p>A commit gate checks a snapshot of exactly what is being committed, not the folder around it. Another session&rsquo;s unsaved edits can&rsquo;t make it pass or fail.</p>
+          <div class="rule-box">
+            <p><strong>Green means nothing is dangling. It never means a document is true.</strong> A page that contradicts last week&rsquo;s decision passes every gate. Catching that takes a scheduled audit and a reader who checks.</p>
+          </div>
+        </section>
+
+        <section class="sec" id="s15" aria-labelledby="s15-t">
+          <h3 id="s15-t"><span class="n">15</span> Hooks in the agent&rsquo;s runtime</h3>
+          <p class="deck">Hooks act at the moment of the action. They remind where judgment is needed, and refuse where a mistake is costly.</p>
+          <p class="gloss"><b>Hook.</b> A small script the agent tool runs on its own at a set moment, such as before an edit or when a session starts.</p>
+          <table class="t stack hooks">
+            <thead><tr><th scope="col">Moment</th><th scope="col">What the hook does</th><th scope="col">Kind</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Session start</th><td data-label="What the hook does">Warns when a pinned repository is behind its main branch, and lists pages past their review date.</td><td data-label="Kind">Reminds</td></tr>
+              <tr><th scope="row">Before an edit</th><td data-label="What the hook does">Shows the path-scoped rules for the file. Refuses edits to a shelved repository unless the session opted in.</td><td data-label="Kind">Reminds, refuses</td></tr>
+              <tr><th scope="row">After an edit</th><td data-label="What the hook does">Names the other layers of the same call chain that may need the change too.</td><td data-label="Kind">Reminds</td></tr>
+              <tr><th scope="row">Before staging</th><td data-label="What the hook does">Refuses &ldquo;stage everything&rdquo;, because another session may have edits in the same folder.</td><td data-label="Kind">Refuses</td></tr>
+              <tr><th scope="row">Before a handoff</th><td data-label="What the hook does">Refuses a delegated task that names no model tier.</td><td data-label="Kind">Refuses</td></tr>
+              <tr><th scope="row">Before a pull request</th><td data-label="What the hook does">Refuses a branch that has no review record.</td><td data-label="Kind">Refuses</td></tr>
+              <tr><th scope="row">Before the browser leaves</th><td data-label="What the hook does">Asks before it visits anything outside the local environment.</td><td data-label="Kind">Asks</td></tr>
+            </tbody>
+          </table>
+          <p>A rule written only in prose gets broken. When the same mistake shows up twice, turn the rule into a hook.</p>
+          <p>Each hook has its own test cases, which run like any other test. Without them, a hook can stop firing and nobody notices.</p>
+          <p>Keep secrets out of the agent&rsquo;s shell. Load each one only for the command that needs it, and scan every commit for credentials.</p>
+        </section>
+
+        <section class="sec" id="s16" aria-labelledby="s16-t">
+          <h3 id="s16-t"><span class="n">16</span> Testing the guidance</h3>
+          <p class="deck">Playbooks are code for agents. Test them like code.</p>
+
+          <figure id="fig-9">
+          <div class="plate"><svg viewBox="0 0 720 256" role="img" aria-label="Each eval case runs with the playbook and without it. Graders keep the playbook only if it beats the bare model, and a push that changes a playbook needs a recorded pass.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="72" width="200" height="72" rx="3"/>
+          <rect x="264" y="16" width="184" height="56" rx="3"/>
+          <rect x="264" y="144" width="184" height="56" rx="3"/>
+          <rect x="504" y="72" width="208" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="504" y="192" width="208" height="56" rx="3"/>
+          <path d="M208 96 L236 96 L236 44 L258 44" marker-end="url(#arw)"/>
+          <path d="M208 120 L236 120 L236 172 L258 172" marker-end="url(#arw)"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <path d="M448 44 L476 44 L476 96 L498 96" marker-end="url(#arw)"/>
+          <path d="M448 172 L476 172 L476 120 L498 120" marker-end="url(#arw)"/>
+          </g>
+          <line x1="608" y1="144" x2="608" y2="186" marker-end="url(#arw)"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="96" font-weight="600">Eval case</text>
+          <text x="24" y="116">A request, a scaffold</text>
+          <text x="24" y="136">and its graders.</text>
+          <text x="280" y="40" font-weight="600">With the playbook</text>
+          <text x="280" y="60">The change under test.</text>
+          <text x="280" y="168" font-weight="600">Without it</text>
+          <text x="280" y="188">The bare model.</text>
+          <text x="520" y="96" font-weight="600" fill="var(--link)">Graders compare</text>
+          <text x="520" y="116" fill="var(--link)">Keep it only if it beats</text>
+          <text x="520" y="136" fill="var(--link)">the bare model.</text>
+          <text x="520" y="216" font-weight="600">Push gate</text>
+          <text x="520" y="236">No recorded pass, no push.</text>
+          <text x="600" y="170" font-size="12" text-anchor="end">a pass is recorded</text>
+          </g>
+          </svg></div>
+          <figcaption>Each eval case runs with the playbook and without it. A playbook stays only while it beats the bare model, and a change to it ships only with a recorded pass.</figcaption>
+          </figure>
+
+          <p class="gloss"><b>Eval.</b> Short for evaluation: a repeatable test of how an agent behaves on a set task.</p>
+          <div class="specimen anatomy" role="group" aria-label="An eval case">
+            <p class="sp-title">An eval case</p>
+            <dl>
+              <dt>Request</dt><dd>&ldquo;The Export button on the orders page does nothing. Fix it.&rdquo;</dd>
+              <dt>Scaffold</dt><dd>A small repository where the button is broken in a known way.</dd>
+              <dt>Graders</dt><dd>It takes the bug path. It reproduces the failure before editing. It adds a regression test.</dd>
+              <dt>Fails if</dt><dd>It edits code before it has a reproduction.</dd>
+            </dl>
+          </div>
+          <p>A small wording change in a playbook can change which procedure an agent picks. Nobody notices until the agent starts doing the wrong thing. Eval cases notice first.</p>
+          <p>Each case runs twice: with the playbook and without it. A playbook stays only while it beats the bare model. If it doesn&rsquo;t, the model has caught up, and the playbook is noise.</p>
+          <p>A gate refuses a push that changes a playbook unless its cases have a passing run on record. A routing suite checks that everyday requests reach the right playbook. A before-and-after run shows what each change made better or worse.</p>
+          <p>Run the cases on the smaller models you hand work to. A playbook that routes correctly only on the biggest model fails as soon as a cheaper one picks it up.</p>
+          <p>When an agent goes wrong in real work, the failure becomes a new case before the fix merges. New playbooks follow the same rule: write one only after a baseline test shows the bare model failing at the task.</p>
+        </section>
+
+        <section class="sec" id="s17" aria-labelledby="s17-t">
+          <h3 id="s17-t"><span class="n">17</span> Changing the machinery</h3>
+          <p class="deck">Docs change freely. The scripts, hooks and CI that check them take a stricter path.</p>
+
+          <figure id="fig-10">
+          <div class="plate"><svg viewBox="0 0 720 208" role="img" aria-label="A doc change is committed straight to the main branch, and the gates run after the push. A change to scripts, hooks or CI takes its own branch and must pass CI on Windows, macOS and Linux first; a direct push of machinery is refused.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="16" width="184" height="56" rx="3"/>
+          <rect x="8" y="136" width="184" height="56" rx="3"/>
+          <rect x="264" y="136" width="200" height="56" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="528" y="64" width="184" height="72" rx="3"/>
+          <path d="M192 44 L620 44 L620 58" marker-end="url(#arw)"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <line x1="192" y1="164" x2="258" y2="164" marker-end="url(#arw)"/>
+          <path d="M464 164 L620 164 L620 142" marker-end="url(#arw)"/>
+          </g>
+          <path d="M96 136 L96 100 L522 100" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="40" font-weight="600">A doc change</text>
+          <text x="24" y="60">Most of the work.</text>
+          <text x="24" y="160" font-weight="600">Script, hook or CI</text>
+          <text x="24" y="180">The workspace&#8217;s tools.</text>
+          <text x="280" y="160" font-weight="600" fill="var(--link)">Its own branch</text>
+          <text x="280" y="180" fill="var(--link)">CI on three systems.</text>
+          <text x="544" y="88" font-weight="600">Main branch</text>
+          <text x="544" y="108">The gates run again</text>
+          <text x="544" y="128">after every push.</text>
+          <text x="224" y="36" font-size="12">committed directly</text>
+          <text x="104" y="92" font-size="12">a direct push is refused</text>
+          <text x="476" y="184" font-size="12">merged once green</text>
+          </g>
+          </svg></div>
+          <figcaption>Docs go straight to the main branch and are checked after the push. Scripts, hooks and CI take their own branch and must pass on Windows, macOS and Linux first.</figcaption>
+          </figure>
+
+          <p>A doc change goes straight to the main branch, and the gates check it after the push. Low friction is the point: fixing a doc should cost almost nothing.</p>
+          <p>A change to the machinery is different, because a broken gate stops everyone. It goes to its own branch first and merges only after CI passes on Windows, macOS and Linux. A hook refuses a direct push of machinery to the main branch.</p>
+          <p>A nightly job clones the workspace from nothing and follows the README, the way a new teammate would. A step that works only on the author&rsquo;s machine fails there first.</p>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ============================== Adopting it ============================== -->
+    <div class="part">
+      <div class="band"><div class="wrap"><h2>Adopting it</h2></div></div>
+      <div class="wrap flow">
+
+        <section class="sec" id="s18" aria-labelledby="s18-t">
+          <h3 id="s18-t"><span class="n">18</span> How you know it works</h3>
+          <p class="deck">The measure is a person, not the workspace: a teammate ships a real fix through it without asking the author anything.</p>
+
+          <figure id="fig-11">
+          <div class="plate"><svg viewBox="0 0 720 144" role="img" aria-label="A question someone had to ask a person is logged as a gap in the workspace, not as user error, and fixed by whoever hit it, so the same question is not asked twice.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="24" width="208" height="56" rx="3"/>
+          <rect x="264" y="24" width="184" height="56" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <rect x="496" y="24" width="216" height="56" rx="3"/>
+          <line x1="216" y1="52" x2="258" y2="52" marker-end="url(#arw)"/>
+          <line x1="448" y1="52" x2="490" y2="52" marker-end="url(#arw)"/>
+          <path d="M604 80 L604 128 L112 128 L112 88" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="24" y="48" font-weight="600">&#8220;I had to ask a person&#8221;</text>
+          <text x="24" y="68">The question itself.</text>
+          <text x="280" y="48" font-weight="600" fill="var(--link)">Logged as a gap</text>
+          <text x="280" y="68" fill="var(--link)">Not as user error.</text>
+          <text x="512" y="48" font-weight="600">Fixed in the workspace</text>
+          <text x="512" y="68">By whoever hit it.</text>
+          <text x="264" y="122" font-size="12">the same question is not asked twice</text>
+          </g>
+          </svg></div>
+          <figcaption>A question someone had to ask a person is logged as a gap in the workspace, not as user error, and fixed so nobody asks it twice.</figcaption>
+          </figure>
+
+          <p>Every question a teammate has to ask is evidence. It marks context the workspace failed to carry, so log it as a gap and fix it where the next person will look.</p>
+          <p>Size and polish measure nothing. A large, well-made workspace that people route around has failed.</p>
+          <p>The first real test is a teammate cloning it from zero with only the README. Every stumble becomes a doc fix. After that, the nightly clone keeps the test running.</p>
+          <p>Ownership has to spread too. Whoever finds a gap fixes it, with their own agent. A workspace that only its author edits is still a notebook.</p>
+        </section>
+
+        <section class="sec" id="s19" aria-labelledby="s19-t">
+          <h3 id="s19-t"><span class="n">19</span> What changed in 2.0</h3>
+          <p class="deck">Version 1.0 worked for its author. Version 2.0 is built for the next person.</p>
+          <table class="t stack versions">
+            <thead><tr><th scope="col"><span class="sr">Aspect</span></th><th scope="col">Version 1.0</th><th scope="col" class="v2">Version 2.0</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Built for</th><td data-label="Version 1.0">The author&rsquo;s own sessions</td><td data-label="Version 2.0">Any teammate, with any supported tool, on Windows or macOS</td></tr>
+              <tr><th scope="row">Front door</th><td data-label="Version 1.0">The contract and a practices page</td><td data-label="Version 2.0">A guide and a task router for people, and the contract for agents</td></tr>
+              <tr><th scope="row">Scope</th><td data-label="Version 1.0">Explained much of what a model can read for itself</td><td data-label="Version 2.0">A written boundary: what it holds and what it refuses</td></tr>
+              <tr><th scope="row">Guidance</th><td data-label="Version 1.0">Overlapping folders and names</td><td data-label="Version 2.0">Three kinds of guidance, one term each</td></tr>
+              <tr><th scope="row">Finished work</th><td data-label="Version 1.0">Stayed in search results</td><td data-label="Version 2.0">Archived and hidden from agent search</td></tr>
+              <tr><th scope="row">Setup</th><td data-label="Version 1.0">Assumed the author&rsquo;s machine and accounts</td><td data-label="Version 2.0">Settings in one file per project, and checks that run anywhere</td></tr>
+              <tr><th scope="row">Review</th><td data-label="Version 1.0">No required record</td><td data-label="Version 2.0">Agent reviewers first, with a record, then a draft for a person</td></tr>
+              <tr><th scope="row">Local checks</th><td data-label="Version 1.0">One shared local environment</td><td data-label="Version 2.0">A disposable slot for each working copy</td></tr>
+              <tr><th scope="row">Playbook changes</th><td data-label="Version 1.0">No per-playbook tests</td><td data-label="Version 2.0">Gated by eval cases, against a no-playbook baseline</td></tr>
+              <tr><th scope="row">Machinery changes</th><td data-label="Version 1.0">Committed straight to the main branch, like docs</td><td data-label="Version 2.0">Their own branch, with CI on three operating systems</td></tr>
+              <tr><th scope="row">Success</th><td data-label="Version 1.0">Not defined</td><td data-label="Version 2.0">A teammate ships without asking, and every question asked is a logged gap</td></tr>
+            </tbody>
+          </table>
+          <p>Models got better at reading code, and that changed what is worth writing down. Version 1.0 spent many pages on things a model now works out for itself. Version 2.0 cut those and kept what a model cannot derive. As models improve, a good workspace gets smaller and sharper.</p>
+          <p>One thing is deliberately not built: an installer that sets up a workspace for a new project. It waits until a second team actually needs one. A generator nobody runs is exactly the unused tooling this pattern exists to prevent.</p>
+        </section>
+
+        <section class="sec" id="s20" aria-labelledby="s20-t">
+          <h3 id="s20-t"><span class="n">20</span> Start your own</h3>
+          <p class="deck">Start with the facts only you know. Add machinery when you hit the problem it solves.</p>
+          <table class="t stack">
+            <thead><tr><th scope="col">When</th><th scope="col">Add</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Day one</th><td data-label="Add">A contract file with the facts a model can&rsquo;t derive. Your repositories, pinned beside it.</td></tr>
+              <tr><th scope="row">First week</th><td data-label="Add">A task router with five rows. A link check before each commit.</td></tr>
+              <tr><th scope="row">First month</th><td data-label="Add">Playbooks for the three tasks you repeat most, with a thin wrapper per tool. A question log.</td></tr>
+              <tr><th scope="row">When docs start to drift</th><td data-label="Add">Freshness and symbol gates, in CI as well as before commits. An archive for finished work.</td></tr>
+              <tr><th scope="row">When agents run in parallel</th><td data-label="Add">A disposable local environment for each working copy.</td></tr>
+              <tr><th scope="row">When playbooks change often</th><td data-label="Add">Eval cases, a no-playbook baseline, and a gate that requires a pass.</td></tr>
+              <tr><th scope="row">When a gate breaks for everyone</th><td data-label="Add">Its own branch and cross-platform CI for the machinery.</td></tr>
+              <tr><th scope="row">When a second team asks</th><td data-label="Add">A template or an installer. Not before.</td></tr>
+            </tbody>
+          </table>
+          <p>Don&rsquo;t build the whole thing up front. Each piece earns its place by fixing a problem you have actually hit.</p>
+        </section>
+
+        <section class="sec" id="s21" aria-labelledby="s21-t">
+          <h3 id="s21-t"><span class="n">21</span> Glossary</h3>
+          <dl class="glossary">
+            <dt>Agent</dt><dd>An AI coding tool that reads, edits and runs code in a session.</dd>
+            <dt>Contract</dt><dd>The one rules file every tool reads, often named AGENTS.md.</dd>
+            <dt>Task router</dt><dd>A table that turns &ldquo;I want to&hellip;&rdquo; into the right procedure.</dd>
+            <dt>Playbook</dt><dd>A procedure, in plain markdown, that an agent can run on request.</dd>
+            <dt>Wrapper</dt><dd>A few lines in one tool&rsquo;s format that point at a playbook.</dd>
+            <dt>Hub</dt><dd>The index page at the top of a docs area, giving its reading order.</dd>
+            <dt>Search alias</dt><dd>An everyday word mapped to the name the code uses.</dd>
+            <dt>Code map</dt><dd>A generated list of a repository&rsquo;s components and routes, each with a file and line.</dd>
+            <dt>Pin</dt><dd>The exact commit of a code repository that the workspace points at.</dd>
+            <dt>Drift gate</dt><dd>An automated check that fails when a doc stops matching the code.</dd>
+            <dt>Hook</dt><dd>A script the agent tool runs at a set moment, such as before an edit.</dd>
+            <dt>Eval case</dt><dd>A test for a playbook: a request, a scaffold and graders.</dd>
+            <dt>Decision record</dt><dd>A short page on a hard-to-reverse choice, its options and what it gave up. Often called an ADR.</dd>
+            <dt>Size gate</dt><dd>The test that sends small work straight to a failing test.</dd>
+            <dt>Hand-off plan</dt><dd>A plan an agent can run alone, with success criteria, checks, non-goals and a recovery rule.</dd>
+            <dt>Slot</dt><dd>A disposable local environment for one working copy.</dd>
+            <dt>Review record</dt><dd>The note an agent review leaves: which reviewers ran and what each found.</dd>
+            <dt>Bookkeeping</dt><dd>The cleanup after a merge: subtasks, pins, maps and leftover branches.</dd>
+            <dt>Question log</dt><dd>The record of every question someone had to ask a person. Each one is a gap.</dd>
+          </dl>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="wrap">
+      <footer>Ryan Tornberg, Tucson, Arizona. <a href="../">Back to the home page</a>.</footer>
+    </div>
+  </main>
+</body>
+</html>
