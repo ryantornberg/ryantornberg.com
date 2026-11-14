@@ -822,9 +822,9 @@ body.ws {
 .rail ol ol li.cur, .ws .rail ol ol li.cur a { color: var(--link); font-weight: 600; }
 
 
-/* Lines are their own colour. On paper they are the ink; on the dark sheet a full-white line glows and
-   outweighs the text, so borders and drawing outlines step back to a mid grey. The accent lines stay blue. */
-:root { --line: var(--ink); }
+/* Lines are their own colour. At the ink's full strength they outweigh the text, most of all on the dark
+   sheet, so borders and drawing outlines step back to a mid grey in both themes. The accent lines stay blue. */
+:root { --line: #707884; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --line: #8a93a0; } }
 :root[data-theme="dark"] { --line: #8a93a0; }
 svg [stroke="currentColor"] { stroke: var(--line); }
