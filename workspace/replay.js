@@ -18,7 +18,7 @@
       el.classList.toggle("is-pending", step !== null && n > step);
       el.classList.toggle("is-current", step !== null && n === step);
     });
-    mode.textContent = step === null ? "Step through" : "Show all";
+    mode.textContent = step === null ? "Step through the two runs" : "Show every step";
     back.hidden = next.hidden = step === null;
     back.disabled = step !== null && step <= 1;
     next.disabled = step !== null && step >= last;

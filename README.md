@@ -7,7 +7,7 @@ Source for Ryan Tornberg's personal site: static HTML and CSS with no build step
 - `index.html`: the home page.
 - `workspace/index.html`: the agent workspace field guide.
 
-Both share `styles.css` and `theme.js`. Figures follow `DIAGRAMS.md`.
+Both share `styles.css` and `theme.js`. Each page loads them, and `workspace/replay.js`, with a `?v=` date on the address. Change that value in both pages whenever one of those files changes, so a browser never pairs a new page with an old stylesheet or script. Figures follow `DIAGRAMS.md`.
 
 ## Preview locally
 

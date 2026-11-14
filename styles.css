@@ -648,7 +648,7 @@ figcaption::before {
   line-height: 1.45;
 }
 .replay p { margin: 0; max-width: none; }
-.replay-req { padding-block-end: 1rem; border-block-end: 1px solid var(--rule); }
+.replay-req { padding-block-end: 0.75rem; }
 .replay-arms { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; padding-block: 1rem; }
 .replay-t { font-weight: 600; padding-block-end: 0.35rem; }
 .replay ol { margin: 0; padding-inline-start: 1.4rem; }
@@ -660,7 +660,8 @@ figcaption::before {
 .replay-grades .fail { color: var(--link); font-weight: 700; }
 .replay .is-pending { visibility: hidden; }
 .replay li.is-current, .replay td.is-current { color: var(--link); font-weight: 600; }
-.replay-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; padding-block-start: 1rem; }
+.replay-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; padding-block-end: 1rem; border-block-end: 1px solid var(--rule); }
+.replay-controls [data-replay-mode] { background: var(--ink); color: var(--sheet); border-color: var(--ink); font-weight: 600; }
 .replay-controls button {
   font: inherit;
   color: inherit;

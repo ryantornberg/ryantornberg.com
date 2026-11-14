@@ -18,10 +18,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=20261114b">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script src="../theme.js" defer></script>
-  <script src="replay.js" defer></script>
+  <script src="../theme.js?v=20261114b" defer></script>
+  <script src="replay.js?v=20261114b" defer></script>
 </head>
 <body class="ws">
   <header class="cover">
@@ -32,6 +32,7 @@
           <a href="../">Home</a>
           <a href="#contents">Contents</a>
           <a href="../#contact">Contact</a>
+          <a href="https://github.com/ryantornberg/agent-ready-workspace">GitHub</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark</button>
         </nav>
       </div>
@@ -796,6 +797,7 @@
           <figure id="fig-replay">
             <div class="replay" data-replay>
               <p class="replay-req"><b>The request.</b> &ldquo;The Export button on the orders page does nothing. Fix it and commit the fix.&rdquo;</p>
+              <p class="replay-controls" hidden><button type="button" data-replay-mode>Step through the two runs</button> <button type="button" data-replay-back>Back</button> <button type="button" data-replay-next>Next</button> <span data-replay-status aria-live="polite"></span></p>
               <div class="replay-arms">
                 <div><p class="replay-t">With the guidance</p>
                 <ol>
@@ -831,7 +833,6 @@
                   <tr><th scope="row">Left another session&rsquo;s edits out of the commit</th><td data-n="9">Pass</td><td data-n="5">Pass</td></tr>
                 </tbody>
               </table>
-              <p class="replay-controls" hidden><button type="button" data-replay-mode>Step through</button> <button type="button" data-replay-back>Back</button> <button type="button" data-replay-next>Next</button> <span data-replay-status aria-live="polite"></span></p>
             </div>
             <figcaption>The first of five recorded runs of each kind, on a small model. All ten fixed the bug; only the five with the guidance saw a test fail first and marked their claims. The transcripts are <a href="https://github.com/ryantornberg/agent-ready-workspace/tree/main/evals">public</a>.</figcaption>
           </figure>
