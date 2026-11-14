@@ -30,7 +30,10 @@ p { margin: 0; }
 /* The title block and the links out. Nothing here jumps within the page. */
 .top { display: flex; flex-wrap: wrap-reverse; justify-content: space-between; align-items: flex-start; gap: 1.25rem 2rem; }
 .top nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.2rem; font: 500 1rem/1.3 var(--letter); padding-block-start: 0.45rem; }
-.theme-toggle { font: inherit; color: inherit; background: none; border: 1px solid var(--line); border-radius: 2px; padding: 0.1em 0.6em; cursor: pointer; }
+/* The theme switch is a page control, not part of the sheet: it sits outside the frame. */
+.chrome { max-width: 78rem; margin: 0 auto 0.4rem; display: flex; justify-content: flex-end; }
+.theme-toggle { font: 500 0.8125rem/1.3 var(--letter); color: var(--muted); background: none; border: 1px solid var(--rule); border-radius: 2px; padding: 0.15em 0.6em; cursor: pointer; }
+.theme-toggle:hover { color: var(--ink); border-color: var(--line); }
 .block { display: grid; grid-template-columns: auto minmax(0, auto); width: max-content; max-width: 100%; margin: 0; border: 1.5px solid var(--line); font: 500 0.9375rem/1.3 var(--letter); }
 .block dt, .block dd { margin: 0; padding: 0.45rem 0.9rem; border-block-start: 1px solid var(--line); }
 .block dt { color: var(--muted); }
