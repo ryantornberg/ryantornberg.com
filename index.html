@@ -18,9 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
-  <link rel="stylesheet" href="sheet.css?v=20261114e">
+  <link rel="stylesheet" href="sheet.css?v=20261114f">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script src="theme.js?v=20261114e" defer></script>
+  <script src="theme.js?v=20261114f" defer></script>
 </head>
 <body>
   <div class="sheet">
@@ -183,7 +183,7 @@
         <figcaption>Every architecture view is generated from one text model, which a commit gate checks against the systems register. Every call in the model names the class of data it carries.</figcaption>
         </figure>
         <figure id="fig-3">
-        <div class="plate"><svg viewBox="0 0 720 296" role="img" aria-label="The delivery app sends each completed delivery to the mobile API, which saves it before anything else and then answers the app. A background service, the delivery processor, validates it with the logic for that app version and posts it to the pharmacy database in one transaction. A failure is recorded against the delivery. A partner delivery company now sends its deliveries through the same API.">
+        <div class="plate"><svg viewBox="0 0 720 296" role="img" aria-label="The delivery app sends each completed delivery to the mobile API, which saves it before anything else and then answers the app. A background service, the delivery processor, validates it with the logic for that app version and posts it to the pharmacy database in one transaction. A delivery that fails or is invalid is kept with its error, so it can be pulled up and resolved. A partner delivery company now sends its deliveries through the same API.">
         <g fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="8" y="16" width="200" height="72" rx="3"/>
         <rect x="8" y="128" width="200" height="56" rx="3"/>
@@ -213,13 +213,13 @@
         <text x="528" y="252">Add-or-update in one</text>
         <text x="528" y="272">transaction. No doubles.</text>
         <text x="276" y="232" font-weight="600">Error on the delivery</text>
-        <text x="276" y="252">Recorded against it,</text>
-        <text x="276" y="272">not lost.</text>
+        <text x="276" y="252">Kept with it, to be pulled</text>
+        <text x="276" y="272">up and resolved.</text>
         <text x="652" y="176" font-size="12">posts</text>
         <text x="420" y="164" font-size="12">on failure</text>
         </g>
         </svg></div>
-        <figcaption>The API saves a completed delivery before anything posts it to the pharmacy, so a slow or failed post no longer loses the work. A partner delivery company now sends its deliveries the same way.</figcaption>
+        <figcaption>The API saves a completed delivery before anything posts it to the pharmacy, so a slow or failed post no longer loses the work. A delivery that fails is kept with its error, to be pulled up and resolved. A partner delivery company now sends its deliveries the same way.</figcaption>
         </figure>
         <figure id="fig-4">
         <div class="plate"><svg viewBox="0 0 720 264" role="img" aria-label="Each workstream's plan marks the decisions that wait for me, each with a recommendation. Agents build up to the next one, a review loop freezes after three fix rounds with nothing merged, and I decide from a draft pull request and a report. Several workstreams run this loop at once.">
