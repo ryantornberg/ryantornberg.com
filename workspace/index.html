@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The agent workspace, version 2.0 | Ryan Tornberg</title>
-  <meta name="description" content="A field guide to the agent workspace: a repository beside your code that holds what neither the code nor the model knows. Version 2.0, with diagrams.">
-  <meta property="og:title" content="The agent workspace, version 2.0">
+  <title>The agent workspace | Ryan Tornberg</title>
+  <meta name="description" content="A field guide to the agent workspace: a repository beside your code that holds what neither the code nor the model knows. With diagrams, a recorded run and a public working version.">
+  <meta property="og:title" content="The agent workspace">
   <meta property="og:description" content="A repository beside your code that holds what neither the code nor the model knows: what it holds, how work flows through it, and how to build one.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ryantornberg.com/workspace/">
@@ -18,10 +18,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
-  <link rel="stylesheet" href="../styles.css?v=20261114g">
+  <link rel="stylesheet" href="../styles.css?v=20261114h">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script src="../theme.js?v=20261114g" defer></script>
-  <script src="replay.js?v=20261114g" defer></script>
+  <script src="../theme.js?v=20261114h" defer></script>
+  <script src="replay.js?v=20261114h" defer></script>
+  <script src="rail.js?v=20261114h" defer></script>
 </head>
 <body class="ws">
   <div class="bar"><div class="wrap">
@@ -36,16 +37,42 @@
         </nav>
       </div>
   </div></div>
+  <nav class="rail" aria-label="Sections"></nav>
   <header class="cover">
     <div class="wrap">
-      <div class="trio">
+      <div class="cover-grid"><div class="cover-text"><div class="trio">
         <p class="arrives"><span class="who">The model</span> <span class="brings">General skill. No context.</span></p>
         <p class="arrives"><span class="who">The repository</span> <span class="brings">What the code is today.</span></p>
         <h1>The workspace</h1>
         <p class="brings last">What only your team knows, and how it has agreed to work.</p>
       </div>
 
-      <p class="lede">An agent needs all three to start work oriented. The first two arrive on their own. The third has to be built, and this page is a field guide to building it, at version 2.0.</p>
+      <p class="lede">An agent needs all three to start work oriented. The first two arrive on their own. The third has to be built, and this page is a field guide to building it.</p></div>
+<div class="overview">
+<div class="plate"><svg viewBox="0 0 720 348" role="img" aria-label="The workspace on one sheet. An agent reads the contract, the front doors, the docs and the index at the start of every session. A change then moves through a size gate, a test, a local slot, an agent review and a handoff. Drift gates, hooks, eval cases and a stricter path for the machinery check each step. Every question someone had to ask becomes a fix to what the agent reads.">
+<g font-size="13" fill="currentColor">
+<text x="8" y="18" font-size="12" fill="var(--muted)">WHAT THE AGENT READS FIRST</text>
+<text x="8" y="146" font-size="12" fill="var(--muted)">HOW A CHANGE MOVES</text>
+<text x="8" y="274" font-size="12" fill="var(--muted)">WHAT KEEPS IT HONEST</text>
+<a href="#s4"><rect x="8" y="28" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="20" y="52" font-weight="600">Contract</text><text x="20" y="72">Rules for every tool.</text><text x="151" y="50" font-size="12" text-anchor="end" fill="var(--muted)">4</text></a><a href="#s5"><rect x="181" y="28" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="193" y="52" font-weight="600">Front doors</text><text x="193" y="72">People and agents.</text><text x="324" y="50" font-size="12" text-anchor="end" fill="var(--muted)">5</text></a><a href="#s6"><rect x="354" y="28" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="366" y="52" font-weight="600">Docs</text><text x="366" y="72">One home per fact.</text><text x="497" y="50" font-size="12" text-anchor="end" fill="var(--muted)">6</text></a><a href="#s7"><rect x="527" y="28" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="539" y="52" font-weight="600">Index and maps</text><text x="539" y="72">Your words, its names.</text><text x="670" y="50" font-size="12" text-anchor="end" fill="var(--muted)">7</text></a><a href="#s8"><rect x="8" y="156" width="120" height="56" rx="3" fill="none" stroke="var(--link)" stroke-width="2.5"/><text x="20" y="180" font-weight="600" fill="var(--link)">Size gate</text><text x="20" y="200" fill="var(--link)">Small or large?</text><text x="118" y="178" font-size="12" text-anchor="end" fill="var(--muted)">8</text></a><a href="#s9"><rect x="146" y="156" width="120" height="56" rx="3" fill="none" stroke="var(--link)" stroke-width="2.5"/><text x="158" y="180" font-weight="600" fill="var(--link)">Test first</text><text x="158" y="200" fill="var(--link)">Done is verified.</text><text x="256" y="178" font-size="12" text-anchor="end" fill="var(--muted)">9</text></a><a href="#s10"><rect x="284" y="156" width="120" height="56" rx="3" fill="none" stroke="var(--link)" stroke-width="2.5"/><text x="296" y="180" font-weight="600" fill="var(--link)">Local slot</text><text x="296" y="200" fill="var(--link)">One per copy.</text><text x="394" y="178" font-size="12" text-anchor="end" fill="var(--muted)">10</text></a><a href="#s11"><rect x="422" y="156" width="120" height="56" rx="3" fill="none" stroke="var(--link)" stroke-width="2.5"/><text x="434" y="180" font-weight="600" fill="var(--link)">Agent review</text><text x="434" y="200" fill="var(--link)">Then a person.</text><text x="532" y="178" font-size="12" text-anchor="end" fill="var(--muted)">11</text></a><a href="#s12"><rect x="560" y="156" width="120" height="56" rx="3" fill="none" stroke="var(--link)" stroke-width="2.5"/><text x="572" y="180" font-weight="600" fill="var(--link)">Handoff</text><text x="572" y="200" fill="var(--link)">Nothing is lost.</text><text x="670" y="178" font-size="12" text-anchor="end" fill="var(--muted)">12, 13</text></a><a href="#s14"><rect x="8" y="284" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="20" y="308" font-weight="600">Drift gates</text><text x="20" y="328">At commit and push.</text><text x="151" y="306" font-size="12" text-anchor="end" fill="var(--muted)">14</text></a><a href="#s15"><rect x="181" y="284" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="193" y="308" font-weight="600">Hooks</text><text x="193" y="328">As the agent acts.</text><text x="324" y="306" font-size="12" text-anchor="end" fill="var(--muted)">15</text></a><a href="#s16"><rect x="354" y="284" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="366" y="308" font-weight="600">Eval cases</text><text x="366" y="328">Guard the guidance.</text><text x="497" y="306" font-size="12" text-anchor="end" fill="var(--muted)">16</text></a><a href="#s17"><rect x="527" y="284" width="153" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="539" y="308" font-weight="600">Machinery</text><text x="539" y="328">A stricter path.</text><text x="670" y="306" font-size="12" text-anchor="end" fill="var(--muted)">17</text></a>
+<text x="232" y="114" font-size="12">read at the start of every session</text>
+<text x="232" y="246" font-size="12">checks each step</text>
+<text x="694" y="114" font-size="12" text-anchor="end">a question someone had to ask becomes a fix (18)</text>
+</g>
+<g fill="none" stroke="currentColor" stroke-width="1.5">
+<line x1="222" y1="84" x2="222" y2="140" marker-end="url(#arw)"/>
+<line x1="222" y1="284" x2="222" y2="218" marker-end="url(#arw)"/>
+<line x1="128" y1="184" x2="140" y2="184" stroke="var(--link)" stroke-width="2.5" marker-end="url(#arwb)"/><line x1="266" y1="184" x2="278" y2="184" stroke="var(--link)" stroke-width="2.5" marker-end="url(#arwb)"/><line x1="404" y1="184" x2="416" y2="184" stroke="var(--link)" stroke-width="2.5" marker-end="url(#arwb)"/><line x1="542" y1="184" x2="554" y2="184" stroke="var(--link)" stroke-width="2.5" marker-end="url(#arwb)"/>
+<path d="M680 184 L704 184 L704 56 L686 56" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+</g>
+</svg></div>
+<p class="ov-cap">The whole workspace on one sheet. The small numbers are sections; each box is a link.</p>
+</div></div>
+<ul class="proof">
+        <li><strong>Recorded, not claimed</strong> Ten recorded runs of one bug fix, on a small model. All ten fixed the bug. Only the five with the guidance saw a test fail first and marked their claims. <a href="#fig-replay">Step through two of them</a>.</li>
+        <li><strong>A working version is public</strong> <a href="https://github.com/ryantornberg/agent-ready-workspace">agent-ready-workspace</a> has the contract, checks and hooks that plug in as parts, and the eval those runs come from.</li>
+        <li><strong>A team chose to use it</strong> The workspace this page is drawn from spread by word of mouth, without a mandate, to QA, engineering leadership and other developers.</li>
+      </ul>
     </div>
   </header>
 
@@ -53,7 +80,7 @@
     <div class="wrap">
       <div class="intro">
         <p>I built a workspace like this for the team I develop with. This page describes the pattern, not that project. Nothing in it depends on a language, a cloud or a vendor. If your team works with coding agents on software that already exists, you can build one.</p>
-        <p>Version 1.0 worked for me. Version 2.0 is designed so a teammate can use it without asking me anything. If you knew 1.0, start with <a href="#s19">what changed</a>.</p>
+        <p>The first version worked for me. This one is designed so a teammate can use it without asking me anything. <a href="#s19">Section 19</a> says what the first version got wrong.</p>
       </div>
 
       <nav id="contents" class="tracks" aria-labelledby="contents-title">
@@ -72,7 +99,7 @@
               <li><span class="n">3</span><a href="#s3">It sits beside your code</a></li>
               <li><span class="n">4</span><a href="#s4">Write it once</a></li>
               <li><span class="n">5</span><a href="#s5">Two front doors</a></li>
-              <li><span class="n">6</span><a href="#s6">Three kinds of guidance</a></li>
+              <li><span class="n">6</span><a href="#s6">Five kinds of page</a></li>
               <li><span class="n">7</span><a href="#s7">Finding things</a></li>
             </ul>
           </div>
@@ -100,7 +127,7 @@
             <h3>Adopting it</h3>
             <ul>
               <li><span class="n">18</span><a href="#s18">How you know it works</a></li>
-              <li><span class="n">19</span><a href="#s19">What changed in 2.0</a></li>
+              <li><span class="n">19</span><a href="#s19">What the first version got wrong</a></li>
               <li><span class="n">20</span><a href="#s20">Start your own</a></li>
               <li><span class="n">21</span><a href="#s21">Glossary</a></li>
             </ul>
@@ -346,7 +373,7 @@
         </section>
 
         <section class="sec" id="s6" aria-labelledby="s6-t">
-          <h3 id="s6-t"><span class="n">6</span> Three kinds of guidance</h3>
+          <h3 id="s6-t"><span class="n">6</span> Five kinds of page, one name each</h3>
           <p class="deck">A reader should know from the folder name what kind of help they are about to get.</p>
           <table class="t stack">
             <thead><tr><th scope="col">Kind</th><th scope="col">Reader</th><th scope="col">When</th><th scope="col">Example</th></tr></thead>
@@ -387,7 +414,7 @@
           </table>
           <p>The alias table is often the most useful thing a workspace gives an agent. People and code use different words for the same thing, and a search for the everyday word finds nothing.</p>
           <p>Code maps help people as much as agents. A newcomer can scan a repository&rsquo;s shape without opening a source file.</p>
-          <p>Outside systems get the same treatment. A register lists every system you call, and a text model records each call and the class of data it carries. The maps and diagrams are generated from the model. <a href="../#fig-2">Figure 2 on my home page</a> shows that loop.</p>
+          <p>Outside systems get the same treatment. A register lists every system you call, and a text model records each call and the class of data it carries. The maps and diagrams are generated from the model. <a href="../#fig-2">The architecture model drawing on my home page</a> shows that loop.</p>
         </section>
 
       </div>
@@ -792,10 +819,10 @@
           <div class="specimen anatomy" role="group" aria-label="An eval case">
             <p class="sp-title">An eval case</p>
             <dl>
-              <dt>Request</dt><dd>&ldquo;The Export button on the orders page does nothing. Fix it.&rdquo;</dd>
-              <dt>Scaffold</dt><dd>A small repository where the button is broken in a known way.</dd>
-              <dt>Graders</dt><dd>It takes the bug path. It reproduces the failure before editing. It adds a regression test.</dd>
-              <dt>Fails if</dt><dd>It edits code before it has a reproduction.</dd>
+              <dt>Request</dt><dd>&ldquo;The Export button on the orders page does nothing. Fix it and commit the fix.&rdquo;</dd>
+              <dt>Scaffold</dt><dd>A small repository where the button is broken in a known way. No test clicks it, so the suite passes. Another session&rsquo;s unsaved edits sit in the folder.</dd>
+              <dt>Graders</dt><dd>Six checks on what the agent did, listed in the figure below.</dd>
+              <dt>Fails if</dt><dd>It edits the code before it has seen a test fail.</dd>
             </dl>
           </div>
           <figure id="fig-replay">
@@ -926,31 +953,32 @@
           </figure>
 
           <p>Every question a teammate has to ask is evidence. It marks context the workspace failed to carry, so log it as a gap and fix it where the next person will look.</p>
+          <p>The workspace this page is drawn from spread by word of mouth, without a mandate, to QA, engineering leadership and other developers.</p>
           <p>Size and polish measure nothing. A large, well-made workspace that people route around has failed.</p>
           <p>The first real test is a teammate cloning it from zero with only the README. Every stumble becomes a doc fix. After that, the nightly clone keeps the test running.</p>
           <p>Ownership has to spread too. Whoever finds a gap fixes it, with their own agent. A workspace that only its author edits is still a notebook.</p>
         </section>
 
         <section class="sec" id="s19" aria-labelledby="s19-t">
-          <h3 id="s19-t"><span class="n">19</span> What changed in 2.0</h3>
-          <p class="deck">Version 1.0 worked for its author. Version 2.0 is built for the next person.</p>
+          <h3 id="s19-t"><span class="n">19</span> What the first version got wrong</h3>
+          <p class="deck">The first version worked for its author. This one is built for the next person.</p>
           <table class="t stack versions">
-            <thead><tr><th scope="col"><span class="sr">Aspect</span></th><th scope="col">Version 1.0</th><th scope="col" class="v2">Version 2.0</th></tr></thead>
+            <thead><tr><th scope="col"><span class="sr">Aspect</span></th><th scope="col">First version</th><th scope="col" class="v2">Now</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Built for</th><td data-label="Version 1.0">The author&rsquo;s own sessions</td><td data-label="Version 2.0">Any teammate, with any supported tool, on Windows or macOS</td></tr>
-              <tr><th scope="row">Front door</th><td data-label="Version 1.0">The contract and a practices page</td><td data-label="Version 2.0">A guide and a task router for people, and the contract for agents</td></tr>
-              <tr><th scope="row">Scope</th><td data-label="Version 1.0">Explained much of what a model can read for itself</td><td data-label="Version 2.0">A written boundary: what it holds and what it refuses</td></tr>
-              <tr><th scope="row">Guidance</th><td data-label="Version 1.0">Overlapping folders and names</td><td data-label="Version 2.0">Three kinds of guidance, one term each</td></tr>
-              <tr><th scope="row">Finished work</th><td data-label="Version 1.0">Stayed in search results</td><td data-label="Version 2.0">Archived and hidden from agent search</td></tr>
-              <tr><th scope="row">Setup</th><td data-label="Version 1.0">Assumed the author&rsquo;s machine and accounts</td><td data-label="Version 2.0">Settings in one file per project, and checks that run anywhere</td></tr>
-              <tr><th scope="row">Review</th><td data-label="Version 1.0">No required record</td><td data-label="Version 2.0">Agent reviewers first, with a record, then a draft for a person</td></tr>
-              <tr><th scope="row">Local checks</th><td data-label="Version 1.0">One shared local environment</td><td data-label="Version 2.0">A disposable slot for each working copy</td></tr>
-              <tr><th scope="row">Playbook changes</th><td data-label="Version 1.0">No per-playbook tests</td><td data-label="Version 2.0">Gated by eval cases, against a no-playbook baseline</td></tr>
-              <tr><th scope="row">Machinery changes</th><td data-label="Version 1.0">Committed straight to the main branch, like docs</td><td data-label="Version 2.0">Their own branch, with CI on three operating systems</td></tr>
-              <tr><th scope="row">Success</th><td data-label="Version 1.0">Not defined</td><td data-label="Version 2.0">A teammate ships without asking, and every question asked is a logged gap</td></tr>
+              <tr><th scope="row">Built for</th><td data-label="First version">The author&rsquo;s own sessions</td><td data-label="Now">Any teammate, with any supported tool, on Windows or macOS</td></tr>
+              <tr><th scope="row">Front door</th><td data-label="First version">The contract and a practices page</td><td data-label="Now">A guide and a task router for people, and the contract for agents</td></tr>
+              <tr><th scope="row">Scope</th><td data-label="First version">Explained much of what a model can read for itself</td><td data-label="Now">A written boundary: what it holds and what it refuses</td></tr>
+              <tr><th scope="row">Guidance</th><td data-label="First version">Overlapping folders and names</td><td data-label="Now">Five kinds of page, one name each</td></tr>
+              <tr><th scope="row">Finished work</th><td data-label="First version">Stayed in search results</td><td data-label="Now">Archived and hidden from agent search</td></tr>
+              <tr><th scope="row">Setup</th><td data-label="First version">Assumed the author&rsquo;s machine and accounts</td><td data-label="Now">Settings in one file per project, and checks that run anywhere</td></tr>
+              <tr><th scope="row">Review</th><td data-label="First version">No required record</td><td data-label="Now">Agent reviewers first, with a record, then a draft for a person</td></tr>
+              <tr><th scope="row">Local checks</th><td data-label="First version">One shared local environment</td><td data-label="Now">A disposable slot for each working copy</td></tr>
+              <tr><th scope="row">Playbook changes</th><td data-label="First version">No per-playbook tests</td><td data-label="Now">Gated by eval cases, against a no-playbook baseline</td></tr>
+              <tr><th scope="row">Machinery changes</th><td data-label="First version">Committed straight to the main branch, like docs</td><td data-label="Now">Their own branch, with CI on three operating systems</td></tr>
+              <tr><th scope="row">Success</th><td data-label="First version">Not defined</td><td data-label="Now">A teammate ships without asking, and every question asked is a logged gap</td></tr>
             </tbody>
           </table>
-          <p>Models got better at reading code, and that changed what is worth writing down. Version 1.0 spent many pages on things a model now works out for itself. Version 2.0 cut those and kept what a model cannot derive. As models improve, a good workspace gets smaller and sharper.</p>
+          <p>Models got better at reading code, and that changed what is worth writing down. The first version spent many pages on things a model now works out for itself. This one cut those and kept what a model cannot derive. As models improve, a good workspace gets smaller and sharper.</p>
           <p>One thing is deliberately not built: an installer that sets up a workspace for a new project. It waits until a second team actually needs one. A generator nobody runs is exactly the unused tooling this pattern exists to prevent.</p>
         </section>
 
@@ -1003,7 +1031,8 @@
     </div>
 
     <div class="wrap">
-      <footer>Ryan Tornberg, Tucson, Arizona. <a href="../">Back to the home page</a>.</footer>
+      <div class="closing"><p>A small working version of this pattern is public: <a href="https://github.com/ryantornberg/agent-ready-workspace">agent-ready-workspace</a>. If you are building a workspace like this, or want to ask how mine works, <a href="mailto:RyanTornberg@gmail.com">email me</a>.</p></div>
+      <footer>Ryan Tornberg, Tucson, Arizona. Last revised November 2026. <a href="../">Back to the home page</a>.</footer>
     </div>
   </main>
 </body>
