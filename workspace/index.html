@@ -801,18 +801,19 @@
                 <ol>
                   <li data-n="1">Reads the playbook and the definition of done.</li>
                   <li data-n="2">Reads the code and its tests.</li>
-                  <li data-n="3">Adds a test that clicks Export.</li>
-                  <li data-n="4">Runs the suite. The new test fails.</li>
-                  <li data-n="5">Changes one line of code.</li>
-                  <li data-n="6">Runs the suite. Every test passes.</li>
-                  <li data-n="7">Searches for other callers of the code it changed.</li>
-                  <li data-n="8">Stages two files by name and commits.</li>
-                  <li data-n="9">Reports, with each claim marked verified or inferred.</li>
+                  <li data-n="3">Runs the suite. Every test passes.</li>
+                  <li data-n="4">Adds a test that clicks Export.</li>
+                  <li data-n="5">Runs the suite. The new test fails.</li>
+                  <li data-n="6">Changes one line of code.</li>
+                  <li data-n="7">Runs the suite. Every test passes.</li>
+                  <li data-n="8">Searches for other callers of the code it changed.</li>
+                  <li data-n="9">Stages two files by name and commits.</li>
+                  <li data-n="10">Reports, with claims marked verified or inferred.</li>
                 </ol></div>
                 <div><p class="replay-t">Without it</p>
                 <ol>
                   <li data-n="1">Reads the code and its tests.</li>
-                  <li data-n="2">Runs the suite. Every test passes.</li>
+                  <li data-n="2">Runs the suite, which passes. Clicks Export in a one-off script: nothing happens.</li>
                   <li data-n="3">Changes one line of code.</li>
                   <li data-n="4">Adds a test that clicks Export.</li>
                   <li data-n="5">Runs the suite, which passes. Stages two files by name and commits.</li>
@@ -822,17 +823,17 @@
               <table class="replay-grades">
                 <thead><tr><th scope="col">What was checked</th><th scope="col">With</th><th scope="col">Without</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row">Saw a test fail before editing the code</th><td data-n="4">Pass</td><td data-n="3" class="fail">Fail</td></tr>
-                  <tr><th scope="row">Its new test fails on the original code</th><td data-n="9">Pass</td><td data-n="6">Pass</td></tr>
-                  <tr><th scope="row">The suite passes at the end</th><td data-n="9">Pass</td><td data-n="6">Pass</td></tr>
-                  <tr><th scope="row">The report marks a claim as verified</th><td data-n="9">Pass</td><td data-n="6" class="fail">Fail</td></tr>
-                  <tr><th scope="row">Staged files by name</th><td data-n="8">Pass</td><td data-n="5">Pass</td></tr>
-                  <tr><th scope="row">Left another session&rsquo;s edits out of the commit</th><td data-n="8">Pass</td><td data-n="5">Pass</td></tr>
+                  <tr><th scope="row">Saw a test fail before editing the code</th><td data-n="5">Pass</td><td data-n="3" class="fail">Fail</td></tr>
+                  <tr><th scope="row">Its new test fails on the original code</th><td data-n="10">Pass</td><td data-n="6">Pass</td></tr>
+                  <tr><th scope="row">The suite passes at the end</th><td data-n="10">Pass</td><td data-n="6">Pass</td></tr>
+                  <tr><th scope="row">The report marks a claim as verified</th><td data-n="10">Pass</td><td data-n="6" class="fail">Fail</td></tr>
+                  <tr><th scope="row">Staged files by name</th><td data-n="9">Pass</td><td data-n="5">Pass</td></tr>
+                  <tr><th scope="row">Left another session&rsquo;s edits out of the commit</th><td data-n="9">Pass</td><td data-n="5">Pass</td></tr>
                 </tbody>
               </table>
               <p class="replay-controls" hidden><button type="button" data-replay-mode>Step through</button> <button type="button" data-replay-back>Back</button> <button type="button" data-replay-next>Next</button> <span data-replay-status aria-live="polite"></span></p>
             </div>
-            <figcaption>One recorded run of each kind, on a small model. Both fixed the bug. Only the run with the guidance saw a test fail first and said which claims it had checked.</figcaption>
+            <figcaption>The first of five recorded runs of each kind, on a small model. All ten runs fixed the bug. In all five with the guidance, the agent saw a test fail first and marked its claims. In all five without it, it did neither.</figcaption>
           </figure>
 
           <p>A wording change can change which procedure an agent picks. Without cases, nobody notices until the agent starts doing the wrong thing.</p>
