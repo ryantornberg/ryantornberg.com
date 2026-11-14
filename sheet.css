@@ -82,3 +82,12 @@ figcaption::before { content: "Figure " counter(figure) ". "; font: 600 0.9375re
 :root[data-theme="dark"] { --line: #8a93a0; }
 svg [stroke="currentColor"] { stroke: var(--line); }
 svg marker [fill="currentColor"] { fill: var(--line); }
+
+/* A figure can carry a second, portrait drawing for narrow screens. The page shows one or the other,
+   so nothing scrolls sideways. Change a label in one and change it in the other. */
+figure .fig-tall { display: none; }
+@media (max-width: 760px) {
+  figure .has-tall .fig-wide { display: none; }
+  figure .has-tall .fig-tall { display: block; min-width: 0; max-width: 26rem; }
+  figure .plate.has-tall { background: none; overflow-x: visible; }
+}

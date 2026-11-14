@@ -18,13 +18,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
-  <link rel="stylesheet" href="../styles.css?v=20261114j">
+  <link rel="stylesheet" href="../styles.css?v=20261114k">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script src="../theme.js?v=20261114j" defer></script>
-  <script src="replay.js?v=20261114j" defer></script>
-  <script src="rail.js?v=20261114j" defer></script>
+  <script src="../theme.js?v=20261114k" defer></script>
+  <script src="replay.js?v=20261114k" defer></script>
+  <script src="rail.js?v=20261114k" defer></script>
 </head>
 <body class="ws">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+          <marker id="arwb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--link)"/>
+          </marker>
+          </defs></svg>
   <div class="bar"><div class="wrap">
       <div class="masthead">
         <a href="../">Ryan Tornberg</a>
@@ -193,14 +201,6 @@
 
           <figure id="fig-1">
           <div class="plate"><svg viewBox="0 0 720 248" role="img" aria-label="The workspace pins each code repository at an exact commit, so the code stays authoritative in its own repository and every doc describes a known version. A merge upstream moves the pin forward.">
-          <defs>
-          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
-          </marker>
-          <marker id="arwb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="var(--link)"/>
-          </marker>
-          </defs>
           <g fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="200" y="16" width="320" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
           <rect x="8" y="176" width="208" height="56" rx="3"/>
@@ -314,7 +314,7 @@
           <p class="deck">People and agents need different entrances. They do not need different documents.</p>
 
           <figure id="fig-3">
-          <div class="plate"><svg viewBox="0 0 720 224" role="img" aria-label="People enter through a guide and a task router, agents through the contract and a topic index, and both arrive at the same documents, where each fact has one home.">
+          <div class="plate has-tall"><svg class="fig-wide" viewBox="0 0 720 224" role="img" aria-label="People enter through a guide and a task router, agents through the contract and a topic index, and both arrive at the same documents, where each fact has one home.">
           <g fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="8" y="16" width="184" height="56" rx="3"/>
           <rect x="8" y="152" width="184" height="56" rx="3"/>
@@ -340,6 +340,34 @@
           <text x="528" y="100" font-weight="600" fill="var(--link)">The same docs</text>
           <text x="528" y="120" fill="var(--link)">One home per fact.</text>
           <text x="528" y="140" fill="var(--link)">Nothing written twice.</text>
+          </g>
+          </svg>
+          <svg class="fig-tall" viewBox="0 0 360 300" role="img" aria-label="People enter through a guide and a task router, agents through the contract and a topic index, and both arrive at the same documents, where each fact has one home.">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="8" width="164" height="56" rx="3"/>
+          <rect x="188" y="8" width="164" height="56" rx="3"/>
+          <rect x="8" y="104" width="164" height="56" rx="3"/>
+          <rect x="188" y="104" width="164" height="56" rx="3"/>
+          <rect x="8" y="220" width="344" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+          <line x1="90" y1="64" x2="90" y2="98" marker-end="url(#arw)"/>
+          <line x1="270" y1="64" x2="270" y2="98" marker-end="url(#arw)"/>
+          <g stroke="var(--link)" stroke-width="2.5">
+          <line x1="90" y1="160" x2="90" y2="213" marker-end="url(#arwb)"/>
+          <line x1="270" y1="160" x2="270" y2="213" marker-end="url(#arwb)"/>
+          </g>
+          </g>
+          <g font-size="13" fill="currentColor">
+          <text x="20" y="32" font-weight="600">A person</text>
+          <text x="20" y="52">New to the team.</text>
+          <text x="200" y="32" font-weight="600">An agent</text>
+          <text x="200" y="52">A fresh session.</text>
+          <text x="20" y="128" font-weight="600">Guide and task router</text>
+          <text x="20" y="148">The why, and where to go.</text>
+          <text x="200" y="128" font-weight="600">Contract and index</text>
+          <text x="200" y="148">The rules, then the fact.</text>
+          <text x="24" y="244" font-weight="600" fill="var(--link)">The same docs</text>
+          <text x="24" y="264" fill="var(--link)">One home per fact.</text>
+          <text x="24" y="284" fill="var(--link)">Nothing written twice.</text>
           </g>
           </svg></div>
           <figcaption>People enter through a guide and a task router, and agents through the contract and a topic index. Both arrive at the same documents.</figcaption>
