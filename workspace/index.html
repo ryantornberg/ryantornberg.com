@@ -833,7 +833,7 @@
               </table>
               <p class="replay-controls" hidden><button type="button" data-replay-mode>Step through</button> <button type="button" data-replay-back>Back</button> <button type="button" data-replay-next>Next</button> <span data-replay-status aria-live="polite"></span></p>
             </div>
-            <figcaption>The first of five recorded runs of each kind, on a small model. All ten runs fixed the bug. In all five with the guidance, the agent saw a test fail first and marked its claims. In all five without it, it did neither.</figcaption>
+            <figcaption>The first of five recorded runs of each kind, on a small model. All ten fixed the bug; only the five with the guidance saw a test fail first and marked their claims. The transcripts are <a href="https://github.com/ryantornberg/agent-ready-workspace/tree/main/evals">public</a>.</figcaption>
           </figure>
 
           <p>A wording change can change which procedure an agent picks. Without cases, nobody notices until the agent starts doing the wrong thing.</p>
@@ -964,6 +964,7 @@
               <tr><th scope="row">When a second team asks</th><td data-label="Add">A template or an installer. Not before.</td></tr>
             </tbody>
           </table>
+          <p>A small working version of this pattern is public: <a href="https://github.com/ryantornberg/agent-ready-workspace">agent-ready-workspace</a>. It has the contract, checks and hooks that plug in as parts, and the eval this page&rsquo;s recorded runs come from.</p>
           <p>Don&rsquo;t build the whole thing up front. Each piece earns its place by fixing a problem you have actually hit.</p>
         </section>
 
