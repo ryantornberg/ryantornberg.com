@@ -9,6 +9,11 @@
   <meta property="og:description" content="Software architect and player-coach engineering manager. Brownfield is the tougher game, and it is where I have done my best work.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ryantornberg.com/">
+  <meta property="og:image" content="https://ryantornberg.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ryan Tornberg. Greenfield is a blast. Brownfield is the tougher game.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +70,7 @@
 
       <section id="diagrams" class="diagrams">
         <h2>Selected work</h2>
-        <p>Four figures from my current work. The first two are architecture and how I keep several workstreams moving at once. The last two come from the agent workspace my team develops in: how its work is measured, and how a gap gets fixed. Each figure links on its own. <a href="workspace/">How the workspace works</a> has its own page, with eleven more figures.</p>
+        <p>Five figures from my work. The first two are architecture, and the third is how I keep several workstreams moving at once. The last two come from the agent workspace my team develops in: how its work is measured, and how a gap gets fixed. Each figure links on its own. <a href="workspace/">How the workspace works</a> has its own page, with eleven more figures.</p>
 
         <figure id="fig-1">
         <div class="plate"><svg viewBox="0 0 720 312" role="img" aria-label="An architecture model kept as text in the repository is drawn from the systems register and checked against it on every commit. The network map, the diagrams in the docs and the impact lookup are all generated from the model, and every call in it names the class of data it carries.">
@@ -114,6 +119,46 @@
         </figure>
 
         <figure id="fig-2">
+        <div class="plate"><svg viewBox="0 0 720 296" role="img" aria-label="A completed delivery is handed off by the mobile app and stored at an intake before anything posts it. A background service validates it with the logic for the app version that produced it and posts it to the pharmacy's database in one add-or-update transaction, and a failure is recorded against the delivery. A partner platform now sends its deliveries through the same intake.">
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="8" y="16" width="200" height="72" rx="3"/>
+        <rect x="8" y="128" width="200" height="56" rx="3"/>
+        <rect x="260" y="64" width="200" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
+        <rect x="512" y="64" width="200" height="72" rx="3"/>
+        <rect x="512" y="208" width="200" height="72" rx="3"/>
+        <rect x="260" y="208" width="200" height="72" rx="3"/>
+        <path d="M208 52 L232 52 L232 88 L254 88" marker-end="url(#arw)"/>
+        <path d="M208 156 L232 156 L232 112 L254 112" marker-end="url(#arw)"/>
+        <line x1="460" y1="100" x2="506" y2="100" marker-end="url(#arw)" stroke="var(--link)" stroke-width="2.5"/>
+        <line x1="640" y1="136" x2="640" y2="202" marker-end="url(#arw)"/>
+        <path d="M560 136 L560 172 L360 172 L360 202" marker-end="url(#arw)" stroke-dasharray="5 4"/>
+        </g>
+        <g font-size="13" fill="currentColor">
+        <text x="24" y="40" font-weight="600">Mobile app</text>
+        <text x="24" y="60">Hands off a small payload</text>
+        <text x="24" y="80">with its version.</text>
+        <text x="24" y="152" font-weight="600">Partner platform</text>
+        <text x="24" y="172">Joined the same intake.</text>
+        <text x="276" y="88" font-weight="600" fill="var(--link)">Intake</text>
+        <text x="276" y="108" fill="var(--link)">Stored first, so a slow</text>
+        <text x="276" y="128" fill="var(--link)">post loses nothing.</text>
+        <text x="528" y="88" font-weight="600">Background service</text>
+        <text x="528" y="108">Validates with the logic</text>
+        <text x="528" y="128">for that version.</text>
+        <text x="528" y="232" font-weight="600">Pharmacy database</text>
+        <text x="528" y="252">Add-or-update in one</text>
+        <text x="528" y="272">transaction. No doubles.</text>
+        <text x="276" y="232" font-weight="600">Error on the delivery</text>
+        <text x="276" y="252">Recorded against it,</text>
+        <text x="276" y="272">not lost.</text>
+        <text x="652" y="176" font-size="12">posts</text>
+        <text x="420" y="164" font-size="12">on failure</text>
+        </g>
+        </svg></div>
+        <figcaption>A completed delivery is stored before anything posts it, so a slow or failed post no longer loses the work. A partner platform now sends its deliveries through the same intake.</figcaption>
+        </figure>
+
+        <figure id="fig-3">
         <div class="plate"><svg viewBox="0 0 720 264" role="img" aria-label="Each workstream's plan marks the decisions that wait for me, each with a recommendation. Agents build up to the next one, a review loop freezes after three fix rounds with nothing merged, and I decide from a draft pull request and a report. Several workstreams run this loop at once.">
         <g fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="8" y="24" width="200" height="72" rx="3"/>
@@ -151,7 +196,7 @@
         <figcaption>Each workstream&rsquo;s plan marks the decisions that wait for me. Agents carry the work up to the next one, and a review loop freezes after three fix rounds, so several workstreams move at once.</figcaption>
         </figure>
 
-        <figure id="fig-3">
+        <figure id="fig-4">
         <div class="plate"><svg viewBox="0 0 720 232" role="img" aria-label="Two measured ratios: roughly one in every eight agent actions is a verification step rather than a change, and about 62 percent of delegated work is routed to smaller, cheaper models.">
         <g font-size="13" fill="currentColor">
         <text x="8" y="24" font-weight="600">Verification share of agent actions</text>
@@ -182,7 +227,7 @@
         <figcaption>Both ratios are read out of session logs, not estimated: one action in eight is a verification step, and 62% of delegated work runs on smaller models.</figcaption>
         </figure>
 
-        <figure id="fig-4">
+        <figure id="fig-5">
         <div class="plate"><svg viewBox="0 0 720 248" role="img" aria-label="A developer question that has to be escalated to a person is logged as a gap, the gap is fixed in the workspace, and the same question stops being asked. The workspace spread by word of mouth, without a mandate, to QA, engineering leadership and other developers.">
         <g fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="8" y="24" width="208" height="56" rx="3"/>
