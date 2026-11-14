@@ -635,3 +635,43 @@ figcaption::before {
   .glossary { grid-template-columns: 1fr; }
   .glossary dt { border: 0; padding-block-end: 0; }
 }
+
+/* The recorded-run figure: two columns of steps and the graders' table. replay.js steps through it. */
+.ws .sec > #fig-replay { max-width: calc(var(--col) + 12rem); }
+.replay {
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: var(--sheet);
+  padding: 1.25rem 1.25rem 1rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.replay p { margin: 0; max-width: none; }
+.replay-req { padding-block-end: 1rem; border-block-end: 1px solid var(--rule); }
+.replay-arms { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; padding-block: 1rem; }
+.replay-t { font-weight: 600; padding-block-end: 0.35rem; }
+.replay ol { margin: 0; padding-inline-start: 1.4rem; }
+.replay li { padding-block: 0.2rem; line-height: 1.45; }
+.replay-grades { width: 100%; border-collapse: collapse; border-block-start: 1px solid var(--rule); }
+.replay-grades th, .replay-grades td { text-align: start; padding: 0.4rem 0.75rem 0.4rem 0; border-block-end: 1px solid var(--rule); font-weight: 400; }
+.replay-grades thead th { font-weight: 600; }
+.replay-grades td, .replay-grades thead th + th { width: 5.5rem; }
+.replay-grades .fail { color: var(--link); font-weight: 700; }
+.replay .is-pending { visibility: hidden; }
+.replay li.is-current, .replay td.is-current { color: var(--link); font-weight: 600; }
+.replay-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; padding-block-start: 1rem; }
+.replay-controls button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.2em 0.9em;
+  cursor: pointer;
+}
+.replay-controls button:disabled { opacity: 0.4; cursor: default; }
+.replay-controls [data-replay-status] { color: var(--muted); margin-inline-start: 0.25rem; }
+@media (max-width: 640px) {
+  .replay-arms { grid-template-columns: 1fr; gap: 1rem 0; }
+}
