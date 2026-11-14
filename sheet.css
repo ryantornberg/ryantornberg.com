@@ -25,16 +25,16 @@ a:hover { color: var(--link); }
 :focus-visible { outline: 3px solid var(--link); outline-offset: 3px; }
 p { margin: 0; }
 
-.sheet { max-width: 78rem; margin: 0 auto; border: 1.5px solid var(--ink); padding: clamp(1rem, 3vw, 2.5rem); }
+.sheet { max-width: 78rem; margin: 0 auto; border: 1.5px solid var(--line); padding: clamp(1rem, 3vw, 2.5rem); }
 
 /* The title block and the links out. Nothing here jumps within the page. */
 .top { display: flex; flex-wrap: wrap-reverse; justify-content: space-between; align-items: flex-start; gap: 1.25rem 2rem; }
 .top nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.2rem; font: 500 1rem/1.3 var(--letter); padding-block-start: 0.45rem; }
-.theme-toggle { font: inherit; color: inherit; background: none; border: 1px solid currentColor; border-radius: 2px; padding: 0.1em 0.6em; cursor: pointer; }
-.block { display: grid; grid-template-columns: auto minmax(0, auto); width: max-content; max-width: 100%; margin: 0; border: 1.5px solid var(--ink); font: 500 0.9375rem/1.3 var(--letter); }
-.block dt, .block dd { margin: 0; padding: 0.45rem 0.9rem; border-block-start: 1px solid var(--ink); }
+.theme-toggle { font: inherit; color: inherit; background: none; border: 1px solid var(--line); border-radius: 2px; padding: 0.1em 0.6em; cursor: pointer; }
+.block { display: grid; grid-template-columns: auto minmax(0, auto); width: max-content; max-width: 100%; margin: 0; border: 1.5px solid var(--line); font: 500 0.9375rem/1.3 var(--letter); }
+.block dt, .block dd { margin: 0; padding: 0.45rem 0.9rem; border-block-start: 1px solid var(--line); }
 .block dt { color: var(--muted); }
-.block dd { border-inline-start: 1px solid var(--ink); }
+.block dd { border-inline-start: 1px solid var(--line); }
 .block dt:first-of-type, .block dt:first-of-type + dd { border-block-start: 0; }
 .block h1 { margin: 0; font: 600 1.125rem/1.3 var(--letter); }
 
@@ -74,3 +74,11 @@ figcaption::before { content: "Figure " counter(figure) ". "; font: 600 0.9375re
 
 .contact .block { margin-inline-start: auto; }
 .contact { margin-block-end: 0.25rem; }
+
+/* Lines are their own colour. On paper they are the ink; on the dark sheet a full-white line glows and
+   outweighs the text, so borders and drawing outlines step back to a mid grey. The accent lines stay blue. */
+:root { --line: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --line: #8a93a0; } }
+:root[data-theme="dark"] { --line: #8a93a0; }
+svg [stroke="currentColor"] { stroke: var(--line); }
+svg marker [fill="currentColor"] { fill: var(--line); }
