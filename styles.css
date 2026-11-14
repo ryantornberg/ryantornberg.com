@@ -731,3 +731,29 @@ body.ws {
 .ws .specimen, .ws .replay { border-radius: 2px; }
 .ws .replay-controls button { border-radius: 2px; }
 .ws .tracks h2 { font-size: 1.5rem; }
+
+/* 2026-11-14, later: fixes from a full read of the workspace page. */
+/* The size gate's four conditions: a ruled row, like the tables. (The old strip ended in a barline from the sleeve theme.) */
+.ws .bars.four { border-block: 1.5px solid var(--ink); }
+.ws .bars.four li { border-inline-start: 1px solid var(--rule); padding: 0.8rem 1rem; }
+.ws .bars.four li:first-child { border-inline-start: 0; padding-inline-start: 0; }
+.ws .bars.four li:last-child::after { content: none; }
+.ws .bars.four strong { font-size: 1.1875rem; }
+@media (max-width: 760px) {
+  .ws .bars.four li { border-inline-start: 0; border-block-start: 1px solid var(--rule); padding: 0.55rem 0; }
+  .ws .bars.four li:first-child { border-block-start: 0; }
+  .ws .bars.four li:last-child { padding-block-end: 0.55rem; }
+}
+/* A drawing wider than the screen scrolls sideways; a shadow marks the edge that has more. */
+.ws figure .plate {
+  background:
+    linear-gradient(to right, var(--paper) 40%, transparent) left center / 2.5rem 100% no-repeat local,
+    linear-gradient(to left, var(--paper) 40%, transparent) right center / 2.5rem 100% no-repeat local,
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 30%, transparent), transparent) left center / 0.75rem 100% no-repeat scroll,
+    linear-gradient(to left, color-mix(in srgb, var(--ink) 30%, transparent), transparent) right center / 0.75rem 100% no-repeat scroll;
+}
+/* On a phone the bar keeps to one row: the name already goes home, and email is on the home page. */
+@media (max-width: 560px) {
+  .ws .masthead nav { gap: 0.4rem 0.9rem; }
+  .ws .masthead nav a[href="../"], .ws .masthead nav a[href^="mailto:"] { display: none; }
+}
