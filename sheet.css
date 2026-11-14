@@ -1,0 +1,76 @@
+/* ryantornberg.com, home page: a drawing sheet.
+   A framed sheet, a title block for the name, and the career drawn as the first figure.
+   One family in two widths: Barlow for text, Barlow Semi Condensed for lettering. */
+:root {
+  --paper: #f4f4f1;
+  --ink: #22262b;
+  --muted: #5c6470;
+  --rule: #c6c9ce;
+  --link: #27469a;
+  --text: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --letter: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
+  --measure: 36em;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --paper: #15181c; --ink: #e2e5ea; --muted: #a0a8b4; --rule: #3a4048; --link: #9db4f5; }
+}
+:root[data-theme="dark"] { --paper: #15181c; --ink: #e2e5ea; --muted: #a0a8b4; --rule: #3a4048; --link: #9db4f5; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; padding: clamp(0.5rem, 1.6vw, 1.25rem); background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.55 var(--text); }
+a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { color: var(--link); }
+:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; }
+p { margin: 0; }
+
+.sheet { max-width: 78rem; margin: 0 auto; border: 1.5px solid var(--ink); padding: clamp(1rem, 3vw, 2.5rem); }
+
+/* The title block and the links out. Nothing here jumps within the page. */
+.top { display: flex; flex-wrap: wrap-reverse; justify-content: space-between; align-items: flex-start; gap: 1.25rem 2rem; }
+.top nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.2rem; font: 500 1rem/1.3 var(--letter); padding-block-start: 0.45rem; }
+.theme-toggle { font: inherit; color: inherit; background: none; border: 1px solid currentColor; border-radius: 2px; padding: 0.1em 0.6em; cursor: pointer; }
+.block { display: grid; grid-template-columns: auto minmax(0, auto); width: max-content; max-width: 100%; margin: 0; border: 1.5px solid var(--ink); font: 500 0.9375rem/1.3 var(--letter); }
+.block dt, .block dd { margin: 0; padding: 0.45rem 0.9rem; border-block-start: 1px solid var(--ink); }
+.block dt { color: var(--muted); }
+.block dd { border-inline-start: 1px solid var(--ink); }
+.block dt:first-of-type, .block dt:first-of-type + dd { border-block-start: 0; }
+.block h1 { margin: 0; font: 600 1.125rem/1.3 var(--letter); }
+
+.lead { font-size: clamp(1.1875rem, 2.1vw, 1.4375rem); line-height: 1.4; max-width: 34em; margin: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(1.5rem, 3vw, 2.25rem); text-wrap: pretty; }
+
+/* Sections: a ruled line, a small lettered heading, then the content. */
+main > section { margin-block-start: clamp(2.25rem, 5vw, 3.5rem); padding-block-start: 1.25rem; border-block-start: 1px solid var(--rule); }
+h2 { margin: 0 0 1.25rem; font: 600 1.25rem/1.2 var(--letter); }
+h3 { margin: 0; font: 600 1.125rem/1.3 var(--letter); }
+
+.career { list-style: none; margin: 0; padding: 0; }
+.career > li { display: grid; gap: 0.2rem 2rem; padding-block: 0.9rem; border-block-start: 1px solid var(--rule); }
+.career > li:first-child { border-block-start: 0; padding-block-start: 0; }
+.career .when { font: 500 1rem/1.5 var(--letter); color: var(--muted); }
+.career .who p { color: var(--muted); font-size: 0.9375rem; line-height: 1.4; }
+.career > li > p:last-child { max-width: var(--measure); }
+@media (min-width: 960px) { .career > li { grid-template-columns: 7rem minmax(0, 4fr) minmax(0, 7fr); } }
+
+.outcomes { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.outcomes p { margin-block-start: 0.3rem; font-size: 1rem; }
+
+/* Figures. Each is numbered; on a wide sheet the caption sits beside the drawing. */
+main { counter-reset: figure; }
+figure { margin: 0; counter-increment: figure; scroll-margin-top: 1rem; }
+figure .plate { overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; min-width: 660px; max-width: 780px; font-family: var(--text); }
+figure.wide svg { max-width: none; min-width: 940px; }   /* keeps its labels readable; the plate scrolls on a phone */
+figcaption { margin-block-start: 0.75rem; font-size: 0.9375rem; line-height: 1.45; color: var(--muted); max-width: 44em; }
+figcaption::before { content: "Figure " counter(figure) ". "; font: 600 0.9375rem var(--letter); color: var(--ink); }
+.drawings .note { max-width: var(--measure); margin-block-end: 0.5rem; }
+.drawings figure { padding-block: 1.5rem; border-block-start: 1px solid var(--rule); }
+.drawings figure:first-of-type { border-block-start: 0; }
+@media (min-width: 1100px) {
+  .drawings figure { display: grid; grid-template-columns: minmax(0, 780px) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+  .drawings figcaption { margin-block-start: 0.25rem; }
+}
+
+.contact .block { margin-inline-start: auto; }
+.contact { margin-block-end: 0.25rem; }

@@ -4,83 +4,147 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ryan Tornberg</title>
-  <meta name="description" content="Ryan Tornberg is a software architect and player-coach engineering manager: .NET, regulated data and AI-native delivery.">
+  <meta name="description" content="Ryan Tornberg is a software architect and engineering manager in Tucson, Arizona: .NET, regulated data and AI-native delivery.">
   <meta property="og:title" content="Ryan Tornberg">
-  <meta property="og:description" content="Software architect and player-coach engineering manager. Brownfield is the tougher game, and it is where I have done my best work.">
+  <meta property="og:description" content="Software architect and engineering manager. I have written production code for 27 years, led architecture for 14 of them and managed people for six.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ryantornberg.com/">
   <meta property="og:image" content="https://ryantornberg.com/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Ryan Tornberg. Greenfield is a blast. Brownfield is the tougher game.">
+  <meta property="og:image:alt" content="Ryan Tornberg, software architect and engineering manager.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20261114c">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
+  <link rel="stylesheet" href="sheet.css?v=20261114e">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script src="theme.js?v=20261114c" defer></script>
+  <script src="theme.js?v=20261114e" defer></script>
 </head>
 <body>
-  <header class="cover">
-    <div class="wrap">
-      <div class="masthead">
-        <span>Ryan Tornberg</span>
-        <nav aria-label="Site">
-          <a href="#work">Work</a>
-          <a href="#diagrams">Diagrams</a>
-          <a href="workspace/">Workspace</a>
-          <a href="#contact">Contact</a>
-          <a href="https://github.com/ryantornberg">GitHub</a>
-          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark</button>
-        </nav>
-      </div>
-      <h1>Greenfield is a blast.<br>Brownfield is<br>the tougher game.</h1>
-      <p class="lede">Brownfield is where I have done my best work. Software architect and player-coach engineering manager: I design the architecture, lead the team, and still write production code.</p>
-    </div>
-  </header>
+  <div class="sheet">
+    <header class="top">
+      <nav aria-label="Elsewhere">
+        <a href="workspace/">Workspace</a>
+        <a href="https://github.com/ryantornberg">GitHub</a>
+        <a href="https://www.linkedin.com/in/rtornberg/">LinkedIn</a>
+        <a href="mailto:RyanTornberg@gmail.com">Email</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark</button>
+      </nav>
+      <dl class="block">
+        <dt>Name</dt><dd class="nm"><h1>Ryan Tornberg</h1></dd>
+        <dt>Role</dt><dd>Software architect and engineering manager</dd>
+        <dt>Based</dt><dd>Tucson, Arizona. Remote.</dd>
+      </dl>
+    </header>
 
-  <main>
-    <div class="wrap">
-      <ul class="bars" aria-label="Recent results">
-        <li><strong>12M+ deliveries a year</strong>Three production .NET MAUI apps and their API, moved off Xamarin with no break in releases.</li>
-        <li><strong>Several workstreams at once</strong>An identity migration, an observability build and QA automation. I plan and design each one, and agents carry the work between my decisions.</li>
-        <li><strong>One action in eight is a check</strong>AI-assisted delivery a team can trust, because verification is measured, not assumed.</li>
-      </ul>
+    <main>
+      <p class="lead">I have written production code for 27 years, led architecture for 14 of them and managed people for six. Today I do all three at once, on systems that are already in production and cannot stop.</p>
 
-      <section id="work" class="work">
-        <h2>Work</h2>
-        <p>Most of my career has been the systems nobody gets to rewrite from scratch: the ones already in production, already carrying money, prescriptions, or public records. The job is to change them without breaking what people depend on.</p>
-
-        <h3>Platform migrations</h3>
-        <p>Moving live products between frameworks, data stores and identity providers while they keep shipping. Recent examples: three production mobile apps moved from Xamarin to .NET MAUI with no break in releases, and a patient app's sign-in moving from Keycloak to Auth0, a multi-step cutover I am leading now.</p>
-
-        <h3>Architecture with a paper trail</h3>
-        <p>Decision records, spikes before commitments and designs that name what they gave up. I would rather spend a week comparing four messaging designs than a year living with the wrong one.</p>
-
-        <h3>The questions upstream of the code</h3>
-        <p>Most of what I am worth happens before anyone writes code: checking what is actually true, guarding the decisions that cannot be undone cheaply and writing plans specific enough that people argue with them.</p>
-
-        <h3>Teams that run like small companies</h3>
-        <p>I manage engineers and run the full performance cycle. I have run a product team as a self-contained business inside a larger company: its own roadmap, its own releases, its own results.</p>
-
-        <h3>AI-assisted engineering you can review</h3>
-        <p>I build the practice around the tools: independent review, claims marked as checked or unchecked and evaluations that catch it when the guidance an agent follows goes wrong. The workspace behind it has <a href="workspace/">its own page</a>, and a small working version is public as <a href="https://github.com/ryantornberg/agent-ready-workspace">agent-ready-workspace</a>.</p>
-      </section>
-
-      <section id="diagrams" class="diagrams">
-        <h2>Selected work</h2>
-        <p>Five figures from my work. The first two are architecture, and the third is how I keep several workstreams moving at once. The last two come from the agent workspace my team develops in: how its work is measured, and how a gap gets fixed. Each figure links on its own. <a href="workspace/">How the workspace works</a> has its own page, with twelve more figures. One of them <a href="workspace/#fig-replay">steps through a recorded agent run</a>, with and without the workspace&rsquo;s guidance.</p>
-
-        <figure id="fig-1">
-        <div class="plate"><svg viewBox="0 0 720 312" role="img" aria-label="An architecture model kept as text in the repository is drawn from the systems register and checked against it on every commit. The network map, the diagrams in the docs and the impact lookup are all generated from the model, and every call in it names the class of data it carries.">
-        <defs>
+      <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
         <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
         <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
         </marker>
-        </defs>
-        <g fill="none" stroke="currentColor" stroke-width="1.5">
+        </defs></svg>
+      <figure id="fig-1" class="wide">
+        <div class="plate"><svg viewBox="0 0 1016 236" role="img" aria-label="A timeline from 1999 to 2026. City of Tucson until 2012, Ephibian until 2020, iFIT until late 2021, RedSail Technologies since. I have written code the whole time, led architecture since 2012 and managed people since 2020, and I do all three today.">
+        <g font-size="13" fill="currentColor">
+        <rect x="8" y="8" width="464" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="20" y="33" font-weight="600">City of Tucson</text>
+        <rect x="476" y="8" width="288" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="488" y="33" font-weight="600">Ephibian</text>
+        <rect x="768" y="8" width="59" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="776" y="33" font-weight="600">iFIT</text>
+        <rect x="831" y="8" width="177" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="843" y="33" font-weight="600">RedSail</text>
+        <line x1="8" y1="92" x2="1008" y2="92" stroke="var(--link)" stroke-width="3"/>
+        <circle cx="8" cy="92" r="4.5" fill="var(--link)"/>
+        <text x="8" y="82" font-weight="600" fill="var(--link)">Writing code, since 1999</text>
+        <line x1="476" y1="130" x2="1008" y2="130" stroke="var(--link)" stroke-width="3"/>
+        <circle cx="476" cy="130" r="4.5" fill="var(--link)"/>
+        <text x="476" y="120" font-weight="600" fill="var(--link)">Leading architecture, since 2012</text>
+        <line x1="768" y1="168" x2="1008" y2="168" stroke="var(--link)" stroke-width="3"/>
+        <circle cx="768" cy="168" r="4.5" fill="var(--link)"/>
+        <text x="768" y="158" font-weight="600" fill="var(--link)">Managing people, since 2020</text>
+        <line x1="8" y1="190" x2="1008" y2="190" stroke="currentColor" stroke-width="1"/>
+        <line x1="8" y1="190" x2="8" y2="199" stroke="currentColor" stroke-width="1"/>
+        <text x="8" y="218" text-anchor="start" font-size="12">1999</text>
+        <line x1="224" y1="190" x2="224" y2="199" stroke="currentColor" stroke-width="1"/>
+        <text x="224" y="218" text-anchor="middle" font-size="12">2005</text>
+        <line x1="476" y1="190" x2="476" y2="199" stroke="currentColor" stroke-width="1"/>
+        <text x="476" y="218" text-anchor="middle" font-size="12">2012</text>
+        <line x1="764" y1="190" x2="764" y2="199" stroke="currentColor" stroke-width="1"/>
+        <text x="764" y="218" text-anchor="middle" font-size="12">2020</text>
+        <line x1="980" y1="190" x2="980" y2="199" stroke="currentColor" stroke-width="1"/>
+        <text x="980" y="218" text-anchor="middle" font-size="12">2026</text>
+        </g>
+        </svg></div>
+        <figcaption>Four employers, drawn to scale. The three lines are the work I did, not job titles. Each one was added to the ones before it, and none was handed off.</figcaption>
+      </figure>
+
+      <section aria-labelledby="career-h">
+        <h2 id="career-h">Career</h2>
+        <ol class="career">
+          <li>
+            <p class="when">2021 to now</p>
+            <div class="who"><h3>RedSail Technologies</h3><p>PioneerRx Pharmacy Software. Software Development Manager since 2024, Mobile Team Lead before that.</p></div>
+            <p>Architect and primary engineer of the API behind three mobile apps used by thousands of pharmacies. Since May 2026 I also work on RedSail&rsquo;s patient platform, where I am leading its sign-in migration and building the observability work I designed.</p>
+          </li>
+          <li>
+            <p class="when">2020 to 2021</p>
+            <div class="who"><h3>iFIT</h3><p>Chapter Lead and Senior Mobile Developer</p></div>
+            <p>Managed seven mobile engineers on a fully remote team, and stayed hands-on in fitness apps used by millions.</p>
+          </li>
+          <li>
+            <p class="when">2012 to 2020</p>
+            <div class="who"><h3>Ephibian</h3><p>Software Architect and Senior Software Engineer</p></div>
+            <p>Lead architect on client projects from $100K to $2M+ in healthcare, finance, government and e-commerce. Lead engineer on the desktop client of a real-time visualization for a defense research lab.</p>
+          </li>
+          <li>
+            <p class="when">1999 to 2012</p>
+            <div class="who"><h3>City of Tucson</h3><p>Software Engineer and Analyst</p></div>
+            <p>Built the city&rsquo;s first online payment system, which processed $1M+ a year for more than a decade, and the prosecutor&rsquo;s case-management applications.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="work-h">
+        <h2 id="work-h">Work</h2>
+        <ul class="outcomes">
+          <li>
+            <h3>Deliveries that cannot be lost</h3>
+            <p>The apps I am responsible for handle 12M+ prescription deliveries a year. Uploads used to lose a delivery when a post failed, so I redesigned completion as an asynchronous pipeline. Figure 3 draws it.</p>
+          </li>
+          <li>
+            <h3>Three apps moved, none paused</h3>
+            <p>I migrated all three production apps from Xamarin to .NET MAUI with no break in releases.</p>
+          </li>
+          <li>
+            <h3>Sign-in for thousands of pharmacies</h3>
+            <p>I shipped per-pharmacy OIDC sign-in across thousands of on-premises pharmacy systems, behind a feature flag for each pharmacy, so any one site could be rolled back alone.</p>
+          </li>
+          <li>
+            <h3>A years-old bug, traced to two causes</h3>
+            <p>An endless loading screen was behind most of a patient app&rsquo;s bad store reviews. I found both causes and fixed the app side.</p>
+          </li>
+          <li>
+            <h3>A redesign shipped to both app stores</h3>
+            <p>I built a patient app&rsquo;s visual redesign on my own: a design-token system with light and dark modes, checked against WCAG 2.1 AA.</p>
+          </li>
+          <li>
+            <h3>An agent workspace a team chose to use</h3>
+            <p>One instruction contract shared by four AI tools, generated code maps, and checks that keep the docs honest. It spread by word of mouth, without a mandate, to QA, engineering leadership and other developers. It has <a href="workspace/">its own page</a>, and a small working version is public as <a href="https://github.com/ryantornberg/agent-ready-workspace">agent-ready-workspace</a>.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="drawings-h" class="drawings">
+        <h2 id="drawings-h">Drawings</h2>
+        <p class="note">Four mechanisms from my work. <a href="workspace/">The workspace page</a> has twelve more, and one of them <a href="workspace/#fig-replay">steps through a recorded agent run</a>.</p>
+        <figure id="fig-2">
+        <div class="plate"><svg viewBox="0 0 720 312" role="img" aria-label="An architecture model kept as text in the repository is drawn from the systems register and checked against it on every commit. The network map, the diagrams in the docs and the impact lookup are all generated from the model, and every call in it names the class of data it carries.">
+                <g fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="8" y="16" width="264" height="56" rx="3"/>
         <rect x="8" y="112" width="264" height="72" rx="3" stroke="var(--link)" stroke-width="2.5"/>
         <rect x="8" y="224" width="264" height="72" rx="3"/>
@@ -118,9 +182,8 @@
         </svg></div>
         <figcaption>Every architecture view is generated from one text model, which a commit gate checks against the systems register. Every call in the model names the class of data it carries.</figcaption>
         </figure>
-
-        <figure id="fig-2">
-        <div class="plate"><svg viewBox="0 0 720 296" role="img" aria-label="A completed delivery is handed off by the mobile app and stored at an intake before anything posts it. A background service validates it with the logic for the app version that produced it and posts it to the pharmacy's database in one add-or-update transaction, and a failure is recorded against the delivery. A partner platform now sends its deliveries through the same intake.">
+        <figure id="fig-3">
+        <div class="plate"><svg viewBox="0 0 720 296" role="img" aria-label="The delivery app sends each completed delivery to the mobile API, which saves it before anything else and then answers the app. A background service, the delivery processor, validates it with the logic for that app version and posts it to the pharmacy database in one transaction. A failure is recorded against the delivery. A partner delivery company now sends its deliveries through the same API.">
         <g fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="8" y="16" width="200" height="72" rx="3"/>
         <rect x="8" y="128" width="200" height="56" rx="3"/>
@@ -135,17 +198,17 @@
         <path d="M560 136 L560 172 L360 172 L360 202" marker-end="url(#arw)" stroke-dasharray="5 4"/>
         </g>
         <g font-size="13" fill="currentColor">
-        <text x="24" y="40" font-weight="600">Mobile app</text>
-        <text x="24" y="60">Hands off a small payload</text>
-        <text x="24" y="80">with its version.</text>
-        <text x="24" y="152" font-weight="600">Partner platform</text>
-        <text x="24" y="172">Joined the same intake.</text>
-        <text x="276" y="88" font-weight="600" fill="var(--link)">Intake</text>
-        <text x="276" y="108" fill="var(--link)">Stored first, so a slow</text>
-        <text x="276" y="128" fill="var(--link)">post loses nothing.</text>
-        <text x="528" y="88" font-weight="600">Background service</text>
+        <text x="24" y="40" font-weight="600">Delivery app</text>
+        <text x="24" y="60">Sends each completed</text>
+        <text x="24" y="80">delivery, with its version.</text>
+        <text x="24" y="152" font-weight="600">Partner delivery company</text>
+        <text x="24" y="172">Sends through the same API.</text>
+        <text x="276" y="88" font-weight="600" fill="var(--link)">Mobile API</text>
+        <text x="276" y="108" fill="var(--link)">Saves the delivery first,</text>
+        <text x="276" y="128" fill="var(--link)">then answers the app.</text>
+        <text x="528" y="88" font-weight="600">Delivery processor</text>
         <text x="528" y="108">Validates with the logic</text>
-        <text x="528" y="128">for that version.</text>
+        <text x="528" y="128">for that app version.</text>
         <text x="528" y="232" font-weight="600">Pharmacy database</text>
         <text x="528" y="252">Add-or-update in one</text>
         <text x="528" y="272">transaction. No doubles.</text>
@@ -156,10 +219,9 @@
         <text x="420" y="164" font-size="12">on failure</text>
         </g>
         </svg></div>
-        <figcaption>A completed delivery is stored before anything posts it, so a slow or failed post no longer loses the work. A partner platform now sends its deliveries through the same intake.</figcaption>
+        <figcaption>The API saves a completed delivery before anything posts it to the pharmacy, so a slow or failed post no longer loses the work. A partner delivery company now sends its deliveries the same way.</figcaption>
         </figure>
-
-        <figure id="fig-3">
+        <figure id="fig-4">
         <div class="plate"><svg viewBox="0 0 720 264" role="img" aria-label="Each workstream's plan marks the decisions that wait for me, each with a recommendation. Agents build up to the next one, a review loop freezes after three fix rounds with nothing merged, and I decide from a draft pull request and a report. Several workstreams run this loop at once.">
         <g fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="8" y="24" width="200" height="72" rx="3"/>
@@ -196,8 +258,7 @@
         </svg></div>
         <figcaption>Each workstream&rsquo;s plan marks the decisions that wait for me. Agents carry the work up to the next one, and a review loop freezes after three fix rounds, so several workstreams move at once.</figcaption>
         </figure>
-
-        <figure id="fig-4">
+        <figure id="fig-5">
         <div class="plate"><svg viewBox="0 0 720 232" role="img" aria-label="Two measured ratios: roughly one in every eight agent actions is a verification step rather than a change, and about 62 percent of delegated work is routed to smaller, cheaper models.">
         <g font-size="13" fill="currentColor">
         <text x="8" y="24" font-weight="600">Verification share of agent actions</text>
@@ -227,63 +288,18 @@
         </svg></div>
         <figcaption>Both ratios are read out of session logs, not estimated: one action in eight is a verification step, and 62% of delegated work runs on smaller models.</figcaption>
         </figure>
-
-        <figure id="fig-5">
-        <div class="plate"><svg viewBox="0 0 720 248" role="img" aria-label="A developer question that has to be escalated to a person is logged as a gap, the gap is fixed in the workspace, and the same question stops being asked. The workspace spread by word of mouth, without a mandate, to QA, engineering leadership and other developers.">
-        <g fill="none" stroke="currentColor" stroke-width="1.5">
-        <rect x="8" y="24" width="208" height="56" rx="3"/>
-        <rect x="264" y="24" width="184" height="56" rx="3" stroke="var(--link)" stroke-width="2.5"/>
-        <rect x="496" y="24" width="216" height="56" rx="3"/>
-        <line x1="216" y1="52" x2="258" y2="52" marker-end="url(#arw)"/>
-        <line x1="448" y1="52" x2="490" y2="52" marker-end="url(#arw)"/>
-        <path d="M604 80 L604 128 L112 128 L112 88" marker-end="url(#arw)" stroke-dasharray="5 4"/>
-        <line x1="104" y1="192" x2="144" y2="192" marker-end="url(#arw)"/>
-        <line x1="192" y1="192" x2="232" y2="192" marker-end="url(#arw)"/>
-        <line x1="408" y1="192" x2="448" y2="192" marker-end="url(#arw)"/>
-        </g>
-        <g font-size="13" fill="currentColor">
-        <text x="24" y="48" font-weight="600">"I had to ask a person"</text>
-        <text x="24" y="68">The escalation itself.</text>
-        <text x="280" y="48" font-weight="600" fill="var(--link)">Logged as a gap</text>
-        <text x="280" y="68" fill="var(--link)">Not as user error.</text>
-        <text x="512" y="48" font-weight="600">Fixed in the workspace</text>
-        <text x="512" y="68">By whoever hit it.</text>
-        <text x="264" y="122" font-size="12">the same question is not asked twice</text>
-        <text x="8" y="197" font-weight="600">My team</text>
-        <text x="152" y="197" font-weight="600">QA</text>
-        <text x="240" y="197" font-weight="600">engineering leadership</text>
-        <text x="456" y="197" font-weight="600">other developers</text>
-        <text x="8" y="228" font-size="12">by word of mouth, never mandated</text>
-        </g>
-        </svg></div>
-        <figcaption>A question a developer has to escalate to a person is logged as a gap in the workspace, not as user error. It spread by word of mouth, never by mandate.</figcaption>
-        </figure>
       </section>
 
-      <section id="background">
-        <h2>Background</h2>
-        <p>I have built software for city governments, retirement plans, clinical research, defense research, e-commerce, and pharmacies. The first online payment system I built for the City of Tucson ran for more than a decade. Today I work on healthcare platforms that pharmacies across the country depend on.</p>
-        <p>I studied jazz before I studied software. The habits carry over: listen hard, keep time and know when to improvise.</p>
-        <p>I live in Tucson, Arizona and work remotely.</p>
-      </section>
-
-      <section id="contact" class="contact">
-        <h2>Contact</h2>
-        <dl>
-          <dt>Email</dt>
-          <dd><a href="mailto:RyanTornberg@gmail.com">RyanTornberg@gmail.com</a></dd>
-          <dt>LinkedIn</dt>
-          <dd><a href="https://www.linkedin.com/in/rtornberg/">linkedin.com/in/rtornberg</a></dd>
-          <dt>GitHub</dt>
-          <dd><a href="https://github.com/ryantornberg">github.com/ryantornberg</a></dd>
-          <dt>Resume</dt>
-          <dd>Sent on request, by email.</dd>
+      <section aria-labelledby="contact-h" class="contact">
+        <h2 id="contact-h">Contact</h2>
+        <dl class="block">
+          <dt>Email</dt><dd><a href="mailto:RyanTornberg@gmail.com">RyanTornberg@gmail.com</a></dd>
+          <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/rtornberg/">linkedin.com/in/rtornberg</a></dd>
+          <dt>GitHub</dt><dd><a href="https://github.com/ryantornberg">github.com/ryantornberg</a></dd>
+          <dt>Resume</dt><dd>Sent on request, by email.</dd>
         </dl>
       </section>
-
-      <footer>Ryan Tornberg, Tucson, Arizona</footer>
-    </div>
-  </main>
-
+    </main>
+  </div>
 </body>
 </html>

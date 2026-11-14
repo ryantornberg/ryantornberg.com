@@ -676,3 +676,76 @@ figcaption::before {
 @media (max-width: 640px) {
   .replay-arms { grid-template-columns: 1fr; gap: 1rem 0; }
 }
+
+/* ------------------------------------------------------------------
+   Home page, rebuilt 2026-11: the name is the cover, the career comes
+   first, and each section uses the full frame: a heading rail on the
+   left and its content on the right.
+   ------------------------------------------------------------------ */
+.cover.home h1 {
+  font-size: clamp(3.75rem, 19vw, 15.3rem);
+  line-height: 0.82;
+  letter-spacing: -0.015em;
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.75rem);
+  margin-inline-start: -0.04em;
+  white-space: nowrap;
+}
+.cover-cols { display: grid; gap: 1.25rem 3rem; }
+.cover.home .role {
+  font-family: var(--display);
+  font-stretch: 75%;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.08;
+  margin: 0;
+  text-wrap: balance;
+}
+.cover.home .lede { max-width: 36em; margin: 0 0 1.1rem; text-wrap: pretty; }
+.cover-links { display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem; margin: 0; font-family: var(--display); font-weight: 600; font-size: 1rem; }
+.cover-links a { text-decoration: none; border: 1px solid currentColor; border-radius: 999px; padding: 0.2em 0.9em; }
+.cover-links a:hover { background: var(--cover-ink); color: var(--cover); }
+@media (min-width: 900px) {
+  .cover-cols { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+}
+
+main section.band { max-width: none; display: grid; gap: 0 3rem; }
+.band > h2 { margin-bottom: 1.5rem; }
+.band-body > :last-child { margin-bottom: 0; }
+@media (min-width: 900px) {
+  main section.band { grid-template-columns: 11rem minmax(0, 1fr); }
+  .band > h2 { position: sticky; top: 1.5rem; align-self: start; }
+}
+
+.career { list-style: none; margin: 0; padding: 0; border-block-start: 1.5px solid var(--ink); }
+.career > li { display: grid; gap: 0.25rem 2rem; padding-block: 1.25rem; border-block-end: 1px solid var(--rule); }
+.career .when { font-family: var(--display); font-stretch: 87.5%; font-weight: 650; margin: 0; white-space: nowrap; }
+.career h3 { margin: 0 0 0.15rem; font-size: 1.375rem; }
+.career h3 span { display: inline-block; font-weight: 400; color: var(--muted); font-size: 1rem; margin-inline-start: 0.35em; }
+.career .title { font-style: italic; margin: 0 0 0.5rem; }
+.career p { margin: 0; max-width: var(--measure); }
+.aside { margin: 1.5rem 0 0; max-width: var(--measure); color: var(--muted); }
+@media (min-width: 640px) {
+  .career > li { grid-template-columns: 8.5rem minmax(0, 1fr); }
+}
+
+.outcomes { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 3rem; border-block-start: 1.5px solid var(--ink); }
+.outcomes > li { padding-block: 1.25rem; border-block-end: 1px solid var(--rule); }
+.outcomes h3 { margin: 0 0 0.4rem; }
+.outcomes p { margin: 0; font-size: 1.0625rem; line-height: 1.55; }
+@media (min-width: 760px) {
+  .outcomes { grid-template-columns: 1fr 1fr; }
+}
+
+.band .intro-line { max-width: var(--measure); }
+.band.diagrams figure:first-of-type { margin-top: 1.5rem; }
+.band.contact dl { font-size: 1.125rem; }
+.bars.quad { grid-template-columns: repeat(4, 1fr); }
+.bars.quad strong { font-size: 1.375rem; }
+@media (max-width: 1040px) {
+  .bars.quad { grid-template-columns: 1fr 1fr; }
+  .bars.quad li:nth-child(-n+2) { border-block-end: 1px solid var(--rule); }
+}
+@media (max-width: 760px) {
+  .bars.quad { grid-template-columns: 1fr; }
+  .bars.quad li:nth-child(-n+2) { border-block-end: 0; }
+}

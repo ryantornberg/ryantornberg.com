@@ -27,5 +27,5 @@ Pushing to `main` publishes the site. GitHub Pages serves the repository root wi
 ## Content rules
 
 - Describe the type of work, never employer-specific details, ticket numbers or unfixed issues.
-- Don't publish the resume here. It carries a phone number. The contact section says "sent on request".
+- Don't publish the resume here. The contact block says "sent on request".
 - Review every quarter. A stale site is worse than none.
