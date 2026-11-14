@@ -11,7 +11,8 @@
   }
   function paint() {
     var dark = current() === "dark";
-    btn.textContent = dark ? "Light" : "Dark";
+    if (btn.querySelector("svg")) btn.dataset.mode = dark ? "dark" : "light";
+    else btn.textContent = dark ? "Light" : "Dark";
     btn.setAttribute("aria-pressed", String(dark));
     btn.setAttribute("aria-label", dark ? "Switch to the light theme" : "Switch to the dark theme");
   }
