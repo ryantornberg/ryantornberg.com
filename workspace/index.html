@@ -519,6 +519,7 @@
 
           <p class="gloss"><b>Working copy.</b> A separate checkout of a repository on its own branch. Git calls an extra one a worktree.</p>
           <p>Agents work in parallel, each on its own branch in its own working copy. If they share one local database, one session&rsquo;s test data breaks another session&rsquo;s test.</p>
+          <p>The first session that writes keeps the main checkout. Any later session that writes gets its own working copy, so two sessions never share a working tree. A person running one session sees no difference.</p>
           <p>So each working copy gets a slot: a local environment with the real schema, its own database and a seeded test user. One command starts the slot or reuses it, and another takes it down.</p>
           <p>The slots look after themselves. Idle slots are reclaimed, and a session&rsquo;s slot comes down when the session ends. A slot also refuses to run code from a branch that has fallen behind.</p>
           <p>A slot never points at shared data. Where a service would call out, a local stand-in answers, and the browser asks before it leaves the local environment.</p>
@@ -568,6 +569,7 @@
           <p>Before the reviewers run, a build-and-lint pass compares the branch with its base, so only new problems count.</p>
           <p>The review leaves a record of which reviewers finished and what each one found. A hook refuses to open a pull request for a commit with no record. The agent opens it only as a draft, and a person reads it and publishes it.</p>
           <p>On a teammate&rsquo;s pull request, each finding is checked against the code before anything is posted, and a person approves every comment.</p>
+          <p>On a later round, a reviewer re-checks each earlier &ldquo;fixed&rdquo; claim against the code. A declined security or architecture finding needs a ticket or a person&rsquo;s acceptance on record.</p>
           <p>A finding that won&rsquo;t be fixed now is deferred to a ticket. A gate flags a deferred finding whose ticket closed without a fix.</p>
           <p>When a defect gets past a review anyway, an escape review asks what kind of miss it was. The fix goes into the review itself, so the next defect of that kind gets caught.</p>
         </section>
@@ -585,6 +587,8 @@
               <dt>Model tier</dt><dd>Which tier runs each step.</dd>
             </dl>
           </div>
+
+          <p>An unattended run also gets its limits in writing before it starts. A review loop stops after three fix rounds, and the pull request freezes. Nothing is published or merged, and a person reads the run&rsquo;s report in the morning.</p>
 
           <figure id="fig-7">
           <div class="plate"><svg viewBox="0 0 720 256" role="img" aria-label="The strongest model, the Driver, makes the judgment calls. It hands bounded slices to a Worker tier and sweeps to a Mechanical tier, and only conclusions come back: file, line and finding.">
@@ -722,6 +726,7 @@
               <tr><th scope="row">Session start</th><td data-label="What the hook does">Warns when a pinned repository is behind its main branch, and lists pages past their review date.</td><td data-label="Kind">Reminds</td></tr>
               <tr><th scope="row">Before an edit</th><td data-label="What the hook does">Shows the path-scoped rules for the file. Refuses edits to a shelved repository unless the session opted in.</td><td data-label="Kind">Reminds, refuses</td></tr>
               <tr><th scope="row">After an edit</th><td data-label="What the hook does">Names the other layers of the same call chain that may need the change too.</td><td data-label="Kind">Reminds</td></tr>
+              <tr><th scope="row">Before a write</th><td data-label="What the hook does">Refuses a second session writing in a checkout another live session holds, and names the command for its own working copy.</td><td data-label="Kind">Refuses</td></tr>
               <tr><th scope="row">Before staging</th><td data-label="What the hook does">Refuses &ldquo;stage everything&rdquo;, because another session may have edits in the same folder.</td><td data-label="Kind">Refuses</td></tr>
               <tr><th scope="row">Before a handoff</th><td data-label="What the hook does">Refuses a delegated task that names no model tier.</td><td data-label="Kind">Refuses</td></tr>
               <tr><th scope="row">Before a pull request</th><td data-label="What the hook does">Refuses a branch that has no review record.</td><td data-label="Kind">Refuses</td></tr>
