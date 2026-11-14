@@ -28,11 +28,13 @@
   });
   rail.appendChild(top);
 
+  var back = document.querySelector(".to-contents");
   var queued = false;
   function paint() {
     queued = false;
     var past = contents.getBoundingClientRect().bottom < 60;
     rail.classList.toggle("on", past);
+    if (back) back.classList.toggle("on", past);
     var cur = null;
     secs.forEach(function (s) { if (s.el.getBoundingClientRect().top < 160) cur = s; });
     secs.forEach(function (s) { s.item.classList.remove("cur"); s.part.classList.remove("cur"); });
