@@ -84,3 +84,9 @@ figure .fig-tall { display: none; }
 /* Employer marks in the timeline. Ephibian's navy wordmark is unreadable on dark paper, so it is drawn in one light tone there. */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo-eph { filter: brightness(0) invert(0.9); } }
 :root[data-theme="dark"] .logo-eph { filter: brightness(0) invert(0.9); }
+
+/* Employer marks beside the Career headings, matching the timeline. */
+.career .who h3 { display: flex; align-items: center; gap: 0.45rem; min-height: 1.5rem; }
+.career .who .mk { height: 1.35rem; width: auto; flex: none; }
+.career .who svg.wm { height: 0.95rem; width: auto; }
+.career .who img.wm { height: 1.2rem; width: auto; }
