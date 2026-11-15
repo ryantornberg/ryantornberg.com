@@ -846,3 +846,11 @@ figure .fig-tall { display: none; }
 .to-contents.on { visibility: visible; }
 @media (min-width: 1240px) { .to-contents.on { visibility: hidden; } }
 @media print { .to-contents { display: none; } }
+
+/* The overview drawing is not a numbered figure, so it needs its own portrait swap. */
+.overview .fig-tall { display: none; }
+@media (max-width: 760px) {
+  .overview .has-tall .fig-wide { display: none; }
+  .overview .has-tall .fig-tall { display: block; min-width: 0; max-width: 26rem; }
+  .overview .plate.has-tall { background: none; overflow-x: visible; }
+}
