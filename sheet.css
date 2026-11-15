@@ -90,3 +90,7 @@ figure .fig-tall { display: none; }
 .career .who .mk { height: 1.35rem; width: auto; flex: none; }
 .career .who svg.wm { height: 0.95rem; width: auto; }
 .career .who img.wm { height: 1.2rem; width: auto; }
+
+/* The public repository link carries the GitHub mark. */
+.repo { white-space: nowrap; }
+.repo svg { width: 1em; height: 1em; vertical-align: -0.14em; margin-inline-end: 0.3em; }
