@@ -25,7 +25,16 @@
 }
 .block { display: grid; grid-template-columns: auto minmax(0, auto); width: max-content; max-width: 100%; margin: 0; border: 1.5px solid var(--line); font: 500 0.9375rem/1.3 "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif; }
 .block dt, .block dd { margin: 0; padding: 0.45rem 0.9rem; border-block-start: 1px solid var(--line); }
-.block dt { color: var(--muted); }
+.block dt, .top .block dt { color: var(--muted); font-weight: 500; }
 .block dd { border-inline-start: 1px solid var(--line); }
 .block dt:first-of-type, .block dt:first-of-type + dd { border-block-start: 0; }
 .block h1, .block .nm a { margin: 0; font: 600 1.125rem/1.3 "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif; text-decoration: none; }
+
+/* The mark sits in a cell of its own at the left of the title block, as a logo cell does on a drawing. */
+.top .id { display: flex; max-width: 100%; }
+.top .id .mark { flex: none; box-sizing: content-box; width: 3.5rem; height: auto; padding: 0 1rem; border: 1.5px solid var(--line); border-inline-end: 0; }
+@media (max-width: 640px) {
+  .top .id { width: 100%; }
+  .top .id .block { width: auto; flex: 1; }
+  .top .id .mark { width: 3rem; padding: 0 0.8rem; }
+}
