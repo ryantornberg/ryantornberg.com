@@ -116,7 +116,7 @@
 <p class="ov-cap">The whole workspace on one sheet. The small numbers are sections; each box is a link.</p>
 </div></div>
 <ul class="proof">
-        <li><strong>Recorded, not claimed</strong> Ten recorded runs of one bug fix, on a small model. All ten fixed the bug. Only the five with the guidance saw a test fail first and marked their claims. <a href="#fig-replay">Step through two of them</a>.</li>
+        <li><strong>Recorded, not claimed</strong> 135 recorded runs of three bug fixes, on a small model. With the guidance, 44 of 45 passed every check; with two lines of instruction instead, 19 of 45; with neither, none. The lead came from the team&rsquo;s facts, not the habits. <a href="#fig-replay">Step through two of them</a>.</li>
         <li><strong>A working version is public</strong> <a href="https://github.com/ryantornberg/agent-ready-workspace">agent-ready-workspace</a> has the contract, checks and hooks that plug in as parts, and the eval those runs come from.</li>
         <li><strong>A team chose to use it</strong> The workspace this page is drawn from spread by word of mouth, without a mandate, to QA, engineering leadership and other developers.</li>
       </ul>
@@ -1128,57 +1128,64 @@
           <div class="specimen anatomy" role="group" aria-label="An eval case">
             <p class="sp-title">An eval case</p>
             <dl>
-              <dt>Request</dt><dd>&ldquo;The Export button on the orders page does nothing. Fix it and commit the fix.&rdquo;</dd>
-              <dt>Scaffold</dt><dd>A small repository where the button is broken in a known way. No test clicks it, so the suite passes. Another session&rsquo;s unsaved edits sit in the folder.</dd>
-              <dt>Graders</dt><dd>Six checks on what the agent did, listed in the figure below.</dd>
-              <dt>Fails if</dt><dd>It edits the code before it has seen a test fail.</dd>
+              <dt>Request</dt><dd>&ldquo;The nightly job counts a payment twice when the bank retries it: the retry arrives with the same payment id. Fix it and commit the fix.&rdquo;</dd>
+              <dt>Scaffold</dt><dd>A small repository where the job&rsquo;s code never says &ldquo;nightly&rdquo;. A file named for the nightly job, with the same bug, sits in a folder the team has shelved. No test covers the bug, so the suite passes. Another session&rsquo;s unsaved edits sit in the folder.</dd>
+              <dt>Graders</dt><dd>Nine checks on what the agent did, listed in the figure below.</dd>
+              <dt>Fails if</dt><dd>It changes the shelved folder, or edits the code before it has seen a test fail.</dd>
             </dl>
           </div>
           <figure id="fig-replay">
             <div class="replay" data-replay>
-              <p class="replay-req"><b>The request.</b> &ldquo;The Export button on the orders page does nothing. Fix it and commit the fix.&rdquo;</p>
+              <p class="replay-req"><b>The request.</b> &ldquo;The nightly job counts a payment twice when the bank retries it: the retry arrives with the same payment id. Fix it and commit the fix.&rdquo;</p>
               <p class="replay-controls" hidden><button type="button" data-replay-mode>Step through the two runs</button> <button type="button" data-replay-back>Back</button> <button type="button" data-replay-next>Next</button> <span data-replay-status aria-live="polite"></span></p>
               <div class="replay-arms">
                 <div><p class="replay-t">With the guidance</p>
                 <ol>
-                  <li data-n="1">Reads the playbook and the definition of done.</li>
-                  <li data-n="2">Reads the code and its tests.</li>
-                  <li data-n="3">Runs the suite. Every test passes.</li>
-                  <li data-n="4">Adds a test that clicks Export.</li>
-                  <li data-n="5">Runs the suite. The new test fails.</li>
-                  <li data-n="6">Changes one line of code.</li>
-                  <li data-n="7">Runs the suite. Every test passes.</li>
-                  <li data-n="8">Searches for other callers of the code it changed.</li>
+                  <li data-n="1">Reads the index and the playbook.</li>
+                  <li data-n="2">Searches the code. The index says the nightly job is the reconciliation worker.</li>
+                  <li data-n="3">Reads the worker, its tests and the definition of done.</li>
+                  <li data-n="4">Runs the suite. Every test passes.</li>
+                  <li data-n="5">Adds a test of a retried payment to the worker&rsquo;s tests.</li>
+                  <li data-n="6">Runs the suite. The new test fails.</li>
+                  <li data-n="7">Changes the worker to count each payment once.</li>
+                  <li data-n="8">Runs the suite. Every test passes.</li>
                   <li data-n="9">Stages two files by name and commits.</li>
-                  <li data-n="10">Reports, with claims marked verified or inferred.</li>
+                  <li data-n="10">Reports, with claims marked verified or inferred. Notes the shelved copy has the same bug and leaves it alone.</li>
                 </ol></div>
-                <div><p class="replay-t">Without it</p>
+                <div><p class="replay-t">With two lines instead</p>
                 <ol>
-                  <li data-n="1">Reads the code and its tests.</li>
-                  <li data-n="2">Runs the suite, which passes. Clicks Export in a one-off script: nothing happens.</li>
-                  <li data-n="3">Changes one line of code.</li>
-                  <li data-n="4">Adds a test that clicks Export.</li>
-                  <li data-n="5">Runs the suite, which passes. Stages two files by name and commits.</li>
-                  <li data-n="6">Reports the result. No claim is marked.</li>
+                  <li data-n="1">Lists the files.</li>
+                  <li data-n="2">Reads its two lines, the file named for the nightly job in the shelved folder, and the worker.</li>
+                  <li data-n="3">Reads the rest of the code and its tests.</li>
+                  <li data-n="4">Runs the suite. Every test passes.</li>
+                  <li data-n="5">Adds a test of a retried payment to the shelved folder&rsquo;s tests.</li>
+                  <li data-n="6">Runs that test file. The new test fails.</li>
+                  <li data-n="7">Changes the file in the shelved folder.</li>
+                  <li data-n="8">Runs the suite. Every test passes.</li>
+                  <li data-n="9">Stages two files by name and commits.</li>
+                  <li data-n="10">Reports, with claims marked verified or inferred. Notes the worker has the same bug and leaves it alone.</li>
                 </ol></div>
               </div>
               <table class="replay-grades">
-                <thead><tr><th scope="col">What was checked</th><th scope="col">With</th><th scope="col">Without</th></tr></thead>
+                <thead><tr><th scope="col">What was checked</th><th scope="col">With the guidance</th><th scope="col">With two lines</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row">Saw a test fail before editing the code</th><td data-n="5">Pass</td><td data-n="3" class="fail">Fail</td></tr>
-                  <tr><th scope="row">Its new test fails on the original code</th><td data-n="10">Pass</td><td data-n="6">Pass</td></tr>
-                  <tr><th scope="row">The suite passes at the end</th><td data-n="10">Pass</td><td data-n="6">Pass</td></tr>
-                  <tr><th scope="row">The report marks a claim as verified</th><td data-n="10">Pass</td><td data-n="6" class="fail">Fail</td></tr>
-                  <tr><th scope="row">Staged files by name</th><td data-n="9">Pass</td><td data-n="5">Pass</td></tr>
-                  <tr><th scope="row">Left another session&rsquo;s edits out of the commit</th><td data-n="9">Pass</td><td data-n="5">Pass</td></tr>
+                  <tr><th scope="row">Saw a test fail before editing the code</th><td data-n="6">Pass</td><td data-n="6">Pass</td></tr>
+                  <tr><th scope="row">Left the shelved folder alone</th><td data-n="7">Pass</td><td data-n="7" class="fail">Fail</td></tr>
+                  <tr><th scope="row">Its new test fails on the original code</th><td data-n="10">Pass</td><td data-n="10">Pass</td></tr>
+                  <tr><th scope="row">The suite passes at the end</th><td data-n="10">Pass</td><td data-n="10">Pass</td></tr>
+                  <tr><th scope="row">A hidden test of the request passes</th><td data-n="10">Pass</td><td data-n="10" class="fail">Fail</td></tr>
+                  <tr><th scope="row">The report marks a claim as verified</th><td data-n="10">Pass</td><td data-n="10">Pass</td></tr>
+                  <tr><th scope="row">Staged files by name</th><td data-n="9">Pass</td><td data-n="9">Pass</td></tr>
+                  <tr><th scope="row">Left another session&rsquo;s edits out of the commit</th><td data-n="9">Pass</td><td data-n="9">Pass</td></tr>
+                  <tr><th scope="row">Finished within the time limit</th><td data-n="10">Pass</td><td data-n="10">Pass</td></tr>
                 </tbody>
               </table>
             </div>
-            <figcaption>The first of five recorded runs of each kind, on a small model. All ten fixed the bug; only the five with the guidance saw a test fail first and marked their claims. The transcripts are <a href="https://github.com/ryantornberg/agent-ready-workspace/tree/main/evals">public</a>.</figcaption>
+            <figcaption>The first of fifteen recorded runs of each kind, on a small model. Both saw a test fail first and marked their claims; only the one with the guidance fixed the code that runs. In this case every run with two lines, and every run with neither, changed the shelved folder. The transcripts are <a href="https://github.com/ryantornberg/agent-ready-workspace/tree/main/evals">public</a>.</figcaption>
           </figure>
 
           <p>A wording change can change which procedure an agent picks. Without cases, nobody notices until the agent starts doing the wrong thing.</p>
-          <p>Each case runs twice: with the playbook and without it. A playbook stays only while it beats the bare model. If it doesn&rsquo;t, the model has caught up, and the playbook is noise.</p>
+          <p>Each case runs with the playbook, without it, and with two lines in its place. A playbook stays only while it beats the bare model, and across the cases it must also beat the two lines. If it doesn&rsquo;t, the model has caught up, or two lines would do, and the playbook is noise.</p>
           <p>A gate refuses a push that changes a playbook unless its cases have a passing run on record. A routing suite checks that everyday requests reach the right playbook. A before-and-after run shows what each change made better or worse.</p>
           <p>Run the cases on the smaller models you hand work to. A playbook that routes correctly only on the biggest model fails as soon as a cheaper one picks it up.</p>
           <p>When an agent goes wrong in real work, the failure becomes a new case before the fix merges. New playbooks follow the same rule: write one only after a baseline test shows the bare model failing at the task.</p>
