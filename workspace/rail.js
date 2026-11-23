@@ -68,7 +68,7 @@
     menu.id = "jump";
     menu.className = "jump";
     menu.setAttribute("popover", "");
-    menu.setAttribute("aria-label", "Sections");
+    menu.setAttribute("aria-label", "Jump to a section");
     menu.appendChild(build());
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) menu.hidePopover(); });
     var btn = document.createElement("button");

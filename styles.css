@@ -488,6 +488,8 @@ figcaption::before {
 .router tbody th { font-stretch: 75%; font-weight: 700; font-size: 1.1875rem; line-height: 1.2; width: 45%; }
 .aliases { max-width: 28rem; }
 .versions thead th.v2 { background: var(--field); color: var(--field-ink); padding-inline-start: 0.6rem; }
+/* The field is dark in both themes, so its heading is always the light paper colour. */
+.ws .versions thead th.v2 { color: #f4f4f1; }
 .versions tbody td:last-child { padding-inline-start: 0.6rem; }
 .hooks td:last-child { white-space: nowrap; font-family: var(--display); font-stretch: 87.5%; font-weight: 600; }
 
@@ -852,7 +854,7 @@ figure .fig-tall { display: none; }
 
 /* The site header sits at the top of the page, not in a sticky bar. */
 .ws .top { padding-block: clamp(1rem, 3vw, 2rem) 0; }
-/* A small fixed button opens the full list of sections as a menu, at every width. The rail beside the
+/* A small fixed button opens the full list of sections as a menu, at every width and from the first screen. The rail beside the
    text shows where you are; the button reaches any section in one step.
    Without the script it is a plain link to the contents or the top. */
 .jump { position: fixed; inset: auto 0.75rem 3.25rem auto; margin: 0; width: min(19rem, calc(100vw - 1.5rem)); max-height: min(70vh, 34rem); overflow-y: auto; padding: 0.35rem 0.9rem; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 2px; font-size: 0.9375rem; line-height: 1.35; }
@@ -866,8 +868,7 @@ figure .fig-tall { display: none; }
 .jump ol ol li.cur, .ws .jump ol ol li.cur a { color: var(--link); font-weight: 600; }
 button.to-contents { color: var(--ink); cursor: pointer; }
 @media print { .jump { display: none; } }
-.to-contents { position: fixed; z-index: 5; right: 0.75rem; bottom: 0.75rem; padding: 0.35rem 0.8rem; background: var(--paper); border: 1px solid var(--line); border-radius: 2px; font: 500 0.9375rem/1.3 var(--display); text-decoration: none; visibility: hidden; }
-.to-contents.on { visibility: visible; }
+.to-contents { position: fixed; z-index: 5; right: 0.75rem; bottom: 0.75rem; padding: 0.35rem 0.8rem; background: var(--paper); border: 1px solid var(--line); border-radius: 2px; font: 500 0.9375rem/1.3 var(--display); text-decoration: none; }
 @media print { .to-contents { display: none; } }
 
 /* The overview drawing is not a numbered figure, so it needs its own portrait swap. */
