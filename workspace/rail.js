@@ -76,9 +76,28 @@
     btn.className = back.className;
     btn.textContent = "Sections";
     btn.setAttribute("popovertarget", "jump");
+    // A click only opens the menu. It closes on a choice, on Escape or on a click elsewhere.
+    btn.setAttribute("popovertargetaction", "show");
     back.replaceWith(btn);
     btn.after(menu);
     back = btn;
+    // With a mouse, resting on the button opens the menu, and leaving both closes it.
+    // Touch and keyboard still open it with a tap or Enter.
+    var leaving = null;
+    function over(e) {
+      if (e.pointerType !== "mouse") return;
+      clearTimeout(leaving);
+      if (!menu.matches(":popover-open")) menu.showPopover();
+    }
+    function out(e) {
+      if (e.pointerType !== "mouse") return;
+      clearTimeout(leaving);
+      leaving = setTimeout(function () { if (menu.matches(":popover-open")) menu.hidePopover(); }, 300);
+    }
+    [btn, menu].forEach(function (el) {
+      el.addEventListener("pointerenter", over);
+      el.addEventListener("pointerleave", out);
+    });
   }
 
   var edge = contents || document.querySelector(".cover");
