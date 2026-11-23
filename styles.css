@@ -786,8 +786,11 @@ svg [stroke="var(--link)"] { stroke: var(--link); }
 .overview svg text { fill: var(--ink); }
 .overview svg text[fill="var(--muted)"] { fill: var(--muted); }
 .overview svg text[fill="var(--link)"] { fill: var(--link); }
-/* Hovering a box marks its outline only. The words keep their colour. */
-.overview svg a:hover rect { stroke: var(--link); }
+/* The whole box is the link, not only its outline and words: an unfilled shape otherwise ignores the
+   pointer inside it, so the colour flickered as the pointer crossed the gaps between the words. */
+.overview svg a rect { pointer-events: all; }
+.overview svg a:hover rect, .overview svg a:focus-visible rect { stroke: var(--link); stroke-width: 2.5; fill: color-mix(in srgb, var(--link) 14%, transparent); }
+.overview svg a:hover text, .overview svg a:focus-visible text { fill: var(--link); }
 .ov-cap { margin: 0.6rem 0 0; font-size: 0.95rem; line-height: 1.45; color: var(--muted); }
 
 .closing { margin-block-start: clamp(3rem, 7vw, 4.5rem); padding-block-start: 1.25rem; border-block-start: 1.5px solid var(--line); max-width: 38rem; font-size: 1.1875rem; line-height: 1.5; }
