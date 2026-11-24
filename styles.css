@@ -805,7 +805,10 @@ svg [stroke="var(--link)"] { stroke: var(--link); }
 .overview svg:has(a[href="#s13"]:is(:hover, :focus-visible)) a[data-edge="loop"] text { fill: var(--link); }
 /* Stepping (replay.js): the current step takes the accent and the rest of the sheet recedes to the
    muted colour. Nothing is hidden, so the drawing keeps its size and every box stays a link. */
-.overview .replay-controls { border-block-end: 0; padding-block-end: 0.75rem; }
+.overview .replay-controls { border-block-end: 0; padding-block-end: 0.25rem; font-size: 0.875rem; }
+/* On the sheet the controls read as part of the drawing: outlined like its boxes, not a filled button. */
+.overview .replay-controls button { background: none; color: var(--ink); border: 1.5px solid var(--line); font-weight: 500; padding: 0.15em 0.75em; }
+.overview .replay-controls button:hover:not(:disabled) { border-color: var(--link); color: var(--link); }
 .overview.is-stepping svg text, .overview.is-stepping svg a text { fill: var(--muted); }
 .overview.is-stepping svg :is(rect, line, path) { stroke: var(--muted); stroke-width: 1.5; marker-end: none; }
 .overview.is-stepping svg a.is-current rect { stroke: var(--link); stroke-width: 2.5; fill: color-mix(in srgb, var(--link) 14%, transparent); }
