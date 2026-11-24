@@ -54,7 +54,7 @@ Explanations belong in the caption, never in the drawing.
 - Figures sit in a horizontally scrollable wrapper so labels never shrink below about 11 rendered pixels on a phone. A diagram that scrolls is better than one that is unreadable.
 - `role="img"` plus `aria-label` on every `<svg>`, carrying the **same claim as the caption** in one sentence. A screen reader user gets the claim, not a list of shapes.
 - Contrast meets WCAG AA in both themes; the accent is checked on both grounds.
-- No `<script>`, `<style>`, or `<foreignObject>` inside a figure. Nothing about a diagram depends on JavaScript.
+- No `<script>`, `<style>`, or `<foreignObject>` inside a figure. A diagram is complete with no script; a script may only step through or highlight what is already drawn.
 
 ## 8. Figure numbering and captions
 
@@ -80,4 +80,10 @@ A chart follows every rule above, plus these:
 - **Measured is solid; projected is dashed.** A reader must be able to tell which part of a line happened.
 - **The accent marks the gap the caption argues about**, not a series.
 - **Lines are 2 wide, gridlines are recessive** (`stroke-opacity` 0.25), and reference lines are thin and dotted with a label at the top.
-- **No hover layer.** The site carries no JavaScript, so the `aria-label` carries the key numbers instead.
+- **No hover layer.** A chart has no hover layer, so the `aria-label` carries the key numbers.
+
+## 11. Stepping and highlighting
+
+- **Nothing moves on its own.** A change follows a button press, a pointer or keyboard focus.
+- **On the overview sheet the rest recedes and is never hidden.** Parts that are not current take the muted color, so every box stays a readable link and the drawing keeps its height.
+- **Reduced motion is respected.** Fades run only under `prefers-reduced-motion: no-preference`.

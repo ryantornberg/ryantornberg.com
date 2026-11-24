@@ -1,11 +1,12 @@
 # ryantornberg.com
 
-Source for Ryan Tornberg's personal site: static HTML and CSS with no build step. The only script is `theme.js`, the light and dark theme toggle.
+Source for Ryan Tornberg's personal site: static HTML and CSS with no build step. It has three scripts: `theme.js`, the light and dark theme toggle; `workspace/replay.js`, which steps through the recorded-run figure and the overview sheet one press at a time; and `workspace/rail.js`, which builds the Sections menu and the rail on the long pages. Each page works with none of them.
 
 ## Pages
 
 - `index.html`: the home page.
 - `workspace/index.html`: the agent workspace field guide.
+- `workspace/parts/index.html`: the parts list. A script writes it from its rows; do not edit it by hand.
 
 The home page uses `sheet.css`; the workspace page uses `styles.css`, whose last block gives it the same drawing-sheet look. Both share `theme.js`. Each page loads its stylesheet and scripts with a `?v=` date on the address. Change that value in both pages whenever one of those files changes, so a browser never pairs a new page with an old stylesheet or script. Figures follow `DIAGRAMS.md`.
 
