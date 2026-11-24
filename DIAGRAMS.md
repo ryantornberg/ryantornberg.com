@@ -87,3 +87,5 @@ A chart follows every rule above, plus these:
 - **Nothing moves on its own.** A change follows a button press, a pointer or keyboard focus.
 - **On the overview sheet the rest recedes and is never hidden.** Parts that are not current take the muted color, so every box stays a readable link and the drawing keeps its height.
 - **Reduced motion is respected.** Fades run only under `prefers-reduced-motion: no-preference`.
+- **A control never looks like part of a drawing.** Drawings use square-cornered outlined boxes, so the controls that step a drawing are set like the page's links, and a floating button is a rounded pill with a shadow.
+- **An arrow between rows meets the row it joins at its middle**, from the gap between boxes, unless it really comes from one box. A step that lights the arrow must not suggest one box feeds another.

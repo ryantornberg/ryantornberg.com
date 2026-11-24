@@ -805,10 +805,12 @@ svg [stroke="var(--link)"] { stroke: var(--link); }
 .overview svg:has(a[href="#s13"]:is(:hover, :focus-visible)) a[data-edge="loop"] text { fill: var(--link); }
 /* Stepping (replay.js): the current step takes the accent and the rest of the sheet recedes to the
    muted colour. Nothing is hidden, so the drawing keeps its size and every box stays a link. */
-.overview .replay-controls { border-block-end: 0; padding-block-end: 0.25rem; font-size: 0.875rem; }
-/* On the sheet the controls read as part of the drawing: outlined like its boxes, not a filled button. */
-.overview .replay-controls button { background: none; color: var(--ink); border: 1.5px solid var(--line); font-weight: 500; padding: 0.15em 0.75em; }
-.overview .replay-controls button:hover:not(:disabled) { border-color: var(--link); color: var(--link); }
+.overview .replay-controls { border-block-end: 0; padding-block-end: 0.5rem; gap: 0.35rem 1.1rem; }
+/* On the sheet the controls are set like the page's links, so no control looks like a box of the drawing. */
+.overview .replay-controls button { background: none; border: 0; border-radius: 0; padding: 0; color: var(--link); font-weight: 500; text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+.overview .replay-controls button:hover:not(:disabled) { text-decoration-thickness: 2px; }
+.overview .replay-controls button:disabled { opacity: 1; color: var(--muted); text-decoration: none; }
+.overview .replay-controls [data-replay-status] { margin-inline-start: 0; }
 .overview.is-stepping svg text, .overview.is-stepping svg a text { fill: var(--muted); }
 .overview.is-stepping svg :is(rect, line, path) { stroke: var(--muted); stroke-width: 1.5; marker-end: none; }
 .overview.is-stepping svg a.is-current rect { stroke: var(--link); stroke-width: 2.5; fill: color-mix(in srgb, var(--link) 14%, transparent); }
@@ -895,7 +897,7 @@ figure .fig-tall { display: none; }
 .jump ol ol li.cur, .ws .jump ol ol li.cur a { color: var(--link); font-weight: 600; }
 button.to-contents { color: var(--ink); cursor: pointer; }
 @media print { .jump { display: none; } }
-.to-contents { position: fixed; z-index: 5; right: 0.75rem; bottom: 0.75rem; padding: 0.35rem 0.8rem; background: var(--paper); border: 1px solid var(--line); border-radius: 2px; font: 500 0.9375rem/1.3 var(--display); text-decoration: none; }
+.to-contents { position: fixed; z-index: 5; right: 0.75rem; bottom: 0.75rem; padding: 0.35rem 0.8rem; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 2px 8px rgb(0 0 0 / 0.18); font: 500 0.9375rem/1.3 var(--display); text-decoration: none; }
 @media print { .to-contents { display: none; } }
 
 /* The overview drawing is not a numbered figure, so it needs its own portrait swap. */
